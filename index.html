@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>World Tele Communication</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<style>
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  text-align: center;
+  background: linear-gradient(135deg, #fff6ec, #ffe9d6, #ffd2a8);
+  font-family: system-ui;
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+}
+
+/* HERO */
+.hero {
+  margin-top: -10px;
+}
+
+/* LOGO */
+.logo {
+  max-width: 380px;
+  margin-top: -60px;
+  margin-bottom: -60px;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+}
+
+/* LOGO 动画 */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+/* 🔥 标题强制一行 */
+h1 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  font-size: 32px;
+}
+
+/* 副标题 */
+.subtitle {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+/* SECTION */
+.section {
+  padding: 35px 10px;
+}
+
+/* CARD */
+.card {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+/* PARTNER */
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.partner {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.partner img {
+  max-width: 90px;
+  margin-bottom: 5px;
+}
+
+.partner:hover {
+  transform: scale(1.05);
+}
+
+/* FLOAT BUTTON */
+.whatsapp, .call {
+  position: fixed;
+  right: 20px;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.whatsapp {
+  bottom: 20px;
+  background: #25D366;
+}
+
+.call {
+  bottom: 70px;
+  background: #007bff;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="container-fluid">
+  <ul></ul>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#partners">Partners</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <img src="logo.png" class="logo">
+  <h1>World Tele Communication</h1>
+  <p class="subtitle">Mobile Repair | POS System | Sales & Service</p>
+</section>
+
+<!-- ABOUT（保持你原本的） -->
+<section id="about" class="section">
+  <h3>About Us</h3>
+
+  <p>
+  World Tele Communication (WTC) started on 29 December 2004.<br>
+  We specialise in mobile phone repairing, mobile phone sales, and POS system solutions, including POS devices, POS software, and POS Solutions System.
+  </p>
+
+  <p>
+  We have more than 20 years of experience in mobile phone repair and sales.<br>
+  Our POS system business started in May 2021, with over 4 years of experience in providing POS setup, support, and business solutions.
+  </p>
+
+  <p>
+  We provide POS Solutions System for businesses, helping them manage operations more efficiently and grow their business.
+  </p>
+
+  <p>
+  Trusted by local businesses in Malaysia, especially in Melaka.
+  </p>
+
+  <p>
+  We are also:<br>
+  SalesPlay POS System Distributor<br>
+  Sunmi Authorized Dealer<br>
+  POSPay Authorized Dealer
+  </p>
+
+  <p>
+  You can also find our products and services on:<br>
+  Shopee: https://my.shp.ee/6BSSa5j4<br>
+  TikTok Shop: https://vt.tiktok.com/ZS9FRdFv95dNv-8NSUm/
+  </p>
+
+</section>
+
+<!-- 下面全部保持不变 -->
+
+</body>
+</html>
