@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Tele Communication</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<style>
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  text-align: center;
+  margin: 0;
+  background: linear-gradient(135deg, #fff6ec, #ffe9d6, #ffd9b3);
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  padding: 5px 10px;
+}
+
+/* HERO */
+.hero {
+  margin-top: -60px;
+  padding: 20px 10px;
+}
+
+/* LOGO */
+.logo {
+  max-width: 380px;
+  margin-top: -80px;
+  margin-bottom: -80px;
+  animation: float 4s ease-in-out infinite;
+  transition: 0.4s;
+}
+
+.logo:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 30px rgba(255,180,120,0.9));
+}
+
+/* 浮动 */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+/* 标题 */
+h1 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.tagline {
+  font-size: 0.95rem;
+  margin-top: 5px;
+}
+
+/* 分区 */
+.section {
+  padding: 30px 10px;
+}
+
+/* 卡片 */
+.card {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+/* WhatsApp按钮 */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 50px;
+  font-size: 14px;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.whatsapp:hover {
+  background: #1ebe5d;
+  transform: scale(1.1);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="container-fluid">
+  <ul>
+    <li><strong>WTC</strong></li>
+  </ul>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#gallery">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <img src="logo.png" class="logo">
+
+  <h1>World Tele Communication</h1>
+
+  <p class="tagline">
+    Mobile Repair | POS System | Sales & Service
+  </p>
+
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="section">
+
+  <h3>Our Work Gallery</h3>
+
+  <div class="grid">
+
+    <article class="card">
+      <img src="ipos.png">
+      <p>POS System Setup</p>
+    </article>
+
+    <article class="card">
+      <img src="pospay.png">
+      <p>POSPay System</p>
+    </article>
+
+    <article class="card">
+      <img src="salesplay.png">
+      <p>SalesPlay POS</p>
+    </article>
+
+    <article class="card">
+      <img src="sunmi.png">
+      <p>Sunmi Device</p>
+    </article>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+
+  <h3>Contact Us</h3>
+  <p>📞 +60163456287</p>
+  <p>📧 Wtc063369841@gmail.com</p>
+
+</section>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/60163456287" class="whatsapp">
+  WhatsApp
+</a>
+
+<footer class="container">
+  <small>© 2026 WTC</small>
+</footer>
+
+</body>
+</html>
