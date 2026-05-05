@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Tele Communication</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<style>
+
+body {
+  text-align: center;
+  background: linear-gradient(to bottom, #fff6ec, #ffe9d6);
+}
+
+/* 🔥 NAV 几乎贴顶 */
+nav {
+  padding: 0px 10px;
+}
+
+/* 🔥 LOGO 直接吸上去 */
+.logo {
+  max-width: 360px;
+  margin-top: -40px;   /* 往上拉 */
+  margin-bottom: -20px; /* 往下贴 */
+}
+
+/* 🔥 标题强制一行 + 贴紧 */
+h2 {
+  font-size: 1.6rem;   /* 变小才能一行 */
+  margin: 0;
+  white-space: nowrap; /* 不换行 */
+}
+
+/* 🔥 副标题贴紧 */
+p {
+  margin: 3px 0 8px;
+  font-size: 0.95rem;
+}
+
+/* 🔥 分隔线 */
+hr {
+  margin: 10px 0;
+}
+
+/* 卡片 */
+.card {
+  margin-bottom: 20px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.card img {
+  width: 100%;
+}
+
+.card p {
+  padding: 10px;
+  font-weight: bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="container-fluid">
+  <ul>
+    <li><strong>WTC</strong></li>
+  </ul>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+  <!-- 🔥 LOGO -->
+  <img src="logo.png" class="logo">
+
+  <!-- 🔥 一行标题 -->
+  <h2>World Tele Communication</h2>
+
+  <p>Mobile Repair | POS System | Sales & Service</p>
+
+  <hr>
+
+  <h3>Our Work Gallery</h3>
+
+  <div class="grid">
+
+    <article class="card">
+      <img src="ipos.png">
+      <p>POS System Setup</p>
+    </article>
+
+    <article class="card">
+      <img src="pospay.png">
+      <p>POSPay System</p>
+    </article>
+
+    <article class="card">
+      <img src="salesplay.png">
+      <p>SalesPlay POS</p>
+    </article>
+
+    <article class="card">
+      <img src="sunmi.png">
+      <p>Sunmi Device</p>
+    </article>
+
+  </div>
+
+</main>
+
+<footer class="container">
+  <small>
+    Contact: +60163456287 • Wtc063369841@gmail.com
+  </small>
+</footer>
+
+</body>
+</html>
