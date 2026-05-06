@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>World Tele Communication</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<style>
+
+html { 
+  scroll-behavior: smooth; 
+}
+
+body {
+  margin: 0;
+  text-align: center;
+  background: linear-gradient(135deg, #fff6ec, #ffe9d6, #ffd2a8);
+  font-family: system-ui;
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+}
+
+/* 🌍 LANGUAGE SWITCH */
+.lang-switch {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding: 10px;
+}
+
+.lang-btn {
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  background: white;
+  color: #333;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.lang-btn:hover {
+  background: #2f6f88;
+  color: white;
+}
+
+/* HERO */
+.hero {
+  margin-top: -5px;
+}
+
+/* LOGO */
+.logo {
+  max-width: 360px;
+  margin-top: -20px;
+  margin-bottom: -50px;
+  animation: float 4s ease-in-out infinite;
+  transition: 0.2s ease;
+}
+
+/* 🌟 Hover */
+.logo:hover {
+  filter: drop-shadow(0 0 10px rgba(255,0,0,0.5));
+  transform: scale(1.02);
+}
+
+/* 🔥 iPhone Glow */
+.logo:active {
+  transform: scale(0.96);
+  filter:
+    drop-shadow(0 0 20px red)
+    drop-shadow(0 0 40px red)
+    drop-shadow(0 0 60px rgba(255,0,0,0.8));
+}
+
+/* Flash */
+.logo:active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  animation: flash 0.3s;
+}
+
+@keyframes flash {
+  0% { box-shadow: 0 0 0 rgba(255,0,0,0); }
+  50% { box-shadow: 0 0 40px rgba(255,0,0,0.8); }
+  100% { box-shadow: 0 0 0 rgba(255,0,0,0); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* 标题 */
+h1 {
+  margin: 0;
+  font-size: clamp(20px, 5vw, 28px);
+}
+
+/* 副标题 */
+.subtitle {
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+/* SECTION */
+.section {
+  padding: 40px 15px;
+}
+
+/* SERVICES */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+}
+
+.service-card {
+  background: white;
+  padding: 15px;
+  border-radius: 14px;
+  transition: 0.3s;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.service-card img {
+  max-width: 90px;
+  margin-bottom: 8px;
+  transition: 0.3s ease;
+}
+
+/* 🔥 Cyan Glow */
+.service-card:active img {
+  transform: scale(0.95);
+
+  filter:
+    drop-shadow(0 0 10px cyan)
+    drop-shadow(0 0 25px cyan)
+    drop-shadow(0 0 40px rgba(0,255,255,0.9));
+}
+
+.service-card:hover {
+  transform: scale(1.05);
+}
+
+/* PARTNERS */
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 15px;
+}
+
+.partner {
+  background: white;
+  padding: 15px;
+  border-radius: 14px;
+  transition: 0.3s;
+}
+
+.partner img {
+  max-width: 90px;
+  transition: 0.3s ease;
+}
+
+/* 🔥 Blue Glow */
+.partner:active img {
+
+  transform: scale(0.95);
+
+  filter:
+    drop-shadow(0 0 10px #00aaff)
+    drop-shadow(0 0 25px #00aaff)
+    drop-shadow(0 0 40px rgba(0,170,255,0.9));
+}
+
+.partner:hover {
+  transform: scale(1.05);
+}
+
+/* SHOP BUTTON */
+.shop-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  margin: 8px;
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+}
+
+.shopee { background: #ee4d2d; }
+.tiktok { background: #000; }
+
+/* MAP BUTTON */
+.map-btn {
+  display: inline-block;
+  margin: 8px;
+  padding: 10px 18px;
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+}
+
+.google { background: #4285F4; }
+.waze { background: #33ccff; }
+
+/* VISITOR COUNTER */
+.counter-box {
+  margin-top: 30px;
+}
+
+.counter-box img {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* FLOAT BUTTON */
+.whatsapp, .call {
+  position: fixed;
+  right: 20px;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 50px;
+  text-decoration: none;
+}
+
+.whatsapp { 
+  bottom: 20px; 
+  background: #25D366; 
+}
+
+.call { 
+  bottom: 70px; 
+  background: #007bff; 
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="container-fluid">
+
+<ul></ul>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#partners">Partners</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<!-- 🌍 LANGUAGE SWITCH -->
+<div class="lang-switch">
+<button class="lang-btn" onclick="setLanguage('en')">EN</button>
+<button class="lang-btn" onclick="setLanguage('cn')">中文</button>
+<button class="lang-btn" onclick="setLanguage('bm')">BM</button>
+</div>
+
+<section class="hero">
+
+<img src="logo.png" class="logo">
+
+<h1 id="title">World Tele Communication</h1>
+
+<p class="subtitle" id="subtitle">
+Mobile Phone | POS System | Sales & Service
+</p>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+
+<h3 id="about-title">About Us</h3>
+
+<p id="about-text1">
+World Tele Communication (WTC) was established on 2004.<br>
+With over 20 years of industry experience, we have built a strong reputation in mobile phone repair, mobile device sales, and professional POS solutions.
+</p>
+
+<p id="about-text2">
+We specialise in providing complete POS Solutions System, including POS devices, POS software, and business operation solutions tailored for modern businesses.
+</p>
+
+<p id="about-text3">
+Since entering the POS industry in May 2021, we have successfully helped many businesses.
+</p>
+
+<p id="about-text4">
+Today, we are proud to be:<br>
+• SalesPlay POS System Distributor<br>
+• Sunmi Authorized Dealer<br>
+• POSPay Authorized Dealer
+</p>
+
+<p id="about-text5">
+Trusted by local businesses across Malaysia, especially in Melaka.
+</p>
+
+<p id="shop-text">
+We also offer our products online through Shopee and TikTok Shop.
+</p>
+
+<a href="https://my.shp.ee/6BSSa5j4" target="_blank" class="shop-btn shopee">Shopee</a>
+
+<a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/" target="_blank" class="shop-btn tiktok">TikTok</a>
+
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+
+<h3 id="services-title">Our Services</h3>
+
+<div class="services-grid">
+
+<a href="mobilephone.html" class="service-card">
+<img src="Mobilephone.png">
+<p id="service1">Mobile Phone</p>
+</a>
+
+<a href="pointofsale.html" class="service-card">
+<img src="Pointofsale.png">
+<p id="service2">Point Of Sale</p>
+</a>
+
+</div>
+
+</section>
+
+<!-- PARTNERS -->
+<section id="partners" class="section">
+
+<h3 id="partners-title">Our Partners</h3>
+
+<div class="partner-grid">
+
+<div class="partner">
+<img src="salesplay.png">
+<p>SalesPlay Distributor</p>
+</div>
+
+<div class="partner">
+<img src="sunmi.png">
+<p>Sunmi Authorized Dealer</p>
+</div>
+
+<div class="partner">
+<img src="pospay.png">
+<p>POSPay Authorized Dealer</p>
+</div>
+
+<div class="partner">
+<img src="more.png">
+<p>More Coming Soon</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- MAP -->
+<section class="section">
+
+<h3 id="location-title">Our Location</h3>
+
+<iframe
+src="https://maps.google.com/maps?q=No11-1,Jalan%20PPM%2010,Melaka&t=&z=15&output=embed"
+width="100%"
+height="300">
+</iframe>
+
+<br>
+
+<a href="https://maps.app.goo.gl/CLw1iUWQQJYNXRX96"
+target="_blank"
+class="map-btn google">
+Google Maps
+</a>
+
+<a href="https://waze.com/ul/hw22swjyc2"
+target="_blank"
+class="map-btn waze">
+Waze
+</a>
+
+</section>
+
+<!-- VISITOR COUNTER -->
+<section class="section counter-box">
+
+<h3>Total Visitors</h3>
+
+<img src="https://visitor-badge.laobi.icu/badge?page_id=worldtelecommunication.wtc&left_text=Visitors">
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+
+<h3 id="contact-title">Contact Us</h3>
+
+<p>📞 +60163456287</p>
+<p>📧 Wtc063369841@gmail.com</p>
+
+<p id="address">
+📍 No11-1, Jalan PPM 10, Plaza Pandan Malim, 75250 Melaka, Malaysia
+</p>
+
+</section>
+
+<a href="https://wa.me/60163456287" class="whatsapp">WhatsApp</a>
+
+<a href="tel:+60163456287" class="call">Call</a>
+
+<footer class="container">
+<small>© 2026 World Tele Communication</small>
+</footer>
+
+<!-- LANGUAGE SCRIPT -->
+<script>
+
+function setLanguage(lang) {
+
+if(lang === "cn") {
+
+document.getElementById("about-title").innerText = "关于我们";
+document.getElementById("services-title").innerText = "我们的服务";
+document.getElementById("partners-title").innerText = "合作伙伴";
+document.getElementById("location-title").innerText = "我们的位置";
+document.getElementById("contact-title").innerText = "联系我们";
+
+document.getElementById("subtitle").innerText =
+"手机 | POS系统 | 销售与服务";
+
+document.getElementById("service1").innerText = "手机服务";
+document.getElementById("service2").innerText = "POS系统";
+
+document.getElementById("about-text1").innerHTML =
+"World Tele Communication (WTC) 成立于 2004 年。<br>拥有超过20年的行业经验，我们在手机维修、手机销售以及专业POS系统方面建立了良好的信誉。";
+
+document.getElementById("about-text2").innerHTML =
+"我们专注于提供完整的 POS Solutions System，包括 POS 设备、POS 软件以及适用于现代企业的商业运营解决方案。";
+
+document.getElementById("about-text3").innerHTML =
+"自 2021 年进入 POS 行业以来，我们已经成功帮助许多企业。";
+
+document.getElementById("about-text4").innerHTML =
+"今天，我们很荣幸成为：<br>• SalesPlay POS 系统代理商<br>• Sunmi 授权经销商<br>• POSPay 授权经销商";
+
+document.getElementById("about-text5").innerHTML =
+"深受马来西亚，尤其是马六甲本地商家的信赖。";
+
+document.getElementById("shop-text").innerText =
+"您也可以通过 Shopee 和 TikTok Shop 在线购买我们的产品。";
+
+}
+
+else if(lang === "bm") {
+
+document.getElementById("about-title").innerText = "Tentang Kami";
+document.getElementById("services-title").innerText = "Perkhidmatan Kami";
+document.getElementById("partners-title").innerText = "Rakan Kami";
+document.getElementById("location-title").innerText = "Lokasi Kami";
+document.getElementById("contact-title").innerText = "Hubungi Kami";
+
+document.getElementById("subtitle").innerText =
+"Telefon Bimbit | Sistem POS | Jualan & Servis";
+
+document.getElementById("service1").innerText = "Telefon Bimbit";
+document.getElementById("service2").innerText = "Sistem POS";
+
+document.getElementById("about-text1").innerHTML =
+"World Tele Communication (WTC) ditubuhkan pada tahun 2004.<br>Dengan pengalaman lebih 20 tahun dalam industri, kami membina reputasi kukuh dalam pembaikan telefon bimbit, jualan peranti, dan penyelesaian POS profesional.";
+
+document.getElementById("about-text2").innerHTML =
+"Kami pakar dalam menyediakan POS Solutions System lengkap termasuk peranti POS, perisian POS, dan penyelesaian operasi perniagaan moden.";
+
+document.getElementById("about-text3").innerHTML =
+"Sejak memasuki industri POS pada tahun 2021, kami telah membantu banyak perniagaan berkembang.";
+
+document.getElementById("about-text4").innerHTML =
+"Hari ini kami berbangga menjadi:<br>• Pengedar SalesPlay POS System<br>• Sunmi Authorized Dealer<br>• POSPay Authorized Dealer";
+
+document.getElementById("about-text5").innerHTML =
+"Dipercayai oleh banyak perniagaan tempatan di Malaysia terutamanya Melaka.";
+
+document.getElementById("shop-text").innerText =
+"Kami juga menawarkan produk kami secara online melalui Shopee dan TikTok Shop.";
+
+}
+
+else {
+
+document.getElementById("about-title").innerText = "About Us";
+document.getElementById("services-title").innerText = "Our Services";
+document.getElementById("partners-title").innerText = "Our Partners";
+document.getElementById("location-title").innerText = "Our Location";
+document.getElementById("contact-title").innerText = "Contact Us";
+
+document.getElementById("subtitle").innerText =
+"Mobile Phone | POS System | Sales & Service";
+
+document.getElementById("service1").innerText = "Mobile Phone";
+document.getElementById("service2").innerText = "Point Of Sale";
+
+document.getElementById("about-text1").innerHTML =
+"World Tele Communication (WTC) was established on 2004.<br>With over 20 years of industry experience, we have built a strong reputation in mobile phone repair, mobile device sales, and professional POS solutions.";
+
+document.getElementById("about-text2").innerHTML =
+"We specialise in providing complete POS Solutions System, including POS devices, POS software, and business operation solutions tailored for modern businesses.";
+
+document.getElementById("about-text3").innerHTML =
+"Since entering the POS industry in May 2021, we have successfully helped many businesses.";
+
+document.getElementById("about-text4").innerHTML =
+"Today, we are proud to be:<br>• SalesPlay POS System Distributor<br>• Sunmi Authorized Dealer<br>• POSPay Authorized Dealer";
+
+document.getElementById("about-text5").innerHTML =
+"Trusted by local businesses across Malaysia, especially in Melaka.";
+
+document.getElementById("shop-text").innerText =
+"We also offer our products online through Shopee and TikTok Shop.";
+
+}
+
+}
+
+</script>
+
+<!-- LANGUAGE SCRIPT -->
+<!-- 🤖 AI CHAT -->
+<style>
+
+/* 🤖 AI CHAT */
+.ai-chat-button {
+
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+
+  background: #111;
+  color: white;
+
+  padding: 12px 18px;
+
+  border-radius: 50px;
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+  z-index: 999;
+}
+
+.ai-chat-box {
+
+  position: fixed;
+
+  left: 50%;
+  transform: translateX(-50%);
+
+  bottom: 90px;
+
+  width: 95%;
+  max-width: 380px;
+
+  height: 70vh;
+
+  background: white;
+
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  display: none;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+
+  z-index: 999;
+
+  animation: chatPop 0.25s ease;
+
+  flex-direction: column;
+}
+
+.ai-header {
+
+  background: #111;
+  color: white;
+
+  padding: 16px;
+
+  font-weight: bold;
+
+  font-size: 18px;
+}
+
+.ai-body {
+
+  flex: 1;
+
+  overflow-y: auto;
+
+  padding: 15px;
+
+  text-align: left;
+
+  background: #fafafa;
+}
+
+.ai-message {
+
+  background: #f2f2f2;
+
+  padding: 12px 15px;
+
+  border-radius: 16px;
+
+  margin-bottom: 10px;
+
+  line-height: 1.5;
+}
+
+.user-message {
+
+  background: #dff7ff;
+}
+
+.ai-input-area {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 12px;
+
+  background: white;
+
+  border-top: 1px solid #eee;
+}
+
+.ai-input-area input {
+
+  flex: 1;
+
+  border: none;
+
+  background: #f2f2f2;
+
+  border-radius: 30px;
+
+  padding: 12px 16px;
+
+  margin: 0;
+
+  font-size: 15px;
+}
+
+.ai-input-area input:focus {
+
+  outline: none;
+
+  box-shadow: none;
+}
+
+.ai-input-area button {
+
+  border: none;
+
+  background: #111;
+
+  color: white;
+
+  border-radius: 50%;
+
+  width: 46px;
+
+  height: 46px;
+
+  padding: 0;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+@keyframes chatPop {
+
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+
+}
+
+</style>
+
+<!-- 🤖 AI CHAT BUTTON -->
+<div class="ai-chat-button" onclick="toggleChat()">
+💬 AI Help
+</div>
+
+<!-- 🤖 AI CHAT BOX -->
+<div class="ai-chat-box" id="chatBox">
+
+<div class="ai-header">
+WTC AI Assistant
+</div>
+
+<div class="ai-body" id="chatBody">
+
+<div class="ai-message">
+Hello 👋<br>
+How can we help you today?
+</div>
+
+</div>
+
+<div class="ai-input-area">
+
+<input 
+type="text" 
+id="userInput" 
+placeholder="Ask something..."
+>
+
+<button onclick="sendMessage()">
+➤
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function toggleChat() {
+
+const box = document.getElementById("chatBox");
+
+if(box.style.display === "flex") {
+  box.style.display = "none";
+} else {
+  box.style.display = "flex";
+}
+
+}
+
+function sendMessage() {
+
+const input = document.getElementById("userInput");
+
+const body = document.getElementById("chatBody");
+
+const text = input.value.trim();
+
+if(text === "") return;
+
+/* USER MESSAGE */
+body.innerHTML += `
+<div class="ai-message user-message">
+${text}
+</div>
+`;
+
+let lower = text.toLowerCase();
+
+let reply = "Sorry, please contact our support team at +60163456287 for more information.";
+
+/* POS */
+if(
+lower.includes("pos") ||
+lower.includes("cashier") ||
+lower.includes("system")
+){
+reply = "We provide complete POS Solutions System including POS devices, POS setup, software, QR payment and business support.";
+}
+
+/* REPAIR */
+else if(
+lower.includes("repair") ||
+lower.includes("screen") ||
+lower.includes("battery") ||
+lower.includes("phone")
+){
+reply = "We provide professional mobile phone repair services including screen replacement, battery replacement and troubleshooting.";
+}
+
+/* CONTACT */
+else if(
+lower.includes("contact") ||
+lower.includes("phone number") ||
+lower.includes("call")
+){
+reply = "You can contact us at +60163456287.";
+}
+
+/* LOCATION */
+else if(
+lower.includes("location") ||
+lower.includes("address") ||
+lower.includes("shop")
+){
+reply = "We are located at No11-1, Jalan PPM 10, Plaza Pandan Malim, 75250 Melaka, Malaysia.";
+}
+
+/* OPENING HOURS */
+else if(
+lower.includes("open") ||
+lower.includes("hour") ||
+lower.includes("time")
+){
+reply = "Please contact us directly for the latest business operating hours.";
+}
+
+/* PAYMENT */
+else if(
+lower.includes("payment") ||
+lower.includes("qr") ||
+lower.includes("cashless")
+){
+reply = "We support QR payment solutions and cashless payment system setup.";
+}
+
+/* WARRANTY */
+else if(
+lower.includes("warranty") ||
+lower.includes("guarantee")
+){
+reply = "Warranty depends on the product or repair service. Please contact us for details.";
+}
+
+/* SHOPEE */
+else if(
+lower.includes("shopee")
+){
+reply = "You can visit our Shopee store from the button inside our website.";
+}
+
+/* TIKTOK */
+else if(
+lower.includes("tiktok")
+){
+reply = "You can visit our TikTok Shop directly from our website.";
+}
+
+/* PRICE */
+else if(
+lower.includes("price") ||
+lower.includes("cost")
+){
+reply = "Pricing depends on the service or product. Please contact us directly for quotation.";
+}
+
+/* SUPPORT */
+else if(
+lower.includes("support") ||
+lower.includes("help")
+){
+reply = "Our support team is ready to help you anytime.";
+}
+
+/* THANK YOU */
+else if(
+lower.includes("thank")
+){
+reply = "You're welcome 😊";
+}
+
+/* HELLO */
+else if(
+lower.includes("hello") ||
+lower.includes("hi")
+){
+reply = "Hello 👋 Welcome to World Tele Communication.";
+}
+
+/* 中文 */
+else if(
+lower.includes("你好")
+){
+reply = "你好 👋 欢迎来到 World Tele Communication。";
+}
+
+else if(
+lower.includes("维修")
+){
+reply = "我们提供专业手机维修服务，包括换屏幕、电池与检测。";
+}
+
+else if(
+lower.includes("地址")
+){
+reply = "我们位于 No11-1, Jalan PPM 10, Plaza Pandan Malim, Melaka。";
+}
+
+else if(
+lower.includes("电话")
+){
+reply = "您可以联络我们：+60163456287";
+}
+
+else if(
+lower.includes("谢谢")
+){
+reply = "不客气 😊";
+}
+
+/* BM */
+else if(
+lower.includes("halo")
+){
+reply = "Halo 👋 Selamat datang ke World Tele Communication.";
+}
+
+else if(
+lower.includes("repair phone")
+){
+reply = "Kami menyediakan servis repair telefon profesional.";
+}
+
+else if(
+lower.includes("alamat")
+){
+reply = "Kami berada di Plaza Pandan Malim, Melaka.";
+}
+
+else if(
+lower.includes("terima kasih")
+){
+reply = "Sama-sama 😊";
+}
+
+/* AI REPLY */
+body.innerHTML += `
+<div class="ai-message">
+${reply}
+</div>
+`;
+
+input.value = "";
+
+body.scrollTop = body.scrollHeight;
+
+}
+
+/* ENTER KEY */
+document.getElementById("userInput").addEventListener("keypress", function(event) {
+
+if(event.key === "Enter") {
+  sendMessage();
+}
+
+});
+
+</script>
+
+</body>
+</html>
