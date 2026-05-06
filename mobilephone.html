@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Mobile Phone - World Tele Communication</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<style>
+
+body {
+  margin: 0;
+  text-align: center;
+  background: linear-gradient(135deg, #fff6ec, #ffe9d6, #ffd2a8);
+  font-family: system-ui;
+}
+
+.section {
+  padding: 40px 15px;
+}
+
+.logo {
+  max-width: 260px;
+  margin-top: 10px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.card-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+.card img {
+  max-width: 120px;
+  margin-bottom: 10px;
+  filter: grayscale(100%);
+  transition: 0.3s;
+}
+
+.card:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.08);
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 18px;
+  border-radius: 30px;
+  background: #2f6f88;
+  color: white;
+  text-decoration: none;
+}
+
+.whatsapp {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: #25D366;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 50px;
+  text-decoration: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="section">
+
+<img src="logo.png" class="logo">
+
+<h1>Mobile Phone</h1>
+
+<p>
+Professional Mobile Phone Repair & Sales
+</p>
+
+<a href="index.html" class="back-btn">← Back To Home</a>
+
+</section>
+
+<section class="section">
+
+<div class="card-grid">
+
+<div class="card">
+<img src="repair.png">
+<h3>Mobile Phone Repair</h3>
+<p>
+We provide professional repair services including screen replacement, battery replacement, motherboard repair and software troubleshooting.
+</p>
+</div>
+
+<div class="card">
+<img src="phonesales.png">
+<h3>Mobile Phone Sales</h3>
+<p>
+We offer smartphone sales with trusted quality devices and accessories for customers and businesses.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<a href="https://wa.me/60163456287" class="whatsapp">
+WhatsApp
+</a>
+
+</body>
+</html>
