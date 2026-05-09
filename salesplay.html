@@ -156,6 +156,30 @@ background:#25D366;
 color:white;
 }
 
+.shopee-btn{
+background:#ee4d2d;
+color:white;
+}
+
+.tiktok-btn{
+background:#000000;
+color:white;
+}
+
+.facebook-btn{
+background:#1877F2;
+color:white;
+}
+
+.ai-btn{
+background:white;
+color:black;
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.8),
+0 0 24px rgba(255,255,255,0.45);
+}
+
 .lang-menu{
 position:relative;
 }
@@ -254,8 +278,15 @@ max-width:180px;
 margin-top:20px;
 margin-bottom:10px;
 transition:0.2s ease;
+
+/* ALWAYS SOFT GLOW */
+
 filter:
-drop-shadow(0 0 12px rgba(56,189,248,0.25));
+drop-shadow(0 0 8px rgba(56,189,248,0.22))
+drop-shadow(0 0 18px rgba(56,189,248,0.12))
+drop-shadow(0 0 28px rgba(255,255,255,0.18));
+
+animation:softGlow 4s ease-in-out infinite;
 }
 
 .salesplay-logo:hover{
@@ -456,7 +487,8 @@ z-index:2;
 
 footer small{
 font-size:15px;
-font-weight:600;
+font-weight:400;
+letter-spacing:0.3px;
 }
 
 /* ANIMATION */
@@ -476,6 +508,27 @@ font-weight:600;
 @keyframes shineMove{
 0%{transform:translateX(-20%);} 
 100%{transform:translateX(20%);} 
+}
+
+@keyframes softGlow{
+0%{
+filter:
+drop-shadow(0 0 8px rgba(56,189,248,0.18))
+drop-shadow(0 0 18px rgba(56,189,248,0.10));
+}
+
+50%{
+filter:
+drop-shadow(0 0 12px rgba(56,189,248,0.30))
+drop-shadow(0 0 24px rgba(56,189,248,0.18))
+drop-shadow(0 0 34px rgba(255,255,255,0.22));
+}
+
+100%{
+filter:
+drop-shadow(0 0 8px rgba(56,189,248,0.18))
+drop-shadow(0 0 18px rgba(56,189,248,0.10));
+}
 }
 
 </style>
@@ -498,6 +551,24 @@ font-weight:600;
 
 <a href="https://wa.me/60163456287" class="top-btn whatsapp-btn">
 <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<a href="https://my.shp.ee/6BSSa5j4" target="_blank" class="top-btn shopee-btn">
+<i class="fa-solid fa-bag-shopping"></i>
+</a>
+
+<a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/" target="_blank" class="top-btn tiktok-btn">
+<i class="fa-brands fa-tiktok"></i>
+</a>
+
+<a href="https://facebook.com/Worldtelecommunication.my" target="_blank" class="top-btn facebook-btn">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<!-- AI BUTTON -->
+
+<a href="javascript:void(0)" class="top-btn ai-btn">
+<i class="fa-solid fa-robot"></i>
 </a>
 
 <div class="lang-menu">
@@ -622,6 +693,8 @@ and support modern cashless payment systems.
 
 <small>
 © 2026 World Tele Communication
+<br>
+Professional Mobile, Website & Point of Sale Solutions
 </small>
 
 </footer>
