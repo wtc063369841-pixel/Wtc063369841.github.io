@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>World Tele Communication</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<style>
+
+.top-menu {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+overflow-x: auto;
+overflow: visible;
+white-space: nowrap;
+padding: 10px 8px;
+position: sticky;
+top: 0;
+z-index: 2000;
+box-shadow:
+0 4px 20px rgba(0,0,0,0.12);
+background: rgba(255,255,255,0.08);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+
+}
+
+.top-btn {
+text-decoration: none;
+color: #2f6f88;
+padding: 8px 10px;
+border-radius: 14px;
+background: rgba(255,255,255,0.16);
+backdrop-filter: blur(14px);
+-webkit-backdrop-filter: blur(14px);
+border: 1px solid rgba(255,255,255,0.25);
+font-size: 18px;
+font-weight: bold;
+box-shadow:
+0 8px 25px rgba(0,0,0,0.18),
+inset 0 1px 1px rgba(255,255,255,0.35);
+}
+
+/* NAVBAR */
+.nav-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 2px;
+}
+
+.hamburger {
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow:
+  0 8px 25px rgba(0,0,0,0.18),
+  inset 0 1px 1px rgba(255,255,255,0.35);
+  transition: 0.3s ease;
+}
+
+@media (hover: hover) {
+.hamburger:hover {
+  transform: scale(1.08);
+  background:
+  rgba(255,255,255,0.22);
+  box-shadow:
+  0 12px 30px rgba(0,0,0,0.25),
+  0 0 18px rgba(255,255,255,0.35);
+}
+}
+
+.hamburger:active {
+  transform: scale(0.92);
+  box-shadow:
+  0 0 20px rgba(0,255,255,0.6),
+  0 0 40px rgba(0,255,255,0.35);
+}
+
+.nav-links {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 70px;
+  left: 10px;
+  width: 120px;
+  padding: 20px;
+  border-radius: 16px;
+  background:
+  rgba(255,255,255,0.16);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.22),
+  inset 0 1px 1px rgba(255,255,255,0.25);
+  list-style: none;
+  z-index: 999;
+}
+
+.nav-links li {
+  margin: 10px 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #2f6f88;
+  font-size: 15px;
+}
+
+.nav-links.show {
+  display: flex;
+}
+
+html { 
+  scroll-behavior: smooth; 
+}
+
+body {
+  margin: 0;
+  text-align: center;
+  font-family: system-ui;
+  background:
+  repeating-linear-gradient( 115deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 6px ),
+  linear-gradient( 145deg, #dfe4ea 0%, #b6bcc4 20%, #eef3f7 40%, #9aa3ab 60%, #d9dee3 80%, #aab2ba 100% );
+  position: relative;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background:
+  linear-gradient(
+  120deg,
+transparent 0%,
+  rgba(255,255,255,0.06) 45%,
+  rgba(255,255,255,0.12) 50%,
+  rgba(255,255,255,0.06) 55%,
+transparent 100%
+);
+
+animation: shineMove 12s linear infinite;
+
+pointer-events: none;
+z-index: 0;
+
+}
+
+/* NAV */
+
+/* LANGUAGE MENU */
+.lang-menu {
+position: relative;
+top: 0px;
+right: 0px;
+z-index: 1000;
+}
+
+.lang-toggle {
+border: none;
+border-radius: 16px;
+font-size: 20px;
+padding: 10px 6px;
+background: rgba(255,255,255,0.18);
+backdrop-filter: blur(14px);
+-webkit-backdrop-filter: blur(14px);
+border: 1px solid rgba(255,255,255,0.25);
+color: #2f6f88;
+font-weight: bold;
+cursor: pointer;
+box-shadow:
+0 8px 25px rgba(0,0,0,0.18),
+inset 0 1px 1px rgba(255,255,255,0.35);
+}
+
+.lang-dropdown {
+display: none;
+flex-direction: column;
+position: fixed;
+top: 80px;
+right: 10px;
+width: 90px;
+padding: 12px;
+z-index: 5000;
+border-radius: 16px;
+background: rgba(255,255,255,0.16);
+backdrop-filter: blur(18px);
+-webkit-backdrop-filter: blur(18px);
+border: 1px solid rgba(255,255,255,0.25);
+box-shadow:
+0 10px 30px rgba(0,0,0,0.22),
+inset 0 1px 1px rgba(255,255,255,0.25);
+gap: 10px;
+}
+
+.lang-dropdown button {
+border: none;
+background: transparent;
+color: #2f6f88;
+font-size: 13px;
+padding: 4px 0;
+cursor: pointer;
+}
+
+.lang-dropdown.show {
+display: flex;
+}
+
+/* HERO */
+.hero {
+  margin-top: -5px;
+}
+
+/* LOGO */
+.logo {
+  width: 85%;
+  max-width: 360px;
+  margin-top: 10px;
+  margin-bottom: -50px;
+  animation: float 4s ease-in-out infinite;
+  transition: 0.2s ease;
+}
+
+/* 🌟 Hover */
+@media (hover: hover) {
+.logo:hover {
+  filter: drop-shadow(0 0 10px rgba(255,0,0,0.5));
+  transform: scale(1.02);
+}
+}
+
+/* 🔥 iPhone Glow */
+.logo:active {
+  transform: scale(0.96);
+  filter:
+    drop-shadow(0 0 20px red)
+    drop-shadow(0 0 40px red)
+    drop-shadow(0 0 60px rgba(255,0,0,0.8));
+}
+
+/* Flash */
+
+@keyframes flash {
+  0% { box-shadow: 0 0 0 rgba(255,0,0,0); }
+  50% { box-shadow: 0 0 40px rgba(255,0,0,0.8); }
+  100% { box-shadow: 0 0 0 rgba(255,0,0,0); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* 标题 */
+h1 {
+  margin: 0;
+  font-size: clamp(20px, 5vw, 28px);
+}
+
+/* 副标题 */
+.subtitle {
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+/* SECTION */
+.section {
+  padding: 40px 15px;
+}
+
+/* SERVICES */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.service-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(18px);
+  padding: 25px;
+  border-radius: 14px;
+  transition: 0.3s;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  border: 1px solid rgba(255,255,255,0.18);
+  min-height: 390px;
+  animation: floatingCard 5s ease-in-out infinite;
+}
+
+.service-card img {
+  width: 100%;
+  height: 380px;
+  object-fit: contain;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  transition: 0.3s ease;
+
+  filter:
+    brightness(1.15)
+    saturate(1.15)
+    contrast(1.05);
+}
+
+/* 🔥 Cyan Glow */
+.service-card:active img {
+  transform: scale(0.93);
+
+  filter:
+    drop-shadow(0 0 12px cyan)
+    drop-shadow(0 0 28px cyan)
+    drop-shadow(0 0 55px rgba(0,255,255,0.95));
+}
+
+@media (hover: hover) {
+.service-card:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+
+}
+
+/* PARTNERS */
+.partner-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+.services-grid,
+.partner-grid {
+   grid-template-columns: repeat(2, 1fr);
+}
+
+}
+
+.partner {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(18px);
+  padding: 25px;
+  border-radius: 14px;
+  transition: 0.3s;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  min-height: 390px;
+  animation: floatingCard 6s ease-in-out infinite;
+}
+
+.partner img {
+  width: 100%;
+  height: 380px;
+  object-fit: contain;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  transition: 0.3s ease;
+
+  filter:
+    brightness(1.1)
+    saturate(1.15);
+}
+
+/* 🔥 Blue Glow */
+.partner:active img {
+
+  transform: scale(0.95);
+
+  filter:
+    drop-shadow(0 0 10px #00aaff)
+    drop-shadow(0 0 25px #00aaff)
+    drop-shadow(0 0 40px rgba(0,170,255,0.9));
+}
+
+@media (hover: hover) {
+.partner:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+}
+
+/* SHOP BUTTON */
+.shop-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  margin: 8px;
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+}
+
+.shopee { background: #ee4d2d; }
+.tiktok { background: #000; }
+
+/* MAP BUTTON */
+.map-btn {
+  display: inline-block;
+  margin: 8px;
+  padding: 10px 18px;
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+}
+
+.google { background: #4285F4; }
+.waze { background: #33ccff; }
+
+/* VISITOR COUNTER */
+.counter-box {
+  margin-top: 30px;
+}
+
+.counter-box img {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* INDUSTRIAL DIVIDER */
+.industrial-divider {
+width: 90%;
+height: 8px;
+margin: 60px auto;
+border-radius: 20px;
+background:
+linear-gradient(
+90deg,
+#7d848b,
+#dfe3e6,
+#8a9198,
+#f5f7f8,
+#7a8188
+);
+box-shadow:
+inset 0 2px 3px rgba(255,255,255,0.7),
+inset 0 -2px 4px rgba(0,0,0,0.35),
+0 4px 10px rgba(0,0,0,0.2);
+position: relative;
+overflow: hidden;
+}
+
+/* METAL LINE */
+.industrial-divider::before {
+content: "";
+position: absolute;
+top: 50%;
+left: 0;
+width: 100%;
+height: 2px;
+transform: translateY(-50%);
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,0.8),
+transparent
+);
+
+}
+
+/* SCREWS */
+.industrial-divider::after {
+content: "⚙ ⚙ ⚙";
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+font-size: 12px;
+letter-spacing: 40px;
+color: rgba(0,0,0,0.35);
+}
+
+/* FLOATING SHADOW ANIMATION */
+
+@keyframes floatingCard {
+
+0% {
+transform: translateY(0px);
+}
+
+50% {
+transform: translateY(-10px);
+}
+
+100% {
+transform: translateY(0px);
+}
+
+}
+
+/* ADD THIS */
+@keyframes shineMove {
+
+0% {
+transform: translateX(-20%);
+}
+
+100% {
+transform: translateX(20%);
+}
+
+}
+
+/* METAL NUTS */
+
+.service-card::before,
+.service-card::after,
+.partner::before,
+.partner::after {
+
+content: "";
+
+position: absolute;
+
+width: 18px;
+height: 18px;
+
+border-radius: 50%;
+
+background:
+radial-gradient(circle at 30% 30%,
+#f5f5f5,
+#9ea4ab,
+#5f666d);
+
+box-shadow:
+inset 0 2px 4px rgba(255,255,255,0.8),
+inset 0 -2px 4px rgba(0,0,0,0.4),
+0 1px 3px rgba(0,0,0,0.35);
+
+z-index: 5;
+}
+
+/* TOP LEFT */
+.service-card::before,
+.partner::before {
+top: 10px;
+left: 10px;
+}
+
+/* TOP RIGHT */
+.service-card::after,
+.partner::after {
+top: 10px;
+right: 10px;
+}
+
+/* BOTTOM LEFT */
+.nut-left,
+.nut-right {
+
+position: absolute;
+
+bottom: 10px;
+
+width: 18px;
+height: 18px;
+
+border-radius: 50%;
+
+background:
+radial-gradient(circle at 30% 30%,
+#f5f5f5,
+#9ea4ab,
+#5f666d);
+
+box-shadow:
+inset 0 2px 4px rgba(255,255,255,0.8),
+inset 0 -2px 4px rgba(0,0,0,0.4),
+0 1px 3px rgba(0,0,0,0.35);
+
+z-index: 5;
+
+}
+
+/* LEFT BOTTOM */
+.nut-left {
+left: 10px;
+}
+
+/* RIGHT BOTTOM */
+.nut-right {
+right: 10px;
+}
+  
+
+</style>
+
+</head>
+
+<body>
+
+<div class="top-menu">
+
+<div class="hamburger" onclick="toggleMenu()">
+☰
+</div>
+
+<a href="tel:+60163456287" class="top-btn">
+☎
+</a>
+
+<a href="https://wa.me/60163456287" class="top-btn">
+🟢
+</a>
+
+<a href="https://my.shp.ee/6BSSa5j4" target="_blank" class="top-btn">
+🛒
+</a>
+
+<a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/" target="_blank" class="top-btn">
+♪
+</a>
+
+<div class="lang-menu">
+
+<button class="lang-toggle" onclick="toggleLangMenu()">
+🌐
+</button>
+
+<div class="lang-dropdown" id="langDropdown">
+
+<button onclick="setLanguage('en')">
+En
+</button>
+
+<button onclick="setLanguage('cn')">
+中文
+</button>
+
+<button onclick="setLanguage('bm')">
+BM
+</button>
+
+</div>
+</div>
+</div>
+
+<ul class="nav-links" id="navLinks">
+<li><a href="#">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#partners">Partners</a></li>
+<li><a href="#contact">Contact</a></li>
+<li><a href="tel:+60163456287">Call</a></li>
+</ul>
+
+<section class="hero">
+
+<img src="logo.png" class="logo"
+alt="World Tele Communication Logo">
+
+<h1 id="title">World Tele Communication</h1>
+
+<p class="subtitle" id="subtitle">
+Mobile Phone | POS System | Sales & Service
+</p>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+
+<h3 id="about-title">About Us</h3>
+
+<p id="about-text1">
+World Tele Communication (WTC) was established in 2004.<br>
+With over 20 years of industry experience, we have built a strong reputation in mobile phone repair, mobile device sales, and professional POS solutions.
+</p>
+
+<p id="about-text2">
+We specialise in providing complete POS Solutions System, including POS devices, POS software, and business operation solutions tailored for modern businesses.
+</p>
+
+<p id="about-text3">
+Since entering the POS industry in May 2021, we have successfully helped many businesses.
+</p>
+
+<p id="about-text4">
+Today, we are proud to be:<br>
+• SalesPlay POS System Distributor<br>
+• Sunmi Authorized Dealer<br>
+• POSPay Authorized Dealer
+</p>
+
+<p id="about-text5">
+Trusted by local businesses across Malaysia, especially in Melaka.
+</p>
+
+<p id="about-text6">
+In 2025, World Tele Communication proudly expanded into Website Services, Website Design & Digital Solutions.<br><br>
+Until today, we have helped many small businesses develop professional websites for their growing businesses.
+</p>
+
+<p id="shop-text">
+We also offer our products online through Shopee and TikTok Shop.
+</p>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+
+<h3 id="services-title">Our Services</h3>
+
+<div class="services-grid">
+
+<a href="mobilephone.html" class="service-card">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="mobilephone.jpg" alt="Mobile Phone">
+<p id="service1">Mobile Phone</p>
+</a>
+
+<a href="pointofsale.html" class="service-card">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="pointofsale.jpg" alt="Point Of Sale">
+<p id="service2">Point Of Sale</p>
+</a>
+
+<a href="websitesolutions.html" class="service-card">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="websitesolutions.jpg" alt="Website Solutions">
+<p id="service3">Website Solutions</p>
+</a>
+
+</div>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- PARTNERS -->
+<section id="partners" class="section">
+
+<h3 id="partners-title">Our Partners</h3>
+
+<div class="partner-grid">
+
+<a href="salesplay.html" class="partner">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="salesplay.png" alt="SalesPlay">
+<p>SalesPlay Distributor</p>
+</a>
+
+<a href="sunmi.html" class="partner">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="sunmi.png" alt="Sunmi">
+<p>Sunmi Authorized Dealer</p>
+</a>
+
+<a href="pospay.html" class="partner">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="pospay.png" alt="PosPay">
+<p>POSPay Authorized Dealer</p>
+</a>
+
+<a href="comingsoon.html" class="partner">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="more.png" alt="More">
+<p>More Coming Soon</p>
+</a>
+
+</div>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- MAP -->
+<section class="section">
+
+<h3 id="location-title">Our Location</h3>
+
+<iframe
+title="World Tele Communication Location"
+src="https://maps.google.com/maps?q=No11-1,Jalan%20PPM%2010,Melaka&t=&z=15&output=embed"
+width="100%"
+height="300"
+style="border:none;">
+</iframe>
+
+<br>
+
+<a href="https://maps.app.goo.gl/CLw1iUWQQJYNXRX96"
+target="_blank"
+class="map-btn google">
+Google Maps
+</a>
+
+<a href="https://waze.com/ul/hw22swjyc2"
+target="_blank"
+class="map-btn waze">
+Waze
+</a>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- VISITOR COUNTER -->
+<section class="section counter-box">
+
+<h3>Total Visitors</h3>
+
+<img src="https://visitor-badge.laobi.icu/badge?page_id=worldtelecommunication.wtc&left_text=Visitors" alt="Visitor Counter">
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+
+<h3 id="contact-title">Contact Us</h3>
+
+<p>📞 +60163456287</p>
+
+<p>
+📧 
+<a href="mailto:Wtc063369841@gmail.com">
+Wtc063369841@gmail.com
+</a>
+</p>
+
+<p id="address">
+📍 No11-1, Jalan PPM 10, Plaza Pandan Malim, 75250 Melaka, Malaysia
+</p>
+
+<p>
+📘 
+<a href="https://facebook.com/Worldtelecommunication.my"
+target="_blank"
+rel="noopener noreferrer">
+Follow Our Facebook Page
+</a>
+</p>
+
+<!-- EMAIL FORM -->
+<article style="margin-top:30px;">
+
+<h4>Send Us An Inquiry</h4>
+
+<form action="mailto:Wtc063369841@gmail.com" method="post" enctype="text/plain">
+
+<input
+type="text"
+name="name"
+placeholder="Your Name"
+required
+>
+
+<input
+type="email"
+name="email"
+placeholder="Your Email"
+required
+>
+
+<textarea
+name="message"
+placeholder="Your Message"
+rows="5"
+required
+></textarea>
+
+<button type="submit">
+Send Email
+</button>
+
+</form>
+
+</article>
+
+</section>
+
+<footer class="container">
+<small>
+© 2026 World Tele Communication
+<br>
+Professional Mobile & POS Solutions
+</small>
+</footer>
+
+<script>
+
+function toggleMenu() {
+
+document.getElementById("navLinks")
+.classList.toggle("show");
+
+}
+
+function toggleLangMenu() {
+
+document.getElementById("langDropdown")
+.classList.toggle("show");
+
+}
+
+const navItems = document.querySelectorAll(".nav-links a");
+
+navItems.forEach(item => {
+
+item.addEventListener("click", () => {
+
+document.getElementById("navLinks")
+.classList.remove("show");
+
+});
+
+});
+
+let currentLanguage = "en";
+
+function setLanguage(lang) {
+
+currentLanguage = lang;
+
+/* =========================
+   中文
+========================= */
+if(lang === "cn") {
+
+document.getElementById("about-title").innerText = "关于我们";
+
+document.getElementById("services-title").innerText = "我们的服务";
+
+document.getElementById("partners-title").innerText = "合作伙伴";
+
+document.getElementById("location-title").innerText = "我们的位置";
+
+document.getElementById("contact-title").innerText = "联系我们";
+
+document.getElementById("subtitle").innerText =
+"手机 | POS系统 | 销售与服务";
+
+document.getElementById("service1").innerText =
+"手机服务";
+
+document.getElementById("service2").innerText =
+"POS系统";
+
+document.getElementById("service3").innerText =
+"网站解决方案";
+
+document.getElementById("about-text1").innerHTML =
+"World Tele Communication (WTC) 成立于 2004 年。<br>拥有超过20年的行业经验，我们在手机维修、手机销售以及专业POS系统方面建立了良好的信誉。";
+
+document.getElementById("about-text2").innerHTML =
+"我们专注于提供完整的 POS Solutions System，包括 POS 设备、POS 软件以及适用于现代企业的商业运营解决方案。";
+
+document.getElementById("about-text3").innerHTML =
+"自 2021 年进入 POS 行业以来，我们已经成功帮助许多企业。";
+
+document.getElementById("about-text4").innerHTML =
+"今天，我们很荣幸成为：<br>• SalesPlay POS 系统代理商<br>• Sunmi 授权经销商<br>• POSPay 授权经销商";
+
+document.getElementById("about-text5").innerHTML =
+"深受马来西亚，尤其是马六甲本地商家的信赖。";
+
+document.getElementById("about-text6").innerHTML =
+"2025 年，World Tele Communication 很荣幸正式拓展 Website Services、Website Design 与 Digital Solutions 服务。<br><br>直到今天，我们已经协助许多中小企业打造专业网站，帮助他们发展与提升业务。";
+
+document.getElementById("shop-text").innerText =
+"您也可以通过 Shopee 和 TikTok Shop 在线购买我们的产品。";
+
+}
+
+/* =========================
+   BM
+========================= */
+else if(lang === "bm") {
+
+document.getElementById("about-title").innerText =
+"Tentang Kami";
+
+document.getElementById("services-title").innerText =
+"Perkhidmatan Kami";
+
+document.getElementById("partners-title").innerText =
+"Rakan Kami";
+
+document.getElementById("location-title").innerText =
+"Lokasi Kami";
+
+document.getElementById("contact-title").innerText =
+"Hubungi Kami";
+
+document.getElementById("subtitle").innerText =
+"Telefon Bimbit | Sistem POS | Jualan & Servis";
+
+document.getElementById("service1").innerText =
+"Telefon Bimbit";
+
+document.getElementById("service2").innerText =
+"Sistem POS";
+
+document.getElementById("service3").innerText =
+"Penyelesaian Website";
+
+document.getElementById("about-text1").innerHTML =
+"World Tele Communication (WTC) ditubuhkan pada tahun 2004.<br>Dengan pengalaman lebih 20 tahun dalam industri, kami membina reputasi kukuh dalam pembaikan telefon bimbit, jualan peranti, dan penyelesaian POS profesional.";
+
+document.getElementById("about-text2").innerHTML =
+"Kami pakar dalam menyediakan POS Solutions System lengkap termasuk peranti POS, perisian POS, dan penyelesaian operasi perniagaan moden.";
+
+document.getElementById("about-text3").innerHTML =
+"Sejak memasuki industri POS pada tahun 2021, kami telah membantu banyak perniagaan berkembang.";
+
+document.getElementById("about-text4").innerHTML =
+"Hari ini kami berbangga menjadi:<br>• Pengedar SalesPlay POS System<br>• Sunmi Authorized Dealer<br>• POSPay Authorized Dealer";
+
+document.getElementById("about-text5").innerHTML =
+"Dipercayai oleh banyak perniagaan tempatan di Malaysia terutamanya Melaka.";
+
+document.getElementById("about-text6").innerHTML =
+"Pada tahun 2025, World Tele Communication dengan bangganya memperluaskan perkhidmatan ke bidang Website Services, Website Design & Digital Solutions.<br><br>Sehingga hari ini, kami telah membantu banyak perniagaan kecil membangunkan laman web profesional untuk perkembangan perniagaan mereka.";
+
+document.getElementById("shop-text").innerText =
+"Kami juga menawarkan produk kami secara online melalui Shopee dan TikTok Shop.";
+
+}
+
+/* =========================
+   ENGLISH
+========================= */
+else {
+
+document.getElementById("about-title").innerText =
+"About Us";
+
+document.getElementById("services-title").innerText =
+"Our Services";
+
+document.getElementById("partners-title").innerText =
+"Our Partners";
+
+document.getElementById("location-title").innerText =
+"Our Location";
+
+document.getElementById("contact-title").innerText =
+"Contact Us";
+
+document.getElementById("subtitle").innerText =
+"Mobile Phone | POS System | Sales & Service";
+
+document.getElementById("service1").innerText =
+"Mobile Phone";
+
+document.getElementById("service2").innerText =
+"Point Of Sale";
+
+document.getElementById("service3").innerText =
+"Website Solutions";
+
+document.getElementById("about-text1").innerHTML =
+"World Tele Communication (WTC) was established in 2004.<br>With over 20 years of industry experience, we have built a strong reputation in mobile phone repair, mobile device sales, and professional POS solutions.";
+
+document.getElementById("about-text2").innerHTML =
+"We specialise in providing complete POS Solutions System, including POS devices, POS software, and business operation solutions tailored for modern businesses.";
+
+document.getElementById("about-text3").innerHTML =
+"Since entering the POS industry in May 2021, we have successfully helped many businesses.";
+
+document.getElementById("about-text4").innerHTML =
+"Today, we are proud to be:<br>• SalesPlay POS System Distributor<br>• Sunmi Authorized Dealer<br>• POSPay Authorized Dealer";
+
+document.getElementById("about-text5").innerHTML =
+"Trusted by local businesses across Malaysia, especially in Melaka.";
+
+document.getElementById("about-text6").innerHTML =
+"In 2025, World Tele Communication proudly expanded into Website Services, Website Design & Digital Solutions.<br><br>Until today, we have helped many small businesses develop professional websites for their growing businesses.";
+
+document.getElementById("shop-text").innerText =
+"We also offer our products online through Shopee and TikTok Shop.";
+
+}
+
+}
+
+</script>
+
+<script src="ai-chat.js"></script>
+
+</body>
+</html>
