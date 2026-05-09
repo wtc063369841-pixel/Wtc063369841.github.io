@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Website Solutions - World Tele Communication</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+margin:0;
+text-align:center;
+font-family:system-ui;
+
+/* WHITE GREY STAINLESS BACKGROUND */
+
+background:
+
+radial-gradient(
+circle at top left,
+rgba(255,255,255,0.40),
+transparent 28%
+),
+
+radial-gradient(
+circle at bottom right,
+rgba(220,220,220,0.30),
+transparent 35%
+),
+
+repeating-linear-gradient(
+90deg,
+rgba(255,255,255,0.05) 0px,
+rgba(255,255,255,0.05) 1px,
+transparent 1px,
+transparent 7px
+),
+
+repeating-linear-gradient(
+0deg,
+rgba(255,255,255,0.04) 0px,
+rgba(255,255,255,0.04) 1px,
+transparent 1px,
+transparent 8px
+),
+
+linear-gradient(
+145deg,
+#ffffff 0%,
+#f5f5f5 15%,
+#d9d9d9 32%,
+#f3f4f6 50%,
+#cfcfcf 70%,
+#ffffff 100%
+);
+
+background-size:cover;
+background-position:center center;
+background-attachment:fixed;
+
+overflow-x:hidden;
+position:relative;
+
+}
+
+/* SOFT LIGHT EFFECT */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+top:0;
+left:-50%;
+
+width:200%;
+height:100%;
+
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(255,255,255,0.45) 45%,
+rgba(255,255,255,0.15) 50%,
+rgba(255,255,255,0.45) 55%,
+transparent 100%
+);
+
+animation:shineMove 12s linear infinite;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+/* TOP MENU */
+
+.top-menu{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:4px;
+padding:2px 4px;
+position:sticky;
+top:0;
+z-index:9999;
+background:rgba(255,255,255,0.25);
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+box-shadow:
+0 2px 8px rgba(0,0,0,0.08);
+flex-wrap:nowrap;
+overflow:visible;
+height:48px;
+}
+
+/* BUTTON */
+
+.top-btn{
+text-decoration:none;
+padding:5px 6px;
+border-radius:12px;
+font-size:14px;
+font-weight:bold;
+display:flex;
+align-items:center;
+justify-content:center;
+width:40px;
+height:40px;
+border:1px solid rgba(255,255,255,0.22);
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+box-shadow:
+0 4px 12px rgba(0,0,0,0.12),
+inset 0 1px 1px rgba(255,255,255,0.18);
+transition:0.25s ease;
+flex-shrink:0;
+}
+
+/* MENU COLORS */
+
+.home-btn{
+background:#000000;
+color:white;
+}
+
+.phone-btn{
+background:#005f73;
+color:white;
+}
+
+.whatsapp-btn{
+background:#25D366;
+color:white;
+}
+
+.shopee-btn{
+background:#ee4d2d;
+color:white;
+}
+
+.tiktok-btn{
+background:#000000;
+color:white;
+}
+
+.facebook-btn{
+background:#1877F2;
+color:white;
+}
+
+.ai-btn{
+
+background:white;
+color:black;
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.8),
+0 0 24px rgba(255,255,255,0.45);
+
+}
+
+/* LANGUAGE */
+
+.lang-menu{
+position:relative;
+}
+
+.lang-toggle{
+
+all:unset;
+-webkit-tap-highlight-color:transparent;
+outline:none !important;
+
+}
+
+.lang-toggle i{
+
+display:flex;
+align-items:center;
+justify-content:center;
+width:40px;
+height:40px;
+border-radius:12px;
+
+background:rgba(255,255,255,0.30);
+
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+
+border:1px solid rgba(255,255,255,0.22);
+
+color:#0f172a;
+font-size:13px;
+
+box-shadow:
+0 3px 10px rgba(0,0,0,0.10),
+inset 0 1px 1px rgba(255,255,255,0.15);
+
+flex-shrink:0;
+transition:0.25s ease;
+
+}
+
+.lang-dropdown{
+
+display:none;
+flex-direction:column;
+
+position:fixed;
+
+top:58px;
+right:10px;
+
+width:90px;
+
+padding:12px;
+
+z-index:99999;
+
+border-radius:16px;
+
+background:rgba(255,255,255,0.88);
+
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,0.25);
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.15);
+
+gap:10px;
+
+}
+
+.lang-dropdown button{
+
+border:none;
+background:transparent;
+
+color:#111827;
+
+font-size:14px;
+
+cursor:pointer;
+
+}
+
+.lang-dropdown.show{
+display:flex;
+}
+
+/* HERO */
+
+.hero{
+margin-top:-10px;
+padding:0px 0px 10px;
+position:relative;
+z-index:2;
+}
+
+/* LOGO */
+
+.logo{
+width:100%;
+max-width:100%;
+height:auto;
+display:block;
+object-fit:contain;
+margin:auto;
+margin-top:-40px;
+margin-bottom:-90px;
+padding:0;
+animation:float 4s ease-in-out infinite;
+transition:0.25s ease;
+}
+
+/* LOGO HOVER */
+
+@media (hover:hover){
+.logo:hover{
+filter:
+drop-shadow(0 0 10px rgba(255,0,0,0.45));
+transform:scale(1.02);
+
+}
+
+}
+
+/* LOGO ACTIVE */
+
+.logo:active{
+transform:scale(0.96);
+filter:
+drop-shadow(0 0 20px red)
+drop-shadow(0 0 40px red)
+drop-shadow(0 0 60px rgba(255,0,0,0.8));
+}
+
+/* WEBSITE IMAGE */
+
+.website-banner{
+width:88%;
+max-width:520px;
+display:block;
+margin:auto;
+margin-top:0px;
+margin-bottom:-10px;
+object-fit:contain;
+filter:
+drop-shadow(0 0 12px rgba(168,85,247,0.15))
+drop-shadow(0 0 24px rgba(168,85,247,0.08));
+}
+
+/* TITLE */
+
+h1{
+
+margin-top:18px;
+margin-bottom:5px;
+
+font-size:clamp(32px,9vw,62px);
+
+color:#111827;
+
+text-shadow:
+0 0 12px rgba(255,255,255,0.45),
+0 0 30px rgba(255,255,255,0.25);
+
+}
+
+/* SUBTITLE */
+
+.subtitle{
+
+font-size:17px;
+
+margin-bottom:10px;
+
+color:#334155;
+
+text-shadow:
+0 0 10px rgba(255,255,255,0.22);
+
+}
+
+/* SECTION */
+
+.section{
+padding:30px 20px;
+position:relative;
+z-index:2;
+}
+
+/* ABOUT */
+
+.about-box{
+
+max-width:900px;
+
+margin:auto;
+
+padding:30px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,0.15);
+
+backdrop-filter:blur(4px);
+-webkit-backdrop-filter:blur(4px);
+
+border:1px solid rgba(255,255,255,0.22);
+
+box-shadow:
+0 10px 35px rgba(0,0,0,0.10);
+
+color:#1e293b;
+
+line-height:1.8;
+
+}
+
+/* CARD GRID */
+
+.card-grid{
+
+display:grid;
+
+grid-template-columns:1fr;
+
+gap:25px;
+
+max-width:720px;
+
+margin:auto;
+
+}
+
+@media(min-width:768px){
+
+.card-grid{
+grid-template-columns:repeat(3,1fr);
+}
+
+}
+
+/* CARD */
+
+.card{
+
+position:relative;
+
+overflow:hidden;
+
+background:rgba(255,255,255,0.14);
+
+backdrop-filter:blur(4px);
+-webkit-backdrop-filter:blur(4px);
+
+padding:18px;
+
+border-radius:22px;
+
+transition:0.3s;
+
+box-shadow:
+0 10px 35px rgba(0,0,0,0.10);
+
+border:1px solid rgba(255,255,255,0.22);
+
+min-height:240px;
+
+animation:floatingCard 5s ease-in-out infinite;
+
+}
+
+/* SCREWS */
+
+.card::before,
+.card::after,
+.card .nut-left,
+.card .nut-right{
+
+content:"";
+
+position:absolute;
+
+width:18px;
+height:18px;
+
+border-radius:50%;
+
+background:
+radial-gradient(circle at 30% 30%,
+#f5f5f5,
+#9ea4ab,
+#5f666d);
+
+box-shadow:
+inset 0 2px 4px rgba(255,255,255,0.8),
+inset 0 -2px 4px rgba(0,0,0,0.45),
+0 1px 3px rgba(0,0,0,0.35);
+
+z-index:5;
+
+}
+
+.card::before{
+top:10px;
+left:10px;
+}
+
+.card::after{
+top:10px;
+right:10px;
+}
+
+.card .nut-left{
+bottom:10px;
+left:10px;
+}
+
+.card .nut-right{
+bottom:10px;
+right:10px;
+}
+
+/* IMAGE */
+
+.card img{
+
+width:100%;
+height:200px;
+
+object-fit:cover;
+
+border-radius:14px;
+
+}
+
+/* PURPLE GLOW */
+
+.card:hover{
+
+transform:
+translateY(-8px)
+scale(1.03);
+
+box-shadow:
+0 0 18px rgba(168,85,247,0.35),
+0 0 35px rgba(168,85,247,0.25),
+0 15px 40px rgba(0,0,0,0.15);
+
+}
+
+.card:active{
+
+transform:scale(0.96);
+
+box-shadow:
+0 0 15px #a855f7,
+0 0 35px #a855f7,
+0 0 60px rgba(168,85,247,0.75);
+
+}
+
+/* DIVIDER */
+
+.industrial-divider{
+
+width:90%;
+height:8px;
+
+margin:50px auto;
+
+border-radius:20px;
+
+background:
+linear-gradient(
+90deg,
+#5b6770,
+#dfe3e6,
+#7e8790,
+#f5f7f8,
+#5b6770
+);
+
+box-shadow:
+inset 0 2px 3px rgba(255,255,255,0.7),
+inset 0 -2px 4px rgba(0,0,0,0.25),
+0 4px 10px rgba(0,0,0,0.10);
+
+position:relative;
+overflow:hidden;
+
+}
+
+/* FOOTER */
+
+footer{
+
+padding:30px 10px 50px;
+
+color:#1e293b;
+
+text-shadow:
+0 2px 8px rgba(255,255,255,0.35);
+
+position:relative;
+z-index:2;
+
+}
+
+/* ANIMATION */
+
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+@keyframes floatingCard{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+@keyframes shineMove{
+
+0%{
+transform:translateX(-20%);
+}
+
+100%{
+transform:translateX(20%);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOP MENU -->
+
+<div class="top-menu">
+
+<a href="index.html" class="top-btn home-btn">
+<i class="fa-solid fa-house"></i>
+</a>
+
+<a href="tel:+60163456287" class="top-btn phone-btn">
+<i class="fa-solid fa-phone"></i>
+</a>
+
+<a href="https://wa.me/60163456287" class="top-btn whatsapp-btn">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<a href="https://my.shp.ee/6BSSa5j4" target="_blank" class="top-btn shopee-btn">
+<i class="fa-solid fa-bag-shopping"></i>
+</a>
+
+<a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/" target="_blank" class="top-btn tiktok-btn">
+<i class="fa-brands fa-tiktok"></i>
+</a>
+
+<a href="https://facebook.com/Worldtelecommunication.my" target="_blank" class="top-btn facebook-btn">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<a href="javascript:void(0)" class="top-btn ai-btn" onclick="openAIChat()">
+<i class="fa-solid fa-robot"></i>
+</a>
+
+<div class="lang-menu">
+
+<button class="lang-toggle" onclick="toggleLangMenu()">
+<i class="fa-solid fa-earth-asia"></i>
+</button>
+
+<div class="lang-dropdown" id="langDropdown">
+
+<button onclick="setLanguage('en')">EN</button>
+
+<button onclick="setLanguage('cn')">中文</button>
+
+<button onclick="setLanguage('bm')">BM</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="logo.png" class="logo">
+
+<img src="websitedownlogo.jpg" class="website-banner">
+
+<h1 id="title">
+Website Solutions
+</h1>
+
+<p class="subtitle" id="subtitle">
+Website Design & Development Services
+</p>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- ABOUT -->
+
+<section class="section">
+
+<div class="about-box" id="about-text">
+
+World Tele Communication has expanded into professional website design and development services to support modern businesses in building a stronger digital presence.
+
+<br><br>
+
+Over the years, we have successfully helped many small businesses and local enterprises create professional, responsive, and modern websites tailored to their business needs.
+
+<br><br>
+
+Our dedicated creative and technical team, known as <strong>Pasukan Dunia Komunikasi Empayar</strong>, works closely with businesses to deliver modern website solutions with smooth performance and user-friendly experiences.
+
+<br><br>
+
+We continue helping entrepreneurs, SMEs, restaurants, retail shops, service providers, and growing businesses establish a stronger digital identity with confidence.
+
+</div>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- BOXES -->
+
+<section class="section">
+
+<div class="card-grid">
+
+<div class="card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="web1.jpg">
+
+</div>
+
+<div class="card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="web2.jpg">
+
+</div>
+
+<div class="card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="web3.jpg">
+
+</div>
+
+</div>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- FOOTER -->
+
+<footer>
+
+<small>
+© 2026 World Tele Communication
+<br>
+Professional Mobile, Website & Point of Sale Solutions
+</small>
+
+</footer>
+
+<script>
+
+function toggleLangMenu(){
+
+document.getElementById("langDropdown")
+.classList.toggle("show");
+
+}
+
+function openAIChat(){
+
+if(window.toggleChat){
+toggleChat();
+}
+
+}
+
+document.addEventListener("click", function(e){
+
+const langMenu =
+document.getElementById("langDropdown");
+
+const langButton =
+document.querySelector(".lang-toggle");
+
+const chatBox =
+document.querySelector(".ai-chat-box");
+
+const robotBtn =
+e.target.closest(".ai-btn");
+
+/* LANGUAGE MENU */
+
+if(
+!langMenu.contains(e.target)
+&&
+!langButton.contains(e.target)
+){
+
+langMenu.classList.remove("show");
+
+}
+
+/* AUTO CLOSE AI CHAT */
+
+if(
+chatBox &&
+!chatBox.contains(e.target) &&
+!robotBtn
+){
+
+chatBox.style.display = "none";
+
+}
+
+});
+
+/* LANGUAGE */
+
+function setLanguage(lang){
+
+if(lang === "cn"){
+
+document.getElementById("title").innerText =
+"网站方案";
+
+document.getElementById("subtitle").innerText =
+"网站设计与开发服务";
+
+document.getElementById("about-text").innerHTML =
+"World Tele Communication 已正式扩展至专业网站设计与开发服务，协助现代企业建立更强大的线上形象。<br><br>这些年来，我们成功帮助许多中小企业与本地商家打造专业、现代化及响应式网站。<br><br>我们专属团队 <strong>Pasukan Dunia Komunikasi Empayar</strong> 致力于为企业提供高品质网站方案与用户体验。<br><br>我们持续协助创业者、中小企业、餐厅、零售店及服务行业建立更专业的数码品牌形象。";
+
+}
+
+else if(lang === "bm"){
+
+document.getElementById("title").innerText =
+"Penyelesaian Website";
+
+document.getElementById("subtitle").innerText =
+"Servis Rekaan & Pembangunan Website";
+
+document.getElementById("about-text").innerHTML =
+"World Tele Communication telah berkembang ke bidang profesional reka bentuk dan pembangunan website bagi membantu perniagaan moden membina identiti digital yang lebih kukuh.<br><br>Kami telah membantu banyak perniagaan kecil dan perusahaan tempatan membangunkan website moden, responsif dan profesional.<br><br>Pasukan kreatif dan teknikal kami yang dikenali sebagai <strong>Pasukan Dunia Komunikasi Empayar</strong> sentiasa memberikan penyelesaian website moden dengan pengalaman pengguna yang lancar.<br><br>Kami terus membantu usahawan, SME, restoran, kedai runcit dan perniagaan berkembang membina identiti digital yang lebih profesional.";
+
+}
+
+else{
+
+document.getElementById("title").innerText =
+"Website Solutions";
+
+document.getElementById("subtitle").innerText =
+"Website Design & Development Services";
+
+document.getElementById("about-text").innerHTML =
+"World Tele Communication has expanded into professional website design and development services to support modern businesses in building a stronger digital presence.<br><br>Over the years, we have successfully helped many small businesses and local enterprises create professional, responsive, and modern websites tailored to their business needs.<br><br>Our dedicated creative and technical team, known as <strong>Pasukan Dunia Komunikasi Empayar</strong>, works closely with businesses to deliver modern website solutions with smooth performance and user-friendly experiences.<br><br>We continue helping entrepreneurs, SMEs, restaurants, retail shops, service providers, and growing businesses establish a stronger digital identity with confidence.";
+
+}
+
+document.getElementById("langDropdown")
+.classList.remove("show");
+
+}
+
+</script>
+
+<script src="ai-chat.js"></script>
+
+<style>
+.ai-help-button,
+#ai-help-button,
+.ai-chat-button{
+opacity:0 !important;
+pointer-events:none !important;
+}
+</style>
+
+</body>
+</html>
