@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1">
+
+<title>Coming Soon</title>
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+margin:0;
+text-align:center;
+font-family:system-ui;
+
+background:
+
+radial-gradient(
+circle at top left,
+rgba(255,255,255,0.55),
+transparent 28%
+),
+
+radial-gradient(
+circle at bottom right,
+rgba(120,80,40,0.05),
+transparent 35%
+),
+
+repeating-linear-gradient(
+90deg,
+rgba(255,255,255,0.04) 0px,
+rgba(255,255,255,0.04) 1px,
+transparent 1px,
+transparent 8px
+),
+
+repeating-linear-gradient(
+0deg,
+rgba(255,255,255,0.03) 0px,
+rgba(255,255,255,0.03) 1px,
+transparent 1px,
+transparent 8px
+),
+
+linear-gradient(
+145deg,
+#fffdfa 0%,
+#fdf7f2 20%,
+#f8efe7 45%,
+#fffaf6 65%,
+#f5e9df 85%,
+#fffdfa 100%
+);
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+overflow-x:hidden;
+position:relative;
+
+}
+
+/* LIGHT EFFECT */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+top:0;
+left:-50%;
+
+width:200%;
+height:100%;
+
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(255,255,255,0.45) 45%,
+rgba(255,240,220,0.08) 50%,
+rgba(255,255,255,0.45) 55%,
+transparent 100%
+);
+
+animation:shineMove 12s linear infinite;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+/* TOP MENU */
+
+.top-menu{
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+gap:4px;
+
+padding:2px 4px;
+
+position:sticky;
+top:0;
+
+z-index:9999;
+
+background:rgba(255,255,255,0.18);
+
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+
+box-shadow:
+0 2px 8px rgba(80,50,30,0.04);
+
+height:48px;
+
+}
+
+/* BUTTON */
+
+.top-btn{
+
+text-decoration:none;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+width:40px;
+height:40px;
+
+border-radius:12px;
+
+font-size:14px;
+font-weight:bold;
+
+transition:0.25s ease;
+
+border:1px solid rgba(255,255,255,0.22);
+
+backdrop-filter:blur(12px);
+
+box-shadow:
+0 4px 12px rgba(80,50,30,0.04),
+inset 0 1px 1px rgba(255,255,255,0.18);
+
+}
+
+/* HOVER */
+
+.top-btn:hover{
+transform:translateY(-2px);
+}
+
+/* BUTTON COLORS */
+
+/* HOME */
+
+.home-btn{
+background:#000000;
+color:white;
+}
+
+/* PHONE */
+
+.phone-btn{
+background:#005f73;
+color:white;
+}
+
+.whatsapp-btn{
+background:#25D366;
+color:white;
+}
+
+.shopee-btn{
+background:#ee4d2d;
+color:white;
+}
+
+.tiktok-btn{
+background:#000000;
+color:white;
+}
+
+.facebook-btn{
+background:#1877F2;
+color:white;
+}
+
+.ai-btn{
+
+background:white;
+color:#3b2a22;
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.8),
+0 0 24px rgba(255,255,255,0.4);
+
+}
+
+/* LANGUAGE */
+
+.lang-menu{
+position:relative;
+}
+
+.lang-toggle{
+
+all:unset;
+
+cursor:pointer;
+
+-webkit-tap-highlight-color:transparent;
+
+}
+
+.lang-toggle i{
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+width:40px;
+height:40px;
+
+border-radius:12px;
+
+background:rgba(255,255,255,0.30);
+
+border:1px solid rgba(255,255,255,0.22);
+
+color:#3b2a22;
+
+font-size:13px;
+
+box-shadow:
+0 3px 10px rgba(80,50,30,0.04);
+
+}
+
+/* DROPDOWN */
+
+.lang-dropdown{
+
+display:none;
+flex-direction:column;
+
+position:fixed;
+
+top:58px;
+right:10px;
+
+width:90px;
+
+padding:12px;
+
+z-index:99999;
+
+border-radius:16px;
+
+background:rgba(255,255,255,0.88);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,0.25);
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.12);
+
+gap:10px;
+
+}
+
+.lang-dropdown button{
+
+border:none;
+background:transparent;
+
+font-size:14px;
+
+cursor:pointer;
+
+color:#3b2a22;
+
+}
+
+.lang-dropdown.show{
+display:flex;
+}
+
+/* HERO */
+
+.hero{
+padding:20px;
+position:relative;
+z-index:2;
+}
+
+/* LOGO */
+
+.logo{
+
+max-width:420px;
+width:110%;
+
+display:block;
+
+margin:auto;
+
+margin-top:-20px;
+margin-bottom:-30px;
+
+margin-left:-16px;
+
+animation:float 4s ease-in-out infinite;
+
+transition:0.25s ease;
+
+}
+
+.logo:hover{
+
+transform:scale(1.01);
+
+}
+
+.logo:active{
+
+transform:scale(0.96);
+
+filter:
+drop-shadow(0 0 20px red)
+drop-shadow(0 0 40px red)
+drop-shadow(0 0 60px rgba(255,0,0,0.8));
+
+}
+
+/* COMING SOON LOGO */
+
+.comingsoon{
+
+max-width:220px;
+
+margin-top:20px;
+margin-bottom:20px;
+
+transition:0.25s ease;
+
+/* 工业咖啡金属 glow */
+
+filter:
+drop-shadow(0 0 10px rgba(191,160,138,0.30))
+drop-shadow(0 0 22px rgba(92,59,46,0.20))
+drop-shadow(0 0 40px rgba(92,59,46,0.12));
+
+/* 自动呼吸 */
+
+animation:
+float 4s ease-in-out infinite,
+coffeeGlow 2.5s ease-in-out infinite;
+
+}
+
+/* hover */
+
+.comingsoon:hover{
+
+transform:scale(1.04);
+
+}
+
+/* 手机 touch */
+
+.comingsoon:active{
+
+transform:scale(0.92);
+
+filter:
+drop-shadow(0 0 18px rgba(191,160,138,0.55))
+drop-shadow(0 0 38px rgba(92,59,46,0.35))
+drop-shadow(0 0 60px rgba(92,59,46,0.25));
+
+}
+
+.comingsoon:hover{
+transform:scale(1.03);
+}
+
+/* TITLE */
+
+h1{
+
+margin-top:20px;
+
+font-size:clamp(30px,5vw,52px);
+
+color:#3b2a22;
+
+}
+
+.subtitle{
+
+font-size:20px;
+
+margin-bottom:30px;
+
+color:#5c4637;
+
+}
+
+/* SECTION */
+
+.section{
+padding:50px 20px;
+position:relative;
+z-index:2;
+}
+
+/* ABOUT */
+
+.about{
+
+max-width:900px;
+
+margin:auto;
+
+line-height:1.8;
+
+font-size:18px;
+
+padding:30px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,0.16);
+
+backdrop-filter:blur(6px);
+
+border:1px solid rgba(255,255,255,0.22);
+
+box-shadow:
+0 10px 35px rgba(80,50,30,0.04);
+
+}
+
+/* GRID */
+
+.future-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(240px,1fr));
+
+gap:30px;
+
+margin-top:50px;
+
+}
+
+/* GLASS CARD */
+
+.future-card{
+
+position:relative;
+
+overflow:hidden;
+
+padding:25px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,0.15);
+
+backdrop-filter:blur(6px);
+
+border:1px solid rgba(255,255,255,0.22);
+
+box-shadow:
+0 10px 35px rgba(0,0,0,0.08);
+
+transition:0.3s ease;
+
+}
+
+/* NUT EFFECT */
+
+.future-card::before,
+.future-card::after,
+.future-card .nut-left,
+.future-card .nut-right{
+
+content:"";
+
+position:absolute;
+
+width:18px;
+height:18px;
+
+border-radius:50%;
+
+background:
+radial-gradient(circle at 30% 30%,
+#ffffff,
+#bfa08a,
+#5c3b2e);
+
+box-shadow:
+inset 0 2px 4px rgba(255,255,255,0.8),
+inset 0 -2px 4px rgba(0,0,0,0.4),
+0 1px 3px rgba(0,0,0,0.3);
+
+z-index:5;
+
+}
+
+/* POSITIONS */
+
+.future-card::before{
+top:10px;
+left:10px;
+}
+
+.future-card::after{
+top:10px;
+right:10px;
+}
+
+.future-card .nut-left{
+bottom:10px;
+left:10px;
+}
+
+.future-card .nut-right{
+bottom:10px;
+right:10px;
+}
+
+/* HOVER */
+
+.future-card:hover{
+
+box-shadow:
+0 0 18px rgba(90,50,30,0.20),
+0 0 35px rgba(90,50,30,0.10),
+0 10px 30px rgba(0,0,0,0.08);
+
+}
+
+/* ACTIVE */
+
+.future-card:active{
+
+transform:scale(0.97);
+
+box-shadow:
+0 0 25px rgba(90,50,30,0.55),
+0 0 55px rgba(90,50,30,0.30),
+0 15px 40px rgba(0,0,0,0.15);
+
+}
+
+.future-card h3,
+.future-card p{
+color:#3b2a22;
+}
+
+/* FOOTER */
+
+footer{
+
+padding:30px 10px 50px;
+
+color:#3b2a22;
+
+text-shadow:
+0 2px 8px rgba(255,255,255,0.35);
+
+position:relative;
+z-index:2;
+
+}
+
+footer small{
+
+font-size:15px;
+
+letter-spacing:0.3px;
+
+}
+
+/* ANIMATION */
+
+@keyframes shineMove{
+
+0%{
+transform:translateX(-20%);
+}
+
+100%{
+transform:translateX(20%);
+}
+
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+@keyframes coffeeGlow{
+
+0%{
+
+filter:
+drop-shadow(0 0 8px rgba(191,160,138,0.18))
+drop-shadow(0 0 18px rgba(92,59,46,0.10));
+
+}
+
+50%{
+
+filter:
+drop-shadow(0 0 18px rgba(191,160,138,0.55))
+drop-shadow(0 0 38px rgba(92,59,46,0.30))
+drop-shadow(0 0 55px rgba(92,59,46,0.18));
+
+}
+
+100%{
+
+filter:
+drop-shadow(0 0 8px rgba(191,160,138,0.18))
+drop-shadow(0 0 18px rgba(92,59,46,0.10));
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOP MENU -->
+
+<div class="top-menu">
+
+<a href="index.html"
+class="top-btn home-btn">
+<i class="fa-solid fa-house"></i>
+</a>
+
+<a href="tel:+60163456287"
+class="top-btn phone-btn">
+<i class="fa-solid fa-phone"></i>
+</a>
+
+<a href="https://wa.me/60163456287"
+class="top-btn whatsapp-btn">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<a href="https://my.shp.ee/6BSSa5j4"
+target="_blank"
+class="top-btn shopee-btn">
+<i class="fa-solid fa-bag-shopping"></i>
+</a>
+
+<a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/"
+target="_blank"
+class="top-btn tiktok-btn">
+<i class="fa-brands fa-tiktok"></i>
+</a>
+
+<a href="https://facebook.com/Worldtelecommunication.my"
+target="_blank"
+class="top-btn facebook-btn">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<a href="javascript:void(0)"
+class="top-btn ai-btn"
+onclick="openAIChat(event)">
+<i class="fa-solid fa-robot"></i>
+</a>
+
+<div class="lang-menu">
+
+<button class="lang-toggle"
+onclick="toggleLangMenu(event)">
+
+<i class="fa-solid fa-earth-asia"></i>
+
+</button>
+
+<div class="lang-dropdown"
+id="langDropdown">
+
+<button onclick="setLanguage('en')">EN</button>
+
+<button onclick="setLanguage('cn')">中文</button>
+
+<button onclick="setLanguage('bm')">BM</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="logo.png"
+class="logo">
+
+<br>
+
+<img src="more.png"
+class="comingsoon">
+
+<h1 id="title">
+More Coming Soon
+</h1>
+
+<p class="subtitle"
+id="subtitle">
+
+More future business opportunities are coming soon.
+
+</p>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="section">
+
+<h2 id="about-title">
+Future Opportunities & Partnerships
+</h2>
+
+<div class="about">
+
+<p id="about-text1">
+
+World Tele Communication is continuously exploring
+more future business opportunities and POS solutions.
+
+</p>
+
+<p id="about-text2">
+
+In the future,
+we hope to collaborate with more POS companies,
+software providers,
+payment solutions,
+technology brands,
+and website development services.
+
+</p>
+
+<p id="about-text3">
+
+We are interested in becoming reseller,
+dealer,
+distributor,
+or business partners for more business solutions in the market.
+
+</p>
+
+<p id="about-text4">
+
+Our goal is to bring more useful and modern technologies
+to support local businesses in Malaysia.
+
+</p>
+
+</div>
+
+<!-- FUTURE SERVICES -->
+
+<div class="future-grid">
+
+<div class="future-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<h3 id="future1-title">
+Website Development
+</h3>
+
+<p id="future1-text">
+Custom modern business websites for local businesses and companies.
+</p>
+
+</div>
+
+<div class="future-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<h3 id="future2-title">
+POS Solutions
+</h3>
+
+<p id="future2-text">
+More POS systems, software and smart business devices coming soon.
+</p>
+
+</div>
+
+<div class="future-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<h3 id="future3-title">
+Business Technology
+</h3>
+
+<p id="future3-text">
+Future digital business services and technology support for modern businesses.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<small>
+© 2026 World Tele Communication
+<br>
+Professional Mobile, Website & Business Solutions
+</small>
+
+</footer>
+
+<!-- SCRIPT -->
+
+<script>
+
+/* LANGUAGE MENU */
+
+function toggleLangMenu(e){
+
+e.stopPropagation();
+
+document.getElementById("langDropdown")
+.classList.toggle("show");
+
+}
+
+/* AI CHAT */
+
+function openAIChat(e){
+
+e.stopPropagation();
+
+if(window.toggleChat){
+toggleChat();
+}
+
+}
+
+/* AUTO CLOSE */
+
+document.addEventListener("click", function(e){
+
+const langMenu =
+document.getElementById("langDropdown");
+
+const langButton =
+document.querySelector(".lang-toggle");
+
+const chatBox =
+document.querySelector(".ai-chat-box");
+
+const robotBtn =
+e.target.closest(".ai-btn");
+
+/* CLOSE LANGUAGE */
+
+if(
+langMenu &&
+!langMenu.contains(e.target)
+&&
+!langButton.contains(e.target)
+){
+
+langMenu.classList.remove("show");
+
+}
+
+/* CLOSE AI */
+
+if(
+chatBox &&
+!chatBox.contains(e.target) &&
+!robotBtn
+){
+
+chatBox.style.display = "none";
+
+}
+
+});
+
+/* LANGUAGE */
+
+function setLanguage(lang){
+
+/* 中文 */
+
+if(lang === "cn"){
+
+document.getElementById("title").innerText =
+"更多即将到来";
+
+document.getElementById("subtitle").innerText =
+"更多未来商业机会即将到来。";
+
+document.getElementById("about-title").innerText =
+"未来机会与合作";
+
+document.getElementById("about-text1").innerText =
+"World Tele Communication 正在持续探索更多未来商业机会与 POS 解决方案。";
+
+document.getElementById("about-text2").innerText =
+"未来我们希望与更多 POS 公司、软件供应商、支付方案、科技品牌以及网站开发服务合作。";
+
+document.getElementById("about-text3").innerText =
+"我们有兴趣成为更多商业系统与科技方案的 reseller、dealer、distributor 或合作伙伴。";
+
+document.getElementById("about-text4").innerText =
+"我们的目标是把更多实用与现代化科技带给马来西亚本地商家。";
+
+document.getElementById("future1-title").innerText =
+"网站开发";
+
+document.getElementById("future1-text").innerText =
+"为本地商家与公司提供现代化商业网站开发服务。";
+
+document.getElementById("future2-title").innerText =
+"POS 商业方案";
+
+document.getElementById("future2-text").innerText =
+"更多 POS 系统、软件与智能商业设备即将到来。";
+
+document.getElementById("future3-title").innerText =
+"商业科技";
+
+document.getElementById("future3-text").innerText =
+"未来更多数码商业服务与科技支援。";
+
+}
+
+/* BM */
+
+else if(lang === "bm"){
+
+document.getElementById("title").innerText =
+"Lagi Akan Datang";
+
+document.getElementById("subtitle").innerText =
+"Lebih banyak peluang perniagaan akan datang.";
+
+document.getElementById("about-title").innerText =
+"Peluang & Kerjasama Masa Depan";
+
+document.getElementById("about-text1").innerText =
+"World Tele Communication sentiasa mencari lebih banyak peluang perniagaan dan penyelesaian POS pada masa depan.";
+
+document.getElementById("about-text2").innerText =
+"Pada masa akan datang, kami berharap dapat bekerjasama dengan lebih banyak syarikat POS, software provider, payment solution, jenama teknologi dan servis pembangunan website.";
+
+document.getElementById("about-text3").innerText =
+"Kami berminat untuk menjadi reseller, dealer, distributor atau rakan perniagaan bagi lebih banyak sistem dan teknologi.";
+
+document.getElementById("about-text4").innerText =
+"Matlamat kami adalah membawa lebih banyak teknologi moden dan berguna untuk membantu perniagaan tempatan di Malaysia.";
+
+document.getElementById("future1-title").innerText =
+"Pembangunan Website";
+
+document.getElementById("future1-text").innerText =
+"Servis website moden untuk syarikat dan perniagaan tempatan.";
+
+document.getElementById("future2-title").innerText =
+"Penyelesaian POS";
+
+document.getElementById("future2-text").innerText =
+"Lebih banyak sistem POS, software dan smart business device akan datang.";
+
+document.getElementById("future3-title").innerText =
+"Teknologi Perniagaan";
+
+document.getElementById("future3-text").innerText =
+"Servis digital dan teknologi moden untuk perniagaan masa depan.";
+
+}
+
+/* EN */
+
+else{
+
+document.getElementById("title").innerText =
+"More Coming Soon";
+
+document.getElementById("subtitle").innerText =
+"More future business opportunities are coming soon.";
+
+document.getElementById("about-title").innerText =
+"Future Opportunities & Partnerships";
+
+document.getElementById("about-text1").innerText =
+"World Tele Communication is continuously exploring more future business opportunities and POS solutions.";
+
+document.getElementById("about-text2").innerText =
+"In the future, we hope to collaborate with more POS companies, software providers, payment solutions, technology brands, and website development services.";
+
+document.getElementById("about-text3").innerText =
+"We are interested in becoming reseller, dealer, distributor, or business partners for more business solutions in the market.";
+
+document.getElementById("about-text4").innerText =
+"Our goal is to bring more useful and modern technologies to support local businesses in Malaysia.";
+
+document.getElementById("future1-title").innerText =
+"Website Development";
+
+document.getElementById("future1-text").innerText =
+"Custom modern business websites for local businesses and companies.";
+
+document.getElementById("future2-title").innerText =
+"POS Solutions";
+
+document.getElementById("future2-text").innerText =
+"More POS systems, software and smart business devices coming soon.";
+
+document.getElementById("future3-title").innerText =
+"Business Technology";
+
+document.getElementById("future3-text").innerText =
+"Future digital business services and technology support for modern businesses.";
+
+}
+
+/* AUTO CLOSE */
+
+document.getElementById("langDropdown")
+.classList.remove("show");
+
+}
+
+</script>
+
+<script src="ai-chat.js"></script>
+
+<style>
+
+.ai-help-button,
+#ai-help-button,
+.ai-chat-button{
+
+opacity:0 !important;
+pointer-events:none !important;
+
+}
+
+</style>
+
+</body>
+
+</html>
