@@ -5,12 +5,16 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport"
+content="width=device-width, initial-scale=1">
 
 <title>Coming Soon</title>
 
 <link rel="stylesheet"
 href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 
@@ -19,103 +23,576 @@ scroll-behavior:smooth;
 }
 
 body{
+
 margin:0;
 text-align:center;
-background:linear-gradient(135deg,#fff6ec,#ffe9d6,#ffd2a8);
 font-family:system-ui;
+
+background:
+
+radial-gradient(
+circle at top left,
+rgba(255,255,255,0.55),
+transparent 28%
+),
+
+radial-gradient(
+circle at bottom right,
+rgba(120,80,40,0.05),
+transparent 35%
+),
+
+repeating-linear-gradient(
+90deg,
+rgba(255,255,255,0.04) 0px,
+rgba(255,255,255,0.04) 1px,
+transparent 1px,
+transparent 8px
+),
+
+repeating-linear-gradient(
+0deg,
+rgba(255,255,255,0.03) 0px,
+rgba(255,255,255,0.03) 1px,
+transparent 1px,
+transparent 8px
+),
+
+linear-gradient(
+145deg,
+#fffdfa 0%,
+#fdf7f2 20%,
+#f8efe7 45%,
+#fffaf6 65%,
+#f5e9df 85%,
+#fffdfa 100%
+);
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+overflow-x:hidden;
+position:relative;
+
 }
 
-/* NAV */
+/* LIGHT EFFECT */
 
-nav{
+body::before{
+
+content:"";
+
+position:fixed;
+
+top:0;
+left:-50%;
+
+width:200%;
+height:100%;
+
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(255,255,255,0.45) 45%,
+rgba(255,240,220,0.08) 50%,
+rgba(255,255,255,0.45) 55%,
+transparent 100%
+);
+
+animation:shineMove 12s linear infinite;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+/* TOP MENU */
+
+.top-menu{
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+gap:4px;
+
+padding:2px 4px;
+
 position:sticky;
 top:0;
-background:rgba(255,255,255,0.7);
-backdrop-filter:blur(10px);
-z-index:999;
+
+z-index:9999;
+
+background:rgba(255,255,255,0.18);
+
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+
+box-shadow:
+0 2px 8px rgba(80,50,30,0.04);
+
+height:48px;
+
+}
+
+/* BUTTON */
+
+.top-btn{
+
+text-decoration:none;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+width:40px;
+height:40px;
+
+border-radius:12px;
+
+font-size:14px;
+font-weight:bold;
+
+transition:0.25s ease;
+
+border:1px solid rgba(255,255,255,0.22);
+
+backdrop-filter:blur(12px);
+
+box-shadow:
+0 4px 12px rgba(80,50,30,0.04),
+inset 0 1px 1px rgba(255,255,255,0.18);
+
+}
+
+/* HOVER */
+
+.top-btn:hover{
+transform:translateY(-2px);
+}
+
+/* BUTTON COLORS */
+
+.home-btn{
+background:#3b2a22;
+color:white;
+}
+
+.phone-btn{
+background:#6b442f;
+color:white;
+}
+
+.whatsapp-btn{
+background:#25D366;
+color:white;
+}
+
+.shopee-btn{
+background:#ee4d2d;
+color:white;
+}
+
+.tiktok-btn{
+background:#000000;
+color:white;
+}
+
+.facebook-btn{
+background:#1877F2;
+color:white;
+}
+
+.ai-btn{
+
+background:white;
+color:#3b2a22;
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.8),
+0 0 24px rgba(255,255,255,0.4);
+
 }
 
 /* LANGUAGE */
 
-.lang-switch{
-
-display:flex;
-
-gap:8px;
-
-justify-content:center;
-
-padding:15px;
+.lang-menu{
+position:relative;
 }
 
-.lang-btn{
+.lang-toggle{
 
-border:none;
-
-border-radius:20px;
-
-padding:6px 14px;
-
-background:white;
-
-color:#333;
+all:unset;
 
 cursor:pointer;
 
-font-size:13px;
+-webkit-tap-highlight-color:transparent;
 
-transition:0.3s;
 }
 
-.lang-btn:hover{
+.lang-toggle i{
 
-background:#2f6f88;
+display:flex;
+align-items:center;
+justify-content:center;
 
-color:white;
+width:40px;
+height:40px;
+
+border-radius:12px;
+
+background:rgba(255,255,255,0.30);
+
+border:1px solid rgba(255,255,255,0.22);
+
+color:#3b2a22;
+
+font-size:13px;
+
+box-shadow:
+0 3px 10px rgba(80,50,30,0.04);
+
+}
+
+/* DROPDOWN */
+
+.lang-dropdown{
+
+display:none;
+flex-direction:column;
+
+position:fixed;
+
+top:58px;
+right:10px;
+
+width:90px;
+
+padding:12px;
+
+z-index:99999;
+
+border-radius:16px;
+
+background:rgba(255,255,255,0.88);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,0.25);
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.12);
+
+gap:10px;
+
+}
+
+.lang-dropdown button{
+
+border:none;
+background:transparent;
+
+font-size:14px;
+
+cursor:pointer;
+
+color:#3b2a22;
+
+}
+
+.lang-dropdown.show{
+display:flex;
 }
 
 /* HERO */
 
 .hero{
 padding:20px;
+position:relative;
+z-index:2;
 }
 
-/* WTC LOGO */
+/* LOGO */
 
 .logo{
 
-max-width:360px;
+max-width:420px;
+width:110%;
+
+display:block;
+
+margin:auto;
 
 margin-top:-20px;
-
 margin-bottom:-30px;
 
-margin-left:-20px;
+margin-left:-12px;
 
 animation:float 4s ease-in-out infinite;
 
-transition:0.2s ease;
-}
+transition:0.25s ease;
 
-/* HOVER */
+}
 
 .logo:hover{
 
-filter:drop-shadow(0 0 10px rgba(255,0,0,0.5));
+transform:scale(1.01);
 
-transform:scale(1.02);
 }
-
-/* TOUCH */
 
 .logo:active{
 
 transform:scale(0.96);
 
 filter:
-drop-shadow(0 0 20px red)
-drop-shadow(0 0 40px red)
-drop-shadow(0 0 60px rgba(255,0,0,0.8));
+drop-shadow(0 0 20px #6b442f)
+drop-shadow(0 0 40px #8b5e3c)
+drop-shadow(0 0 60px rgba(90,50,30,0.8));
+
+}
+
+/* COMING SOON */
+
+.comingsoon{
+
+max-width:320px;
+
+margin-top:20px;
+margin-bottom:20px;
+
+transition:0.25s ease;
+
+filter:
+drop-shadow(0 0 12px rgba(180,140,100,0.30))
+drop-shadow(0 0 28px rgba(180,140,100,0.18))
+drop-shadow(0 0 55px rgba(180,140,100,0.10));
+
+animation:coffeeGlow 2.8s ease-in-out infinite;
+
+}
+
+.comingsoon:hover{
+transform:scale(1.03);
+}
+
+/* TITLE */
+
+h1{
+
+margin-top:20px;
+
+font-size:clamp(30px,5vw,52px);
+
+color:#3b2a22;
+
+}
+
+.subtitle{
+
+font-size:20px;
+
+margin-bottom:30px;
+
+color:#5c4637;
+
+}
+
+/* SECTION */
+
+.section{
+padding:50px 20px;
+position:relative;
+z-index:2;
+}
+
+/* ABOUT */
+
+.about{
+
+max-width:900px;
+
+margin:auto;
+
+line-height:1.8;
+
+font-size:18px;
+
+padding:30px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,0.16);
+
+backdrop-filter:blur(6px);
+
+border:1px solid rgba(255,255,255,0.22);
+
+box-shadow:
+0 10px 35px rgba(80,50,30,0.04);
+
+}
+
+/* GRID */
+
+.future-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(240px,1fr));
+
+gap:30px;
+
+margin-top:50px;
+
+}
+
+/* GLASS CARD */
+
+.future-card{
+
+position:relative;
+
+overflow:hidden;
+
+padding:25px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,0.15);
+
+backdrop-filter:blur(6px);
+
+border:1px solid rgba(255,255,255,0.22);
+
+box-shadow:
+0 10px 35px rgba(0,0,0,0.08);
+
+transition:0.3s ease;
+
+}
+
+/* NUT EFFECT */
+
+.future-card::before,
+.future-card::after,
+.future-card .nut-left,
+.future-card .nut-right{
+
+content:"";
+
+position:absolute;
+
+width:18px;
+height:18px;
+
+border-radius:50%;
+
+background:
+radial-gradient(circle at 30% 30%,
+#ffffff,
+#bfa08a,
+#5c3b2e);
+
+box-shadow:
+inset 0 2px 4px rgba(255,255,255,0.8),
+inset 0 -2px 4px rgba(0,0,0,0.4),
+0 1px 3px rgba(0,0,0,0.3);
+
+z-index:5;
+
+}
+
+/* POSITIONS */
+
+.future-card::before{
+top:10px;
+left:10px;
+}
+
+.future-card::after{
+top:10px;
+right:10px;
+}
+
+.future-card .nut-left{
+bottom:10px;
+left:10px;
+}
+
+.future-card .nut-right{
+bottom:10px;
+right:10px;
+}
+
+/* HOVER */
+
+.future-card:hover{
+
+box-shadow:
+0 0 18px rgba(90,50,30,0.20),
+0 0 35px rgba(90,50,30,0.10),
+0 10px 30px rgba(0,0,0,0.08);
+
+}
+
+/* ACTIVE */
+
+.future-card:active{
+
+transform:scale(0.97);
+
+box-shadow:
+0 0 25px rgba(90,50,30,0.55),
+0 0 55px rgba(90,50,30,0.30),
+0 15px 40px rgba(0,0,0,0.15);
+
+}
+
+.future-card h3,
+.future-card p{
+color:#3b2a22;
+}
+
+/* FOOTER */
+
+footer{
+
+padding:30px 10px 50px;
+
+color:#3b2a22;
+
+text-shadow:
+0 2px 8px rgba(255,255,255,0.35);
+
+position:relative;
+z-index:2;
+
+}
+
+footer small{
+
+font-size:15px;
+
+letter-spacing:0.3px;
+
+}
+
+/* ANIMATION */
+
+@keyframes shineMove{
+
+0%{
+transform:translateX(-20%);
+}
+
+100%{
+transform:translateX(20%);
+}
+
 }
 
 @keyframes float{
@@ -134,151 +611,26 @@ transform:translateY(0px);
 
 }
 
-/* COMING SOON IMAGE */
+@keyframes coffeeGlow{
 
-.comingsoon{
-
-max-width:320px;
-
-margin-top:20px;
-
-margin-bottom:20px;
-
-transition:0.2s ease;
-}
-
-/* HOVER */
-
-.comingsoon:hover{
-
-transform:scale(1.03);
-}
-
-/* 🔥 FIRE BLUE + PURPLE GLOW */
-
-.comingsoon:active{
-
-transform:scale(0.95);
-
+0%{
 filter:
-drop-shadow(0 0 15px #00ccff)
-drop-shadow(0 0 30px #7b2cff)
-drop-shadow(0 0 60px rgba(0,204,255,0.9));
+drop-shadow(0 0 8px rgba(180,140,100,0.20))
+drop-shadow(0 0 18px rgba(180,140,100,0.12));
 }
 
-h1{
-
-margin-top:20px;
-
-font-size:clamp(28px,5vw,50px);
-}
-
-.subtitle{
-
-font-size:20px;
-
-margin-bottom:30px;
-}
-
-/* SECTION */
-
-.section{
-
-padding:50px 20px;
-}
-
-.about{
-
-max-width:900px;
-
-margin:auto;
-
-line-height:1.8;
-
-font-size:18px;
-}
-
-/* SERVICE BOX */
-
-.future-grid{
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(240px,1fr));
-
-gap:35px;
-
-margin-top:50px;
-}
-
-.future-card{
-
-background:white;
-
-padding:25px;
-
-border-radius:22px;
-
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-
-transition:0.3s;
-}
-
-/* FIRE GLOW */
-
-.future-card:active{
-
-transform:scale(0.96);
-
+50%{
 filter:
-drop-shadow(0 0 15px #00ccff)
-drop-shadow(0 0 35px #7b2cff)
-drop-shadow(0 0 60px rgba(0,204,255,0.9));
+drop-shadow(0 0 18px rgba(180,140,100,0.45))
+drop-shadow(0 0 40px rgba(180,140,100,0.20));
 }
 
-.future-card h3{
-
-margin-bottom:15px;
+100%{
+filter:
+drop-shadow(0 0 8px rgba(180,140,100,0.20))
+drop-shadow(0 0 18px rgba(180,140,100,0.12));
 }
 
-/* FLOAT BUTTON */
-
-.whatsapp,
-.call{
-
-position:fixed;
-
-right:20px;
-
-color:white;
-
-padding:12px 16px;
-
-border-radius:50px;
-
-text-decoration:none;
-
-z-index:999;
-}
-
-.whatsapp{
-
-bottom:20px;
-
-background:#25D366;
-}
-
-.call{
-
-bottom:75px;
-
-background:#007bff;
-}
-
-footer{
-
-padding:30px;
 }
 
 </style>
@@ -287,38 +639,70 @@ padding:30px;
 
 <body>
 
-<!-- NAV -->
+<!-- TOP MENU -->
 
-<nav class="container-fluid">
+<div class="top-menu">
 
-<ul>
-<li><strong>Coming Soon</strong></li>
-</ul>
+<a href="index.html"
+class="top-btn home-btn">
+<i class="fa-solid fa-house"></i>
+</a>
 
-<ul>
-<li><a href="index.html">Home</a></li>
-</ul>
+<a href="tel:+60163456287"
+class="top-btn phone-btn">
+<i class="fa-solid fa-phone"></i>
+</a>
 
-</nav>
+<a href="https://wa.me/60163456287"
+class="top-btn whatsapp-btn">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
 
-<!-- LANGUAGE -->
+<a href="https://my.shp.ee/6BSSa5j4"
+target="_blank"
+class="top-btn shopee-btn">
+<i class="fa-solid fa-bag-shopping"></i>
+</a>
 
-<div class="lang-switch">
+<a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/"
+target="_blank"
+class="top-btn tiktok-btn">
+<i class="fa-brands fa-tiktok"></i>
+</a>
 
-<button class="lang-btn"
-onclick="setLanguage('en')">
-EN
+<a href="https://facebook.com/Worldtelecommunication.my"
+target="_blank"
+class="top-btn facebook-btn">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<a href="javascript:void(0)"
+class="top-btn ai-btn"
+onclick="openAIChat(event)">
+<i class="fa-solid fa-robot"></i>
+</a>
+
+<div class="lang-menu">
+
+<button class="lang-toggle"
+onclick="toggleLangMenu(event)">
+
+<i class="fa-solid fa-earth-asia"></i>
+
 </button>
 
-<button class="lang-btn"
-onclick="setLanguage('cn')">
-中文
-</button>
+<div class="lang-dropdown"
+id="langDropdown">
 
-<button class="lang-btn"
-onclick="setLanguage('bm')">
-BM
-</button>
+<button onclick="setLanguage('en')">EN</button>
+
+<button onclick="setLanguage('cn')">中文</button>
+
+<button onclick="setLanguage('bm')">BM</button>
+
+</div>
+
+</div>
 
 </div>
 
@@ -331,8 +715,7 @@ class="logo">
 
 <br>
 
-<img
-src="more.png"
+<img src="more.png"
 class="comingsoon">
 
 <h1 id="title">
@@ -400,6 +783,9 @@ to support local businesses in Malaysia.
 
 <div class="future-card">
 
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
 <h3 id="future1-title">
 Website Development
 </h3>
@@ -412,6 +798,9 @@ Custom modern business websites for local businesses and companies.
 
 <div class="future-card">
 
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
 <h3 id="future2-title">
 POS Solutions
 </h3>
@@ -423,6 +812,9 @@ More POS systems, software and smart business devices coming soon.
 </div>
 
 <div class="future-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
 
 <h3 id="future3-title">
 Business Technology
@@ -438,37 +830,89 @@ Future digital business services and technology support for modern businesses.
 
 </section>
 
-<!-- FLOAT BUTTON -->
-
-<a
-href="https://wa.me/60163456287"
-class="whatsapp">
-
-WhatsApp
-
-</a>
-
-<a
-href="tel:+60163456287"
-class="call">
-
-Call
-
-</a>
-
 <!-- FOOTER -->
 
 <footer>
 
 <small>
 © 2026 World Tele Communication
+<br>
+Professional Mobile, Website & Business Solutions
 </small>
 
 </footer>
 
-<!-- LANGUAGE SCRIPT -->
+<!-- SCRIPT -->
 
 <script>
+
+/* LANGUAGE MENU */
+
+function toggleLangMenu(e){
+
+e.stopPropagation();
+
+document.getElementById("langDropdown")
+.classList.toggle("show");
+
+}
+
+/* AI CHAT */
+
+function openAIChat(e){
+
+e.stopPropagation();
+
+if(window.toggleChat){
+toggleChat();
+}
+
+}
+
+/* AUTO CLOSE */
+
+document.addEventListener("click", function(e){
+
+const langMenu =
+document.getElementById("langDropdown");
+
+const langButton =
+document.querySelector(".lang-toggle");
+
+const chatBox =
+document.querySelector(".ai-chat-box");
+
+const robotBtn =
+e.target.closest(".ai-btn");
+
+/* CLOSE LANGUAGE */
+
+if(
+langMenu &&
+!langMenu.contains(e.target)
+&&
+!langButton.contains(e.target)
+){
+
+langMenu.classList.remove("show");
+
+}
+
+/* CLOSE AI */
+
+if(
+chatBox &&
+!chatBox.contains(e.target) &&
+!robotBtn
+){
+
+chatBox.style.display = "none";
+
+}
+
+});
+
+/* LANGUAGE */
 
 function setLanguage(lang){
 
@@ -607,9 +1051,29 @@ document.getElementById("future3-text").innerText =
 
 }
 
+/* AUTO CLOSE */
+
+document.getElementById("langDropdown")
+.classList.remove("show");
+
 }
 
 </script>
+
+<script src="ai-chat.js"></script>
+
+<style>
+
+.ai-help-button,
+#ai-help-button,
+.ai-chat-button{
+
+opacity:0 !important;
+pointer-events:none !important;
+
+}
+
+</style>
 
 </body>
 
