@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>PosPay System</title>
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+text-align:center;
+font-family:system-ui;
+
+background:
+
+radial-gradient(
+circle at top left,
+rgba(255,255,255,0.40),
+transparent 28%
+),
+
+radial-gradient(
+circle at bottom right,
+rgba(255,120,120,0.08),
+transparent 35%
+),
+
+repeating-linear-gradient(
+90deg,
+rgba(255,255,255,0.05) 0px,
+rgba(255,255,255,0.05) 1px,
+transparent 1px,
+transparent 7px
+),
+
+repeating-linear-gradient(
+0deg,
+rgba(255,255,255,0.04) 0px,
+rgba(255,255,255,0.04) 1px,
+transparent 1px,
+transparent 8px
+),
+
+linear-gradient(
+145deg,
+#ffffff 0%,
+#fff8f8 15%,
+#ffecec 32%,
+#fffafa 50%,
+#ffe8e8 70%,
+#ffffff 100%
+);
+
+background-size:cover;
+background-position:center center;
+background-attachment:fixed;
+
+overflow-x:hidden;
+position:relative;
+}
+
+/* LIGHT EFFECT */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+top:0;
+left:-50%;
+
+width:200%;
+height:100%;
+
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(255,255,255,0.55) 45%,
+rgba(255,220,220,0.08) 50%,
+rgba(255,255,255,0.55) 55%,
+transparent 100%
+);
+
+animation:shineMove 12s linear infinite;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+/* MENU */
+
+.top-menu{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:4px;
+padding:2px 4px;
+position:sticky;
+top:0;
+z-index:9999;
+
+background:rgba(255,255,255,0.20);
+
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+
+box-shadow:
+0 2px 8px rgba(255,190,140,0.04);
+
+flex-wrap:nowrap;
+overflow:visible;
+height:48px;
+}
+
+.top-btn{
+text-decoration:none;
+padding:5px 6px;
+border-radius:12px;
+font-size:14px;
+font-weight:bold;
+display:flex;
+align-items:center;
+justify-content:center;
+width:40px;
+height:40px;
+
+border:1px solid rgba(255,255,255,0.22);
+
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+
+box-shadow:
+0 4px 12px rgba(255,190,140,0.035),
+inset 0 1px 1px rgba(255,255,255,0.18);
+
+transition:0.25s ease;
+
+flex-shrink:0;
+}
+
+.top-btn:hover{
+transform:translateY(-2px);
+}
+
+/* HOME */
+
+.home-btn{
+background:#000000;
+color:white;
+}
+
+/* PHONE */
+
+.phone-btn{
+background:#005f73;
+color:white;
+}
+
+.whatsapp-btn{
+background:#25D366;
+color:white;
+}
+
+.shopee-btn{
+background:#ee4d2d;
+color:white;
+}
+
+.tiktok-btn{
+background:#000000;
+color:white;
+}
+
+.facebook-btn{
+background:#1877F2;
+color:white;
+}
+
+.ai-btn{
+background:white;
+color:black;
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.8),
+0 0 24px rgba(255,255,255,0.45);
+}
+
+/* LANGUAGE */
+
+.lang-menu{
+position:relative;
+}
+
+.lang-toggle{
+all:unset;
+-webkit-tap-highlight-color:transparent;
+outline:none !important;
+}
+
+.lang-toggle i{
+display:flex;
+align-items:center;
+justify-content:center;
+width:40px;
+height:40px;
+border-radius:12px;
+
+background:rgba(255,255,255,0.30);
+
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+
+border:1px solid rgba(255,255,255,0.22);
+
+color:#0f172a;
+font-size:13px;
+
+box-shadow:
+0 3px 10px rgba(255,190,140,0.04),
+inset 0 1px 1px rgba(255,255,255,0.15);
+
+transition:0.25s ease;
+}
+
+.lang-dropdown{
+
+display:none;
+flex-direction:column;
+
+position:fixed;
+
+top:58px;
+right:10px;
+
+width:90px;
+
+padding:12px;
+
+z-index:99999;
+
+border-radius:16px;
+
+background:rgba(255,255,255,0.88);
+
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,0.25);
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.15);
+
+gap:10px;
+}
+
+.lang-dropdown button{
+border:none;
+background:transparent;
+color:#111827;
+font-size:14px;
+cursor:pointer;
+}
+
+.lang-dropdown.show{
+display:flex;
+}
+
+/* HERO */
+
+.hero{
+padding:20px;
+position:relative;
+z-index:2;
+}
+
+/* WTC LOGO */
+
+.logo{
+
+max-width:460px;
+width:111%;
+
+display:block;
+
+margin:auto;
+
+margin-top:-20px;
+margin-bottom:-30px;
+
+position:relative;
+
+left:-18px;
+
+animation:float 4s ease-in-out infinite;
+
+transition:0.2s ease;
+}
+
+.logo:hover{
+transform:scale(1.01);
+filter:none;
+}
+
+.logo:active{
+
+transform:scale(0.96);
+
+filter:
+drop-shadow(0 0 20px red)
+drop-shadow(0 0 40px red)
+drop-shadow(0 0 60px rgba(255,0,0,0.8));
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+/* POSPAY LOGO */
+
+.partner-logo{
+
+max-width:220px;
+
+margin-top:20px;
+margin-bottom:20px;
+
+transition:0.25s ease;
+
+filter:
+drop-shadow(0 0 12px rgba(255,120,120,0.28))
+drop-shadow(0 0 28px rgba(255,120,120,0.16))
+drop-shadow(0 0 50px rgba(255,120,120,0.10));
+
+}
+
+.partner-logo:hover{
+transform:scale(1.02);
+}
+
+/* SECTION */
+
+.section{
+padding:50px 20px;
+position:relative;
+z-index:2;
+}
+
+.about{
+
+max-width:900px;
+
+margin:auto;
+
+line-height:1.8;
+
+font-size:18px;
+
+padding:30px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,0.14);
+
+backdrop-filter:blur(5px);
+-webkit-backdrop-filter:blur(5px);
+
+border:1px solid rgba(255,255,255,0.22);
+
+box-shadow:
+0 10px 35px rgba(255,190,140,0.035);
+
+}
+
+/* GALLERY */
+
+.gallery{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
+gap:25px;
+
+margin-top:40px;
+}
+
+/* GLASS BOX */
+
+.gallery-box,
+article{
+
+position:relative;
+
+overflow:hidden;
+
+background:rgba(255,255,255,0.15);
+
+backdrop-filter:blur(5px);
+-webkit-backdrop-filter:blur(5px);
+
+padding:20px;
+
+border-radius:22px;
+
+transition:0.3s ease;
+
+border:1px solid rgba(255,255,255,0.22);
+
+box-shadow:
+0 0 12px rgba(255,120,120,0.12),
+0 0 24px rgba(255,120,120,0.08),
+0 10px 35px rgba(0,0,0,0.08);
+
+}
+
+/* NUT */
+
+.gallery-box::before,
+.gallery-box::after,
+article::before,
+article::after,
+
+.gallery-box .nut-left,
+.gallery-box .nut-right{
+
+content:"";
+
+position:absolute;
+
+width:18px;
+height:18px;
+
+border-radius:50%;
+
+background:
+radial-gradient(circle at 30% 30%,
+#ffffff,
+#cbd5e1,
+#64748b);
+
+box-shadow:
+inset 0 2px 4px rgba(255,255,255,0.8),
+inset 0 -2px 4px rgba(0,0,0,0.45),
+0 1px 3px rgba(0,0,0,0.35);
+
+z-index:5;
+
+}
+
+content:"";
+
+position:absolute;
+
+width:18px;
+height:18px;
+
+border-radius:50%;
+
+background:
+radial-gradient(circle at 30% 30%,
+#ffffff,
+#cbd5e1,
+#64748b);
+
+box-shadow:
+inset 0 2px 4px rgba(255,255,255,0.8),
+inset 0 -2px 4px rgba(0,0,0,0.45),
+0 1px 3px rgba(0,0,0,0.35);
+
+z-index:5;
+
+}
+
+.gallery-box::before,
+article::before{
+top:10px;
+left:10px;
+}
+
+.gallery-box::after,
+article::after{
+top:10px;
+right:10px;
+}
+
+.gallery-box .nut-left{
+bottom:10px;
+left:10px;
+}
+
+.gallery-box .nut-right{
+bottom:10px;
+right:10px;
+}
+
+.gallery img{
+
+width:100%;
+
+border-radius:18px;
+
+transition:0.3s;
+}
+
+/* WHITE GLOW */
+
+.gallery-box:hover,
+article:hover{
+
+box-shadow:
+0 0 18px rgba(255,120,120,0.18),
+0 0 35px rgba(255,120,120,0.10),
+0 10px 30px rgba(0,0,0,0.08);
+
+}
+
+.gallery-box:active,
+article:active{
+
+transform:scale(0.97);
+
+box-shadow:
+0 0 25px rgba(255,80,80,0.85),
+0 0 55px rgba(255,60,60,0.65),
+0 0 95px rgba(255,0,0,0.45),
+0 15px 40px rgba(0,0,0,0.15);
+
+}
+
+article h3,
+article p,
+article li{
+color:#0f172a;
+}
+
+/* FOOTER */
+
+footer{
+
+padding:30px 10px 50px;
+
+color:#0f172a;
+
+text-shadow:
+0 2px 8px rgba(255,255,255,0.35);
+
+position:relative;
+z-index:2;
+}
+
+footer small{
+
+font-size:15px;
+font-weight:400;
+letter-spacing:0.3px;
+
+}
+
+@keyframes shineMove{
+
+0%{
+transform:translateX(-20%);
+}
+
+100%{
+transform:translateX(20%);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOP MENU -->
+
+<div class="top-menu">
+
+<a href="index.html" class="top-btn home-btn">
+<i class="fa-solid fa-house"></i>
+</a>
+
+<a href="tel:+60163456287" class="top-btn phone-btn">
+<i class="fa-solid fa-phone"></i>
+</a>
+
+<a href="https://wa.me/60163456287"
+class="top-btn whatsapp-btn">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<a href="https://my.shp.ee/6BSSa5j4"
+target="_blank"
+class="top-btn shopee-btn">
+<i class="fa-solid fa-bag-shopping"></i>
+</a>
+
+<a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/"
+target="_blank"
+class="top-btn tiktok-btn">
+<i class="fa-brands fa-tiktok"></i>
+</a>
+
+<a href="https://facebook.com/Worldtelecommunication.my"
+target="_blank"
+class="top-btn facebook-btn">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<a href="javascript:void(0)"
+class="top-btn ai-btn"
+onclick="openAIChat()">
+<i class="fa-solid fa-robot"></i>
+</a>
+
+<div class="lang-menu">
+
+<button class="lang-toggle"
+onclick="toggleLangMenu()">
+
+<i class="fa-solid fa-earth-asia"></i>
+
+</button>
+
+<div class="lang-dropdown"
+id="langDropdown">
+
+<button onclick="setLanguage('en')">EN</button>
+<button onclick="setLanguage('cn')">中文</button>
+<button onclick="setLanguage('bm')">BM</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="logo.png"
+class="logo">
+
+<br>
+
+<img src="pospay.png"
+class="partner-logo">
+
+<h1 id="title">
+PosPay Business Solution
+</h1>
+
+<p id="subtitle">
+Modern POS System & Cashless Payment Solution
+</p>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="section">
+
+<h2 id="about-title">
+About PosPay
+</h2>
+
+<div class="about">
+
+<p id="about-text1">
+iPOS is a modern business solution provider that helps businesses manage POS systems, cashless payments, QR payments, inventory, sales reports, and business operations.
+</p>
+
+<p id="about-text2">
+iPOS system is powered by PosPay system, one of the popular POS business solutions used by many businesses in Malaysia.
+</p>
+
+<p id="about-text3">
+This system is suitable for restaurants and many modern businesses.
+</p>
+
+<p id="about-text4">
+World Tele Communication is an authorized PosPay dealer and provides iPOS systems and support services for local businesses in Malaysia, especially in Melaka.
+</p>
+
+</div>
+
+<!-- PACKAGE -->
+
+<h2 id="package-title"
+style="margin-top:60px;">
+Package Plans
+</h2>
+
+<div class="gallery">
+
+<article>
+
+<h3 id="premium-title">
+Premium
+</h3>
+
+<p id="premium-text">
+Monthly subscription package with latest updates, new features, promotions, and continuous support.
+</p>
+
+</article>
+
+<article>
+
+<h3 id="enterprise-title">
+Enterprise
+</h3>
+
+<p id="enterprise-text">
+Advanced business solution package with premium support, system updates, new promotions, and extra business functions.
+</p>
+
+</article>
+
+<article>
+
+<h3 id="elite-title">
+Elite
+</h3>
+
+<p id="elite-text">
+One-time payment package. No monthly fees required after purchase.
+</p>
+
+</article>
+
+</div>
+
+<!-- IMAGE -->
+
+<div class="gallery">
+
+<div class="gallery-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="ipos1.png">
+</div>
+
+<div class="gallery-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="ipos2.png">
+</div>
+
+<div class="gallery-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="ipos3.png">
+</div>
+
+<div class="gallery-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="ipos4.jpg">
+</div>
+
+<div class="gallery-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="ipos5.jpg">
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<small>
+© 2026 World Tele Communication
+<br>
+Professional Mobile, Website & Point of Sale Solutions
+</small>
+
+</footer>
+
+<!-- SCRIPT -->
+
+<script>
+
+function toggleLangMenu(){
+
+document.getElementById("langDropdown")
+.classList.toggle("show");
+
+}
+
+function openAIChat(){
+
+if(window.toggleChat){
+toggleChat();
+}
+
+}
+
+document.addEventListener("click", function(e){
+
+const langMenu =
+document.getElementById("langDropdown");
+
+const langButton =
+document.querySelector(".lang-toggle");
+
+const chatBox =
+document.querySelector(".ai-chat-box");
+
+const robotBtn =
+e.target.closest(".ai-btn");
+
+if(
+!langMenu.contains(e.target)
+&&
+!langButton.contains(e.target)
+){
+
+langMenu.classList.remove("show");
+
+}
+
+if(
+chatBox &&
+!chatBox.contains(e.target) &&
+!robotBtn
+){
+
+chatBox.style.display = "none";
+
+}
+
+});
+
+<!-- LANGUAGE SCRIPT -->
+
+function setLanguage(lang){
+
+/* 中文 */
+
+if(lang === "cn"){
+
+document.getElementById("title").innerText =
+"PosPay 商业系统";
+
+document.getElementById("subtitle").innerText =
+"现代 POS 系统与无现金支付方案";
+
+document.getElementById("about-title").innerText =
+"关于 PosPay";
+
+document.getElementById("about-text1").innerText =
+"iPOS 是一个现代商业解决方案系统，帮助商家管理 POS 收银系统、QR Payment、库存、销售报告以及商业运营。";
+
+document.getElementById("about-text2").innerText =
+"iPOS 系统采用 PosPay System，是马来西亚许多商家使用的热门 POS 商业解决方案之一。";
+
+document.getElementById("about-text3").innerText =
+"此系统适用于餐厅以及各种现代化商业。";
+
+document.getElementById("about-text4").innerText =
+"World Tele Communication 是 PosPay 授权经销商，并为马来西亚本地商家，尤其是马六甲商家，提供 iPOS 系统与技术支援服务。";
+
+document.getElementById("package-title").innerText =
+"配套方案";
+
+document.getElementById("premium-title").innerText =
+"Premium";
+
+document.getElementById("premium-text").innerText =
+"每月订阅配套，包含系统更新、新功能、促销资讯与持续技术支援。";
+
+document.getElementById("enterprise-title").innerText =
+"Enterprise";
+
+document.getElementById("enterprise-text").innerText =
+"高级商业方案配套，提供高级支援、系统更新、新促销以及更多商业功能。";
+
+document.getElementById("elite-title").innerText =
+"Elite";
+
+document.getElementById("elite-text").innerText =
+"一次性买断配套，购买后无需再支付每月费用。";
+
+}
+
+/* BM */
+
+else if(lang === "bm"){
+
+document.getElementById("title").innerText =
+"Sistem Perniagaan PosPay";
+
+document.getElementById("subtitle").innerText =
+"Sistem POS Moden & Penyelesaian Pembayaran Cashless";
+
+document.getElementById("about-title").innerText =
+"Tentang PosPay";
+
+document.getElementById("about-text1").innerText =
+"iPOS merupakan penyelesaian perniagaan moden yang membantu perniagaan mengurus sistem POS, QR payment, inventory, sales report dan operasi perniagaan.";
+
+document.getElementById("about-text2").innerText =
+"Sistem iPOS menggunakan PosPay System, salah satu penyelesaian POS popular yang digunakan oleh banyak perniagaan di Malaysia.";
+
+document.getElementById("about-text3").innerText =
+"Sistem ini sesuai digunakan untuk restoran dan pelbagai jenis perniagaan moden.";
+
+document.getElementById("about-text4").innerText =
+"World Tele Communication merupakan authorized dealer PosPay dan menyediakan sistem iPOS serta support service untuk perniagaan tempatan di Malaysia, terutamanya di Melaka.";
+
+document.getElementById("package-title").innerText =
+"Pelan Pakej";
+
+document.getElementById("premium-title").innerText =
+"Premium";
+
+document.getElementById("premium-text").innerText =
+"Pakej subscription bulanan dengan update terbaru, fungsi baru, promosi dan support berterusan.";
+
+document.getElementById("enterprise-title").innerText =
+"Enterprise";
+
+document.getElementById("enterprise-text").innerText =
+"Pakej business solution lanjutan dengan premium support, system update, promosi baru dan fungsi tambahan.";
+
+document.getElementById("elite-title").innerText =
+"Elite";
+
+document.getElementById("elite-text").innerText =
+"Pakej one-time payment. Tidak perlu bayar bulanan selepas pembelian.";
+
+}
+
+/* EN */
+
+else{
+
+document.getElementById("title").innerText =
+"PosPay Business Solution";
+
+document.getElementById("subtitle").innerText =
+"Modern POS System & Cashless Payment Solution";
+
+document.getElementById("about-title").innerText =
+"About PosPay";
+
+document.getElementById("about-text1").innerText =
+"iPOS is a modern business solution provider that helps businesses manage POS systems, cashless payments, QR payments, inventory, sales reports, and business operations.";
+
+document.getElementById("about-text2").innerText =
+"iPOS system is powered by PosPay system, one of the popular POS business solutions used by many businesses in Malaysia.";
+
+document.getElementById("about-text3").innerText =
+"This system is suitable for restaurants and many modern businesses.";
+
+document.getElementById("about-text4").innerText =
+"World Tele Communication is an authorized PosPay dealer and provides iPOS systems and support services for local businesses in Malaysia, especially in Melaka.";
+
+document.getElementById("package-title").innerText =
+"Package Plans";
+
+document.getElementById("premium-title").innerText =
+"Premium";
+
+document.getElementById("premium-text").innerText =
+"Monthly subscription package with latest updates, new features, promotions, and continuous support.";
+
+document.getElementById("enterprise-title").innerText =
+"Enterprise";
+
+document.getElementById("enterprise-text").innerText =
+"Advanced business solution package with premium support, system updates, new promotions, and extra business functions.";
+
+document.getElementById("elite-title").innerText =
+"Elite";
+
+document.getElementById("elite-text").innerText =
+"One-time payment package. No monthly fees required after purchase.";
+
+}
+
+/* AUTO CLOSE LANGUAGE MENU */
+
+document.getElementById("langDropdown")
+.classList.remove("show");
+
+}
+
+</script>
+
+<script src="ai-chat.js"></script>
+
+<style>
+.ai-help-button,
+#ai-help-button,
+.ai-chat-button{
+opacity:0 !important;
+pointer-events:none !important;
+}
+
+</style>
+
+</body>
+</html>
