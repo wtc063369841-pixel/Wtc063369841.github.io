@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>SUNMI Smart Business Device</title>
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+text-align:center;
+font-family:system-ui;
+
+background:
+
+radial-gradient(circle at top left,
+rgba(255,255,255,0.40),
+transparent 28%),
+
+radial-gradient(circle at bottom right,
+rgba(255,255,255,0.03),
+transparent 35%),
+
+repeating-linear-gradient(
+90deg,
+rgba(255,255,255,0.04) 0px,
+rgba(255,255,255,0.04) 1px,
+transparent 1px,
+transparent 7px
+),
+
+repeating-linear-gradient(
+0deg,
+rgba(255,255,255,0.03) 0px,
+rgba(255,255,255,0.03) 1px,
+transparent 1px,
+transparent 8px
+),
+
+background:
+
+linear-gradient(
+145deg,
+#fff7f0 0%,
+#ffd7b5 15%,
+#ffb36b 30%,
+#fff2e8 48%,
+#ff9a3c 68%,
+#fff7f0 100%
+);
+
+background-attachment:fixed;
+background-size:cover;
+background-position:center;
+overflow-x:hidden;
+position:relative;
+}
+
+/* SOFT LIGHT */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+top:0;
+left:-50%;
+
+width:200%;
+height:100%;
+
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(255,255,255,0.60) 45%,
+rgba(255,210,160,0.15) 50%,
+rgba(255,255,255,0.55) 55%,
+transparent 100%
+);
+
+animation:shineMove 12s linear infinite;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+/* MENU */
+
+.top-menu{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:4px;
+padding:2px 4px;
+position:sticky;
+top:0;
+z-index:9999;
+
+background:rgba(255,255,255,0.20);
+
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+
+box-shadow:
+0 2px 8px rgba(255,190,140,0.04);
+
+flex-wrap:nowrap;
+overflow:visible;
+height:48px;
+}
+
+/* BUTTON */
+
+.top-btn{
+text-decoration:none;
+padding:5px 6px;
+border-radius:12px;
+font-size:14px;
+font-weight:bold;
+display:flex;
+align-items:center;
+justify-content:center;
+width:40px;
+height:40px;
+
+border:1px solid rgba(255,255,255,0.22);
+
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+
+box-shadow:
+0 4px 12px rgba(255,190,140,0.035),
+inset 0 1px 1px rgba(255,255,255,0.18);
+
+transition:0.25s ease;
+
+flex-shrink:0;
+}
+
+.top-btn:hover{
+transform:translateY(-2px);
+}
+
+/* COLORS */
+
+.home-btn{
+background:#000000;
+color:white;
+}
+
+.phone-btn{
+background:#005f73;
+color:white;
+}
+
+.whatsapp-btn{
+background:#25D366;
+color:white;
+}
+
+.shopee-btn{
+background:#ee4d2d;
+color:white;
+}
+
+.tiktok-btn{
+background:#000000;
+color:white;
+}
+
+.facebook-btn{
+background:#1877F2;
+color:white;
+}
+
+.ai-btn{
+
+background:white;
+color:black;
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.8),
+0 0 24px rgba(255,255,255,0.45);
+
+}
+
+/* LANGUAGE */
+
+.lang-menu{
+position:relative;
+}
+
+.lang-toggle{
+
+all:unset;
+
+-webkit-tap-highlight-color:transparent;
+
+outline:none !important;
+
+}
+
+.lang-toggle i{
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+width:40px;
+height:40px;
+
+border-radius:12px;
+
+background:rgba(255,255,255,0.30);
+
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+
+border:1px solid rgba(255,255,255,0.22);
+
+color:#0f172a;
+
+font-size:13px;
+
+box-shadow:
+0 3px 10px rgba(255,180,120,0.10),
+inset 0 1px 1px rgba(255,255,255,0.15);
+
+transition:0.25s ease;
+
+}
+
+.lang-dropdown{
+
+display:none;
+flex-direction:column;
+
+position:fixed;
+
+top:58px;
+right:10px;
+
+width:90px;
+
+padding:12px;
+
+z-index:99999;
+
+border-radius:16px;
+
+background:rgba(255,255,255,0.88);
+
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,0.25);
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.15);
+
+gap:10px;
+
+}
+
+.lang-dropdown button{
+
+border:none;
+background:transparent;
+
+color:#111827;
+
+font-size:14px;
+
+cursor:pointer;
+
+}
+
+.lang-dropdown.show{
+display:flex;
+}
+
+/* HERO */
+
+.hero{
+padding:10px 20px 30px;
+position:relative;
+z-index:2;
+}
+
+/* WTC LOGO */
+
+.logo{
+
+max-width:460px;
+width:111%;
+
+display:block;
+
+margin:auto;
+
+margin-top:-20px;
+margin-bottom:-40px;
+
+position:relative;
+
+left:-18px;
+
+animation:float 4s ease-in-out infinite;
+
+transition:0.2s ease;
+
+}
+
+.logo:hover{
+transform:scale(1.01);
+filter:none;
+}
+
+.logo:active{
+
+transform:scale(0.96);
+
+filter:
+drop-shadow(0 0 20px red)
+drop-shadow(0 0 40px red)
+drop-shadow(0 0 60px rgba(255,0,0,0.8));
+
+}
+
+/* SUNMI LOGO */
+
+.sunmi-logo{
+
+max-width:220px;
+
+margin-top:20px;
+margin-bottom:10px;
+
+transition:0.2s ease;
+
+/* SOFT WHITE GLOW */
+
+filter:
+drop-shadow(0 0 18px rgba(255,255,255,1))
+drop-shadow(0 0 38px rgba(255,255,255,0.92))
+drop-shadow(0 0 75px rgba(255,255,255,0.60))
+drop-shadow(0 0 120px rgba(255,255,255,0.35));
+
+}
+
+.sunmi-logo:hover{
+transform:scale(1.03);
+}
+
+.sunmi-logo:active{
+
+transform:scale(0.96);
+
+filter:
+
+brightness(3.2)
+contrast(1.4)
+
+drop-shadow(0 0 12px rgba(255,255,255,1))
+drop-shadow(0 0 30px rgba(255,255,255,1))
+drop-shadow(0 0 60px rgba(255,255,255,0.95))
+drop-shadow(0 0 100px rgba(255,255,255,0.85))
+drop-shadow(0 0 150px rgba(255,255,255,0.55));
+
+}
+
+/* TITLE */
+
+h1{
+
+margin-top:20px;
+
+font-size:clamp(32px,7vw,58px);
+
+color:#0f172a;
+
+text-shadow:
+0 0 12px rgba(255,255,255,0.55),
+0 0 30px rgba(255,220,180,0.20);
+
+}
+
+.subtitle{
+
+font-size:20px;
+
+margin-bottom:30px;
+
+color:#9a3412;
+
+}
+
+/* SECTION */
+
+.section{
+padding:50px 20px;
+position:relative;
+z-index:2;
+}
+
+/* ABOUT */
+
+.about{
+
+max-width:950px;
+
+margin:auto;
+
+line-height:1.8;
+
+font-size:18px;
+
+padding:30px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,0.14);
+
+backdrop-filter:blur(5px);
+-webkit-backdrop-filter:blur(5px);
+
+border:1px solid rgba(255,255,255,0.22);
+
+box-shadow:
+0 10px 35px rgba(255,180,120,0.10);
+
+}
+
+/* DEVICE GRID */
+
+.device-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+
+gap:30px;
+
+margin-top:50px;
+
+}
+
+/* DEVICE CARD */
+
+.device-card{
+
+position:relative;
+
+overflow:hidden;
+
+background:rgba(255,255,255,0.15);
+
+backdrop-filter:blur(5px);
+-webkit-backdrop-filter:blur(5px);
+
+padding:25px;
+
+border-radius:22px;
+
+transition:0.3s;
+
+border:1px solid rgba(255,255,255,0.22);
+
+box-shadow:
+0 10px 35px rgba(255,180,120,0.10);
+
+animation:floatingCard 5s ease-in-out infinite;
+
+}
+
+/* METAL NUT */
+
+.device-card::before,
+.device-card::after,
+.device-card .nut-left,
+.device-card .nut-right{
+
+content:"";
+
+position:absolute;
+
+width:18px;
+height:18px;
+
+border-radius:50%;
+
+background:
+radial-gradient(circle at 30% 30%,
+#ffffff,
+#cbd5e1,
+#64748b);
+
+box-shadow:
+inset 0 2px 4px rgba(255,255,255,0.8),
+inset 0 -2px 4px rgba(0,0,0,0.45),
+0 1px 3px rgba(0,0,0,0.35);
+
+z-index:5;
+
+}
+
+.device-card::before{
+top:10px;
+left:10px;
+}
+
+.device-card::after{
+top:10px;
+right:10px;
+}
+
+.device-card .nut-left{
+bottom:10px;
+left:10px;
+}
+
+.device-card .nut-right{
+bottom:10px;
+right:10px;
+}
+
+/* IMAGE */
+
+.device-card img{
+
+width:100%;
+
+max-width:220px;
+
+border-radius:18px;
+
+margin-bottom:15px;
+
+}
+
+/* WHITE TOUCH GLOW */
+
+.device-card:hover{
+
+box-shadow:
+0 0 12px rgba(210,210,210,0.35),
+0 0 24px rgba(170,170,170,0.18),
+0 10px 30px rgba(0,0,0,0.10);
+
+}
+
+.device-card:active{
+
+transform:scale(0.97);
+
+box-shadow:
+0 0 18px rgba(160,160,160,0.85),
+0 0 40px rgba(110,110,110,0.65),
+0 0 90px rgba(80,80,80,0.45),
+0 15px 40px rgba(0,0,0,0.14);
+
+}
+
+/* DIVIDER */
+
+.industrial-divider{
+
+width:90%;
+height:8px;
+
+margin:50px auto;
+
+border-radius:20px;
+
+background:
+linear-gradient(
+145deg,
+#ffffff 0%,
+#fff9f5 18%,
+#fff6ef 38%,
+#fffaf7 58%,
+#fff4ea 78%,
+#ffffff 100%
+);
+
+box-shadow:
+inset 0 2px 3px rgba(255,255,255,0.7),
+inset 0 -2px 4px rgba(0,0,0,0.20),
+0 4px 10px rgba(255,180,120,0.10);
+
+position:relative;
+overflow:hidden;
+
+}
+
+/* FOOTER */
+
+footer{
+
+padding:30px 10px 50px;
+
+color:#0f172a;
+
+text-shadow:
+0 2px 8px rgba(255,255,255,0.35);
+
+position:relative;
+z-index:2;
+
+}
+
+footer small{
+
+font-size:15px;
+font-weight:400;
+letter-spacing:0.3px;
+
+}
+
+/* ANIMATION */
+
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+@keyframes floatingCard{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+@keyframes shineMove{
+
+0%{
+transform:translateX(-20%);
+}
+
+100%{
+transform:translateX(20%);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOP MENU -->
+
+<div class="top-menu">
+
+<a href="index.html" class="top-btn home-btn">
+<i class="fa-solid fa-house"></i>
+</a>
+
+<a href="tel:+60163456287" class="top-btn phone-btn">
+<i class="fa-solid fa-phone"></i>
+</a>
+
+<a href="https://wa.me/60163456287" class="top-btn whatsapp-btn">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<a href="https://my.shp.ee/6BSSa5j4" target="_blank" class="top-btn shopee-btn">
+<i class="fa-solid fa-bag-shopping"></i>
+</a>
+
+<a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/" target="_blank" class="top-btn tiktok-btn">
+<i class="fa-brands fa-tiktok"></i>
+</a>
+
+<a href="https://facebook.com/Worldtelecommunication.my" target="_blank" class="top-btn facebook-btn">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<a href="javascript:void(0)" class="top-btn ai-btn" onclick="openAIChat()">
+<i class="fa-solid fa-robot"></i>
+</a>
+
+<!-- LANGUAGE -->
+
+<div class="lang-menu">
+
+<button class="lang-toggle"
+onclick="toggleLangMenu()">
+
+<i class="fa-solid fa-earth-asia"></i>
+
+</button>
+
+<div class="lang-dropdown"
+id="langDropdown">
+
+<button onclick="setLanguage('en')">
+EN
+</button>
+
+<button onclick="setLanguage('cn')">
+中文
+</button>
+
+<button onclick="setLanguage('bm')">
+BM
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="logo.png"
+class="logo">
+
+<br>
+
+<img src="sunmi.png"
+class="sunmi-logo">
+
+<h1 id="title">
+SUNMI Smart Business Device
+</h1>
+
+<p class="subtitle"
+id="subtitle">
+
+Modern Smart Device For Digital Business
+
+</p>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- ABOUT -->
+
+<section class="section">
+
+<h2 id="about-title">
+About SUNMI
+</h2>
+
+<div class="about">
+
+<p id="about-text1">
+SUNMI is one of the modern smart business device brands widely used in POS and smart business industries.
+</p>
+
+<p id="about-text2">
+SUNMI devices are suitable for restaurants, cafes, retail shops, mini markets, factories, warehouses and many modern business environments.
+</p>
+
+<p id="about-text3">
+Their handheld smart devices are suitable for QR payment, stock counting, inventory checking, delivery systems, and mobile business operations.
+</p>
+
+<p id="about-text4">
+SUNMI devices support modern POS software systems and help businesses improve efficiency and digital transformation.
+</p>
+
+</div>
+
+<!-- DEVICE AREA -->
+
+<div class="device-grid">
+
+<div class="device-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="sunmi1.png">
+
+<h3 id="device1-title">
+POS Terminal
+</h3>
+
+<p id="device1-text">
+Suitable for cashier and modern POS systems.
+</p>
+
+</div>
+
+<div class="device-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="sunmi2.png">
+
+<h3 id="device2-title">
+Handheld Device
+</h3>
+
+<p id="device2-text">
+Suitable for QR payment and stock counting.
+</p>
+
+</div>
+
+<div class="device-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="sunmi3.jpg">
+
+<h3 id="device3-title">
+Mobile Smart Device
+</h3>
+
+<p id="device3-text">
+Suitable for delivery systems and mobile business usage.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- FOOTER -->
+
+<footer>
+
+<small>
+© 2026 World Tele Communication
+<br>
+Professional Mobile, Website & Point of Sale Solutions
+</small>
+
+</footer>
+
+<!-- SCRIPT -->
+
+<script>
+
+function toggleLangMenu(){
+
+document.getElementById("langDropdown")
+.classList.toggle("show");
+
+}
+
+/* AI CHAT */
+
+function openAIChat(){
+
+if(window.toggleChat){
+toggleChat();
+}
+
+}
+
+/* AUTO CLOSE */
+
+document.addEventListener("click", function(e){
+
+const langMenu =
+document.getElementById("langDropdown");
+
+const langButton =
+document.querySelector(".lang-toggle");
+
+const chatBox =
+document.querySelector(".ai-chat-box");
+
+const robotBtn =
+e.target.closest(".ai-btn");
+
+/* LANGUAGE */
+
+if(
+!langMenu.contains(e.target)
+&&
+!langButton.contains(e.target)
+){
+
+langMenu.classList.remove("show");
+
+}
+
+/* AI CLOSE */
+
+if(
+chatBox &&
+!chatBox.contains(e.target) &&
+!robotBtn
+){
+
+chatBox.style.display = "none";
+
+}
+
+});
+
+/* LANGUAGE */
+
+function setLanguage(lang){
+
+if(lang === "cn"){
+
+document.getElementById("title").innerText =
+"SUNMI 商米智能设备";
+
+document.getElementById("subtitle").innerText =
+"现代企业智能商业设备";
+
+document.getElementById("about-title").innerText =
+"关于 SUNMI";
+
+document.getElementById("about-text1").innerText =
+"SUNMI 商米是一家广泛应用于 POS 与智能商业领域的现代智能设备品牌。";
+
+document.getElementById("about-text2").innerText =
+"SUNMI 设备适用于餐厅、咖啡店、零售店、工厂、仓库以及各种现代商业环境。";
+
+document.getElementById("about-text3").innerText =
+"其手持智能设备适用于 QR Payment、库存盘点、仓库管理、外卖系统以及移动商业用途。";
+
+document.getElementById("about-text4").innerText =
+"SUNMI 设备支援现代 POS 软件系统，帮助企业提升效率与数码化转型。";
+
+document.getElementById("device1-title").innerText =
+"POS 收银设备";
+
+document.getElementById("device1-text").innerText =
+"适用于收银与现代 POS 系统。";
+
+document.getElementById("device2-title").innerText =
+"手持智能设备";
+
+document.getElementById("device2-text").innerText =
+"适用于 QR Payment 与库存盘点。";
+
+document.getElementById("device3-title").innerText =
+"移动智能设备";
+
+document.getElementById("device3-text").innerText =
+"适用于外卖系统与移动商业用途。";
+
+}
+
+/* BM */
+
+else if(lang === "bm"){
+
+document.getElementById("title").innerText =
+"Peranti Pintar SUNMI";
+
+document.getElementById("subtitle").innerText =
+"Peranti Moden Untuk Perniagaan Digital";
+
+document.getElementById("about-title").innerText =
+"Tentang SUNMI";
+
+document.getElementById("about-text1").innerText =
+"SUNMI ialah jenama peranti pintar moden yang digunakan secara meluas dalam industri POS dan perniagaan digital.";
+
+document.getElementById("about-text2").innerText =
+"Peranti SUNMI sesuai digunakan untuk restoran, kafe, kedai runcit, gudang, kilang dan pelbagai jenis perniagaan moden.";
+
+document.getElementById("about-text3").innerText =
+"Peranti handheld SUNMI sesuai untuk QR payment, stock counting, inventory checking dan sistem delivery.";
+
+document.getElementById("about-text4").innerText =
+"SUNMI menyokong sistem POS moden dan membantu meningkatkan kecekapan operasi perniagaan.";
+
+document.getElementById("device1-title").innerText =
+"Terminal POS";
+
+document.getElementById("device1-text").innerText =
+"Sesuai untuk cashier dan sistem POS moden.";
+
+document.getElementById("device2-title").innerText =
+"Peranti Handheld";
+
+document.getElementById("device2-text").innerText =
+"Sesuai untuk QR payment dan stock counting.";
+
+document.getElementById("device3-title").innerText =
+"Peranti Mudah Alih";
+
+document.getElementById("device3-text").innerText =
+"Sesuai untuk delivery system dan kegunaan mobile business.";
+
+}
+
+/* EN */
+
+else{
+
+document.getElementById("title").innerText =
+"SUNMI Smart Business Device";
+
+document.getElementById("subtitle").innerText =
+"Modern Smart Device For Digital Business";
+
+document.getElementById("about-title").innerText =
+"About SUNMI";
+
+document.getElementById("about-text1").innerText =
+"SUNMI is one of the modern smart business device brands widely used in POS and smart business industries.";
+
+document.getElementById("about-text2").innerText =
+"SUNMI devices are suitable for restaurants, cafes, retail shops, warehouses, factories and modern business environments.";
+
+document.getElementById("about-text3").innerText =
+"Their handheld smart devices are suitable for QR payment, stock counting, inventory checking and delivery systems.";
+
+document.getElementById("about-text4").innerText =
+"SUNMI devices support modern POS software systems and help businesses improve efficiency and digital transformation.";
+
+document.getElementById("device1-title").innerText =
+"POS Terminal";
+
+document.getElementById("device1-text").innerText =
+"Suitable for cashier and modern POS systems.";
+
+document.getElementById("device2-title").innerText =
+"Handheld Device";
+
+document.getElementById("device2-text").innerText =
+"Suitable for QR payment and stock counting.";
+
+document.getElementById("device3-title").innerText =
+"Mobile Smart Device";
+
+document.getElementById("device3-text").innerText =
+"Suitable for delivery systems and mobile business usage.";
+
+}
+
+document.getElementById("langDropdown")
+.classList.remove("show");
+
+}
+
+</script>
+
+<script src="ai-chat.js"></script>
+
+<!-- HIDE FLOATING AI BUTTON -->
+
+<style>
+
+.ai-help-button,
+#ai-help-button,
+.ai-chat-button{
+
+opacity:0 !important;
+pointer-events:none !important;
+
+}
+
+</style>
+
+</body>
+</html>
