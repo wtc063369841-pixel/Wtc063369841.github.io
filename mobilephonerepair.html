@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Mobile Phone Repair - World Tele Communication</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+margin:0;
+text-align:center;
+font-family:system-ui;
+
+background:
+
+radial-gradient(
+circle at top left,
+rgba(120,180,220,0.30),
+transparent 28%
+),
+
+radial-gradient(
+circle at bottom right,
+rgba(90,160,210,0.20),
+transparent 35%
+),
+
+repeating-linear-gradient(
+90deg,
+rgba(255,255,255,0.05) 0px,
+rgba(255,255,255,0.05) 1px,
+transparent 1px,
+transparent 7px
+),
+
+repeating-linear-gradient(
+0deg,
+rgba(255,255,255,0.04) 0px,
+rgba(255,255,255,0.04) 1px,
+transparent 1px,
+transparent 8px
+),
+
+linear-gradient(
+145deg,
+#e8f1f7 0%,
+#d6e7f2 18%,
+#bdd6e5 35%,
+#edf5fa 55%,
+#c8dbe8 72%,
+#f8fbfd 100%
+);
+
+background-size:cover;
+background-position:center center;
+background-attachment:fixed;
+
+overflow-x:hidden;
+position:relative;
+
+}
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+top:0;
+left:-50%;
+
+width:200%;
+height:100%;
+
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(255,255,255,0.16) 45%,
+rgba(180,220,255,0.12) 50%,
+rgba(255,255,255,0.08) 55%,
+transparent 100%
+);
+
+animation:shineMove 12s linear infinite;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+.top-menu{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:4px;
+padding:2px 4px;
+position:sticky;
+top:0;
+z-index:9999;
+background:rgba(255,255,255,0.25);
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+box-shadow:0 2px 8px rgba(0,0,0,0.08);
+flex-wrap:nowrap;
+overflow:visible;
+height:48px;
+}
+
+.top-btn{
+text-decoration:none;
+padding:5px 6px;
+border-radius:12px;
+font-size:14px;
+font-weight:bold;
+display:flex;
+align-items:center;
+justify-content:center;
+width:40px;
+height:40px;
+border:1px solid rgba(255,255,255,0.22);
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+box-shadow:
+0 4px 12px rgba(0,0,0,0.12),
+inset 0 1px 1px rgba(255,255,255,0.18);
+transition:0.25s ease;
+flex-shrink:0;
+}
+
+.home-btn{
+background:#000000;
+color:white;
+}
+
+.phone-btn{
+background:#005f73;
+color:white;
+}
+
+.whatsapp-btn{
+background:#25D366;
+color:white;
+}
+
+.shopee-btn{
+background:#ee4d2d;
+color:white;
+}
+
+.tiktok-btn{
+background:#000000;
+color:white;
+}
+
+.facebook-btn{
+background:#1877F2;
+color:white;
+}
+
+.ai-btn{
+background:white;
+color:black;
+box-shadow:
+0 0 12px rgba(255,255,255,0.8),
+0 0 24px rgba(255,255,255,0.45);
+}
+
+.lang-menu{
+position:relative;
+}
+
+.lang-toggle{
+all:unset;
+-webkit-tap-highlight-color:transparent;
+outline:none !important;
+}
+
+.lang-toggle i{
+display:flex;
+align-items:center;
+justify-content:center;
+width:40px;
+height:40px;
+border-radius:12px;
+background:rgba(255,255,255,0.30);
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.22);
+color:#0f172a;
+font-size:13px;
+box-shadow:
+0 3px 10px rgba(0,0,0,0.10),
+inset 0 1px 1px rgba(255,255,255,0.15);
+transition:0.25s ease;
+}
+
+.lang-dropdown{
+display:none;
+flex-direction:column;
+position:fixed;
+top:58px;
+right:10px;
+width:90px;
+padding:12px;
+z-index:99999;
+border-radius:16px;
+background:rgba(255,255,255,0.88);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,0.25);
+box-shadow:
+0 10px 30px rgba(0,0,0,0.15);
+gap:10px;
+}
+
+.lang-dropdown button{
+border:none;
+background:transparent;
+color:#111827;
+font-size:14px;
+cursor:pointer;
+}
+
+.lang-dropdown.show{
+display:flex;
+}
+
+.hero{
+margin-top:-10px;
+padding:0px 0px 10px;
+position:relative;
+z-index:2;
+}
+
+.logo{
+width:100%;
+max-width:100%;
+height:auto;
+display:block;
+object-fit:contain;
+margin:auto;
+margin-top:-40px;
+margin-bottom:-90px;
+padding:0;
+animation:float 4s ease-in-out infinite;
+transition:0.25s ease;
+}
+
+.repair-banner{
+width:82%;
+max-width:460px;
+display:block;
+margin:auto;
+margin-top:0px;
+margin-bottom:-5px;
+object-fit:contain;
+filter:
+drop-shadow(0 0 18px rgba(0,80,180,0.45))
+drop-shadow(0 0 38px rgba(0,60,160,0.30))
+drop-shadow(0 0 65px rgba(0,40,120,0.22));
+}
+
+h1{
+margin-top:18px;
+margin-bottom:5px;
+font-size:clamp(32px,9vw,62px);
+color:#111827;
+text-shadow:
+0 0 12px rgba(255,255,255,0.45),
+0 0 30px rgba(255,255,255,0.25);
+}
+
+.subtitle{
+font-size:17px;
+margin-bottom:10px;
+color:#334155;
+text-shadow:
+0 0 10px rgba(255,255,255,0.22);
+}
+
+.section{
+padding:40px 15px;
+position:relative;
+z-index:2;
+}
+
+.about-box{
+max-width:950px;
+margin:auto;
+line-height:1.9;
+font-size:17px;
+padding:30px;
+border-radius:24px;
+background:rgba(180,220,255,0.22);
+backdrop-filter:blur(5px);
+-webkit-backdrop-filter:blur(5px);
+border:1px solid rgba(255,255,255,0.22);
+box-shadow:
+0 10px 35px rgba(0,0,0,0.08);
+}
+
+.card-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:25px;
+max-width:1000px;
+margin:auto;
+margin-top:40px;
+}
+
+@media(min-width:768px){
+.card-grid{
+grid-template-columns:repeat(2,1fr);
+}
+}
+
+.card{
+position:relative;
+overflow:hidden;
+background:rgba(180,220,255,0.22);
+backdrop-filter:blur(4px);
+-webkit-backdrop-filter:blur(4px);
+padding:25px;
+border-radius:22px;
+transition:0.3s;
+box-shadow:
+0 10px 35px rgba(0,0,0,0.10);
+border:1px solid rgba(255,255,255,0.22);
+min-height:360px;
+animation:floatingCard 5s ease-in-out infinite;
+}
+
+.card::before,
+.card::after,
+.card .nut-left,
+.card .nut-right{
+content:"";
+position:absolute;
+width:18px;
+height:18px;
+border-radius:50%;
+background:
+radial-gradient(circle at 30% 30%,
+#f5f5f5,
+#9ea4ab,
+#5f666d);
+box-shadow:
+inset 0 2px 4px rgba(255,255,255,0.8),
+inset 0 -2px 4px rgba(0,0,0,0.45),
+0 1px 3px rgba(0,0,0,0.35);
+z-index:5;
+}
+
+.card::before{
+top:10px;
+left:10px;
+}
+
+.card::after{
+top:10px;
+right:10px;
+}
+
+.card .nut-left{
+bottom:10px;
+left:10px;
+}
+
+.card .nut-right{
+bottom:10px;
+right:10px;
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:contain;
+margin-bottom:15px;
+transition:0.3s ease;
+}
+
+.card h3{
+color:#0f172a;
+}
+
+.card p{
+color:#334155;
+}
+
+.card:hover{
+transform:
+translateY(-6px)
+scale(1.02);
+
+box-shadow:
+0 0 18px rgba(0,90,255,0.28),
+0 0 38px rgba(0,70,220,0.15),
+0 10px 30px rgba(0,0,0,0.12);
+
+}
+
+.card:hover img{
+transform:scale(1.05);
+}
+
+.card:active{
+
+transform:
+scale(0.97);
+
+box-shadow:
+0 0 25px rgba(0,90,255,0.55),
+0 0 55px rgba(0,70,220,0.28),
+0 15px 40px rgba(0,0,0,0.15);
+
+}
+
+.why-box{
+max-width:900px;
+margin:auto;
+margin-top:30px;
+padding:30px;
+border-radius:24px;
+background:rgba(180,220,255,0.22);
+backdrop-filter:blur(5px);
+-webkit-backdrop-filter:blur(5px);
+border:1px solid rgba(255,255,255,0.22);
+box-shadow:
+0 10px 35px rgba(0,0,0,0.08);
+line-height:2.2;
+font-size:18px;
+}
+
+.industrial-divider{
+width:90%;
+height:8px;
+margin:50px auto;
+border-radius:20px;
+background:
+linear-gradient(
+90deg,
+#5b6770,
+#dfe3e6,
+#7e8790,
+#f5f7f8,
+#5b6770
+);
+box-shadow:
+inset 0 2px 3px rgba(255,255,255,0.7),
+inset 0 -2px 4px rgba(0,0,0,0.25),
+0 4px 10px rgba(0,0,0,0.10);
+position:relative;
+overflow:hidden;
+}
+
+footer{
+padding:30px 10px 50px;
+color:#1e293b;
+text-shadow:
+0 2px 8px rgba(255,255,255,0.35);
+position:relative;
+z-index:2;
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0px);}
+}
+
+@keyframes floatingCard{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0px);}
+}
+
+@keyframes shineMove{
+0%{transform:translateX(-20%);}
+100%{transform:translateX(20%);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="top-menu">
+
+<a href="index.html" class="top-btn home-btn">
+<i class="fa-solid fa-house"></i>
+</a>
+
+<a href="tel:+60163456287" class="top-btn phone-btn">
+<i class="fa-solid fa-phone"></i>
+</a>
+
+<a href="https://wa.me/60163456287" class="top-btn whatsapp-btn">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<a href="https://my.shp.ee/6BSSa5j4" target="_blank" class="top-btn shopee-btn">
+<i class="fa-solid fa-bag-shopping"></i>
+</a>
+
+<a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/" target="_blank" class="top-btn tiktok-btn">
+<i class="fa-brands fa-tiktok"></i>
+</a>
+
+<a href="https://facebook.com/Worldtelecommunication.my" target="_blank" class="top-btn facebook-btn">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<a href="javascript:void(0)" class="top-btn ai-btn" onclick="openAIChat()">
+<i class="fa-solid fa-robot"></i>
+</a>
+
+<div class="lang-menu">
+
+<button class="lang-toggle" onclick="toggleLangMenu()">
+<i class="fa-solid fa-earth-asia"></i>
+</button>
+
+<div class="lang-dropdown" id="langDropdown">
+
+<button onclick="setLanguage('en')">EN</button>
+<button onclick="setLanguage('cn')">中文</button>
+<button onclick="setLanguage('bm')">BM</button>
+
+</div>
+</div>
+</div>
+
+<section class="hero">
+
+<img src="logo.png" class="logo">
+
+<img src="repair.png" class="repair-banner">
+
+<h1 id="title">
+Mobile Phone Repair
+</h1>
+
+<p class="subtitle" id="subtitle">
+Advanced Smartphone Repair & Diagnostic Center
+</p>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<section class="section">
+
+<h2 id="about-title">
+Professional Repair Services
+</h2>
+
+<div class="about-box">
+
+<p id="about-text1">
+We provide professional smartphone repair services with trusted repair quality, advanced diagnostic tools and experienced technical support.
+</p>
+
+<p id="about-text2">
+Our repair solutions include screen replacement, battery replacement, motherboard repair, charging issues, software troubleshooting and water damage inspection.
+</p>
+
+<p id="about-text3">
+At World Tele Communication, we focus on delivering fast, reliable and high-quality repair services for modern smartphones and digital devices.
+</p>
+
+</div>
+
+<div class="card-grid">
+
+<div class="card">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="screenrepair.png">
+<h3 id="card1-title">Screen Replacement</h3>
+<p id="card1-text">
+Professional screen replacement for cracked or damaged displays using high-quality parts and precise installation.
+</p>
+</div>
+
+<div class="card">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="batteryrepair.png">
+<h3 id="card2-title">Battery Replacement</h3>
+<p id="card2-text">
+Battery health replacement service for weak, swollen or fast-draining smartphone batteries.
+</p>
+</div>
+
+<div class="card">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="motherboardrepair.png">
+<h3 id="card3-title">Motherboard Repair</h3>
+<p id="card3-text">
+Advanced motherboard troubleshooting and repair for power issues, signal problems and device failure.
+</p>
+</div>
+
+<div class="card">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="software.png">
+<h3 id="card4-title">Software Troubleshooting</h3>
+<p id="card4-text">
+System repair, software recovery, update support and performance troubleshooting for smartphones.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<section class="section">
+
+<h2 id="why-title">
+Why Choose Us
+</h2>
+
+<div class="why-box" id="why-box">
+
+✔ Professional Repair Experience
+<br>
+✔ Advanced Diagnostic Support
+<br>
+✔ Trusted Repair Quality
+<br>
+✔ Fast Service & Technical Support
+<br>
+✔ Support For Modern Smartphone Devices
+
+</div>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<footer class="container">
+
+<small>
+© 2026 World Tele Communication
+<br>
+Professional Mobile, Website & Point of Sale Solutions
+</small>
+
+</footer>
+
+<script>
+
+function toggleLangMenu(){
+document.getElementById("langDropdown")
+.classList.toggle("show");
+}
+
+function openAIChat(){
+if(window.toggleChat){
+toggleChat();
+}
+}
+
+function setLanguage(lang){
+
+if(lang === "cn"){
+
+document.getElementById("title").innerText =
+"手机维修中心";
+
+document.getElementById("subtitle").innerText =
+"专业智能手机维修与检测中心";
+
+document.getElementById("about-title").innerText =
+"专业维修服务";
+
+document.getElementById("about-text1").innerText =
+"我们提供专业智能手机维修服务，拥有可靠维修品质、先进检测设备以及经验丰富的技术支援。";
+
+document.getElementById("about-text2").innerText =
+"我们的维修服务包括换屏、电池更换、主板维修、充电问题、软件问题以及进水检测。";
+
+document.getElementById("about-text3").innerText =
+"World Tele Communication 致力于为现代智能手机与数码设备提供快速、可靠且高品质的维修服务。";
+
+document.getElementById("card1-title").innerText =
+"屏幕更换";
+
+document.getElementById("card1-text").innerText =
+"针对破裂或损坏屏幕提供专业更换服务，使用高品质零件与精准安装。";
+
+document.getElementById("card2-title").innerText =
+"电池更换";
+
+document.getElementById("card2-text").innerText =
+"针对电池耗电快、电池膨胀或电池老化提供专业更换服务。";
+
+document.getElementById("card3-title").innerText =
+"主板维修";
+
+document.getElementById("card3-text").innerText =
+"专业处理不开机、讯号问题以及主板损坏等高级维修问题。";
+
+document.getElementById("card4-title").innerText =
+"软件维修";
+
+document.getElementById("card4-text").innerText =
+"系统修复、软件恢复、系统更新以及性能优化服务。";
+
+document.getElementById("why-title").innerText =
+"为什么选择我们";
+
+document.getElementById("why-box").innerHTML =
+"✔ 专业维修经验<br>✔ 先进检测技术<br>✔ 可靠维修品质<br>✔ 快速技术支援<br>✔ 支援现代智能手机设备";
+
+}
+
+else if(lang === "bm"){
+
+document.getElementById("title").innerText =
+"Pusat Repair Telefon";
+
+document.getElementById("subtitle").innerText =
+"Pusat Repair & Diagnostik Telefon Pintar Profesional";
+
+document.getElementById("about-title").innerText =
+"Servis Repair Profesional";
+
+document.getElementById("about-text1").innerText =
+"Kami menyediakan servis repair telefon pintar profesional dengan kualiti repair yang dipercayai, alat diagnostik moden dan sokongan teknikal berpengalaman.";
+
+document.getElementById("about-text2").innerText =
+"Servis repair kami termasuk tukar skrin, tukar bateri, repair motherboard, masalah charging, software troubleshooting dan pemeriksaan water damage.";
+
+document.getElementById("about-text3").innerText =
+"World Tele Communication memberi fokus kepada servis repair yang pantas, berkualiti dan dipercayai untuk telefon pintar moden dan peranti digital.";
+
+document.getElementById("card1-title").innerText =
+"Penukaran Skrin";
+
+document.getElementById("card1-text").innerText =
+"Servis tukar skrin profesional untuk skrin retak atau rosak menggunakan komponen berkualiti tinggi.";
+
+document.getElementById("card2-title").innerText =
+"Penukaran Bateri";
+
+document.getElementById("card2-text").innerText =
+"Servis tukar bateri untuk masalah bateri lemah, kembung atau cepat habis.";
+
+document.getElementById("card3-title").innerText =
+"Repair Motherboard";
+
+document.getElementById("card3-text").innerText =
+"Servis troubleshooting motherboard untuk masalah power, signal dan kerosakan telefon.";
+
+document.getElementById("card4-title").innerText =
+"Software Troubleshooting";
+
+document.getElementById("card4-text").innerText =
+"Servis repair sistem, recovery software, update sistem dan troubleshooting prestasi telefon.";
+
+document.getElementById("why-title").innerText =
+"Kenapa Pilih Kami";
+
+document.getElementById("why-box").innerHTML =
+"✔ Pengalaman Repair Profesional<br>✔ Sokongan Diagnostik Moden<br>✔ Kualiti Repair Dipercayai<br>✔ Servis Pantas & Sokongan Teknikal<br>✔ Sokongan Untuk Telefon Pintar Moden";
+
+}
+
+else{
+
+location.reload();
+
+}
+
+ document.getElementById("langDropdown")
+ .classList.remove("show");
+
+}
+
+</script>
+
+<script src="ai-chat.js"></script>
+
+<style>
+.ai-help-button,
+#ai-help-button,
+.ai-chat-button{
+opacity:0 !important;
+pointer-events:none !important;
+}
+</style>
+
+</body>
+</html>
