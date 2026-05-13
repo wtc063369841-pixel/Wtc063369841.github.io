@@ -277,25 +277,21 @@ width:100%;
 margin-top:20px;
 margin-bottom:15px;
 
-transition:transform 0.15s ease;
+/* 不要点击反应 */
+
+transition:none;
+
+/* 永久固定发亮 */
 
 filter:
-drop-shadow(0 0 12px rgba(255,215,120,0.28))
-drop-shadow(0 0 28px rgba(180,180,180,0.18))
-drop-shadow(0 0 50px rgba(255,215,120,0.12));
+drop-shadow(0 0 18px rgba(255,215,120,0.40))
+drop-shadow(0 0 40px rgba(200,200,200,0.22))
+drop-shadow(0 0 70px rgba(255,215,120,0.18));
 
-animation:
-premiumGlow 2.5s ease-in-out infinite,
-floatMove 4s ease-in-out infinite;
+/* 不要 animation */
 
-}
+animation:none;
 
-.sales-banner:hover{
-transform:scale(1.04);
-}
-
-.sales-banner:active{
-transform:scale(1.10);
 }
 
 h1{
