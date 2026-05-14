@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>POS Device Sales - World Tele Communication</title>
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+margin:0;
+text-align:center;
+font-family:system-ui;
+
+background:
+
+radial-gradient(
+circle at top left,
+rgba(255,255,255,0.55),
+transparent 28%
+),
+
+radial-gradient(
+circle at bottom right,
+rgba(255,180,80,0.10),
+transparent 35%
+),
+
+repeating-linear-gradient(
+90deg,
+rgba(255,255,255,0.04) 0px,
+rgba(255,255,255,0.04) 1px,
+transparent 1px,
+transparent 8px
+),
+
+repeating-linear-gradient(
+0deg,
+rgba(255,255,255,0.03) 0px,
+rgba(255,255,255,0.03) 1px,
+transparent 1px,
+transparent 8px
+),
+
+linear-gradient(
+145deg,
+#ffffff 0%,
+#f3f5f7 20%,
+#e5eaef 45%,
+#ffffff 65%,
+#edf1f4 85%,
+#ffffff 100%
+);
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+overflow-x:hidden;
+position:relative;
+
+}
+
+/* LIGHT EFFECT */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+top:0;
+left:-50%;
+
+width:200%;
+height:100%;
+
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(255,255,255,0.45) 45%,
+rgba(255,190,80,0.08) 50%,
+rgba(255,255,255,0.45) 55%,
+transparent 100%
+);
+
+animation:shineMove 12s linear infinite;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+/* TOP MENU */
+
+.top-menu{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:4px;
+padding:2px 4px;
+position:sticky;
+top:0;
+z-index:9999;
+background:rgba(255,255,255,0.20);
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+box-shadow:
+0 2px 8px rgba(0,0,0,0.08);
+height:48px;
+}
+
+/* BUTTON */
+
+.top-btn{
+text-decoration:none;
+display:flex;
+align-items:center;
+justify-content:center;
+width:40px;
+height:40px;
+border-radius:12px;
+font-size:14px;
+font-weight:bold;
+transition:0.25s ease;
+border:1px solid rgba(255,255,255,0.22);
+backdrop-filter:blur(12px);
+box-shadow:
+0 4px 12px rgba(0,0,0,0.08),
+inset 0 1px 1px rgba(255,255,255,0.18);
+}
+
+.home-btn{
+background:#000000;
+color:white;
+}
+
+.phone-btn{
+background:#005f73;
+color:white;
+}
+
+.whatsapp-btn{
+background:#25D366;
+color:white;
+}
+
+.shopee-btn{
+background:#ee4d2d;
+color:white;
+}
+
+.tiktok-btn{
+background:#000000;
+color:white;
+}
+
+.facebook-btn{
+background:#1877F2;
+color:white;
+}
+
+.ai-btn{
+background:white;
+color:black;
+box-shadow:
+0 0 12px rgba(255,255,255,0.8),
+0 0 24px rgba(255,255,255,0.4);
+}
+
+/* LANGUAGE */
+
+.lang-menu{
+position:relative;
+}
+
+.lang-toggle{
+all:unset;
+cursor:pointer;
+-webkit-tap-highlight-color:transparent;
+}
+
+.lang-toggle i{
+display:flex;
+align-items:center;
+justify-content:center;
+width:40px;
+height:40px;
+border-radius:12px;
+background:rgba(255,255,255,0.30);
+border:1px solid rgba(255,255,255,0.22);
+color:#111827;
+font-size:13px;
+box-shadow:
+0 3px 10px rgba(0,0,0,0.08);
+}
+
+.lang-dropdown{
+display:none;
+flex-direction:column;
+position:fixed;
+top:58px;
+right:10px;
+width:90px;
+padding:12px;
+z-index:99999;
+border-radius:16px;
+background:rgba(255,255,255,0.88);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,0.25);
+box-shadow:
+0 10px 30px rgba(0,0,0,0.12);
+gap:10px;
+}
+
+.lang-dropdown button{
+border:none;
+background:transparent;
+font-size:14px;
+cursor:pointer;
+color:#111827;
+}
+
+.lang-dropdown.show{
+display:flex;
+}
+
+/* HERO */
+
+.hero{
+padding:20px;
+position:relative;
+z-index:2;
+}
+
+.logo{
+width:100%;
+max-width:100%;
+height:auto;
+display:block;
+object-fit:contain;
+margin:auto;
+margin-top:-40px;
+margin-bottom:-90px;
+padding:0;
+animation:float 4s ease-in-out infinite;
+}
+
+.device-banner{
+
+display:inline-block;
+
+max-width:450px;
+width:100%;
+
+margin-top:20px;
+margin-bottom:15px;
+
+filter:
+drop-shadow(0 0 18px rgba(255,180,80,0.35))
+drop-shadow(0 0 45px rgba(255,200,120,0.18));
+
+}
+
+/* TITLE */
+
+h1{
+margin-top:20px;
+font-size:clamp(30px,6vw,58px);
+color:#111827;
+text-shadow:
+0 0 12px rgba(255,255,255,0.55),
+0 0 30px rgba(255,190,80,0.15);
+}
+
+.subtitle{
+font-size:20px;
+margin-bottom:30px;
+color:#4b5563;
+}
+
+/* SECTION */
+
+.section{
+padding:50px 20px;
+position:relative;
+z-index:2;
+}
+
+.about{
+max-width:950px;
+margin:auto;
+line-height:1.9;
+font-size:18px;
+padding:30px;
+border-radius:24px;
+background:rgba(255,255,255,0.18);
+backdrop-filter:blur(6px);
+border:1px solid rgba(255,255,255,0.22);
+box-shadow:
+0 10px 35px rgba(0,0,0,0.08);
+}
+
+/* GRID */
+
+.device-grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+margin-top:50px;
+}
+
+/* DISPLAY BOX */
+
+.device-box{
+
+position:relative;
+
+overflow:hidden;
+
+background:rgba(255,255,255,0.18);
+
+backdrop-filter:blur(6px);
+-webkit-backdrop-filter:blur(6px);
+
+padding:18px;
+
+border-radius:24px;
+
+border:1px solid rgba(255,255,255,0.22);
+
+box-shadow:
+0 10px 35px rgba(0,0,0,0.10);
+
+transition:0.3s ease;
+
+animation:floatingCard 5s ease-in-out infinite;
+
+min-height:260px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+}
+
+/* NUT EFFECT */
+
+.device-box::before,
+.device-box::after,
+.device-box .nut-left,
+.device-box .nut-right{
+
+content:"";
+
+position:absolute;
+
+width:18px;
+height:18px;
+
+border-radius:50%;
+
+background:
+radial-gradient(circle at 30% 30%,
+#ffffff,
+#d6d6d6,
+#7c7c7c);
+
+box-shadow:
+inset 0 2px 4px rgba(255,255,255,0.8),
+inset 0 -2px 4px rgba(0,0,0,0.4),
+0 1px 3px rgba(0,0,0,0.3);
+
+z-index:5;
+
+}
+
+/* NUT POSITION */
+
+.device-box::before{
+top:10px;
+left:10px;
+}
+
+.device-box::after{
+top:10px;
+right:10px;
+}
+
+.device-box .nut-left{
+bottom:10px;
+left:10px;
+}
+
+.device-box .nut-right{
+bottom:10px;
+right:10px;
+}
+
+/* IMAGE */
+
+.device-box img{
+
+width:100%;
+height:220px;
+
+object-fit:contain;
+
+transition:0.3s ease;
+
+filter:
+brightness(1.05)
+saturate(1.08);
+
+}
+
+/* HOVER */
+
+.device-box:hover{
+
+transform:
+translateY(-8px)
+scale(1.03);
+
+box-shadow:
+0 0 20px rgba(255,190,80,0.30),
+0 0 45px rgba(255,190,80,0.16),
+0 15px 40px rgba(0,0,0,0.12);
+
+}
+
+.device-box:hover img{
+transform:scale(1.05);
+}
+
+/* ACTIVE */
+
+.device-box:active{
+
+transform:scale(0.96);
+
+box-shadow:
+0 0 28px rgba(255,190,80,0.65),
+0 0 60px rgba(255,190,80,0.28),
+0 15px 40px rgba(0,0,0,0.15);
+
+}
+
+/* DIVIDER */
+
+.industrial-divider{
+width:90%;
+height:8px;
+margin:50px auto;
+border-radius:20px;
+background:
+linear-gradient(
+145deg,
+#ffffff 0%,
+#ececec 18%,
+#d8d8d8 38%,
+#ffffff 58%,
+#eeeeee 78%,
+#ffffff 100%
+);
+box-shadow:
+inset 0 2px 3px rgba(255,255,255,0.7),
+inset 0 -2px 4px rgba(0,0,0,0.20),
+0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* FOOTER */
+
+footer{
+padding:30px 10px 50px;
+color:#111827;
+text-shadow:
+0 2px 8px rgba(255,255,255,0.35);
+position:relative;
+z-index:2;
+}
+
+/* ANIMATION */
+
+@keyframes shineMove{
+0%{transform:translateX(-20%);}
+100%{transform:translateX(20%);}
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0px);}
+}
+
+@keyframes floatingCard{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0px);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOP MENU -->
+
+<div class="top-menu">
+
+<a href="index.html" class="top-btn home-btn">
+<i class="fa-solid fa-house"></i>
+</a>
+
+<a href="tel:+60163456287" class="top-btn phone-btn">
+<i class="fa-solid fa-phone"></i>
+</a>
+
+<a href="https://wa.me/60163456287"
+class="top-btn whatsapp-btn">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<a href="https://my.shp.ee/6BSSa5j4"
+target="_blank"
+class="top-btn shopee-btn">
+<i class="fa-solid fa-bag-shopping"></i>
+</a>
+
+<a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/"
+target="_blank"
+class="top-btn tiktok-btn">
+<i class="fa-brands fa-tiktok"></i>
+</a>
+
+<a href="https://facebook.com/Worldtelecommunication.my"
+target="_blank"
+class="top-btn facebook-btn">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<a href="javascript:void(0)"
+class="top-btn ai-btn"
+onclick="openAIChat()">
+<i class="fa-solid fa-robot"></i>
+</a>
+
+<div class="lang-menu">
+
+<button class="lang-toggle"
+onclick="toggleLangMenu()">
+
+<i class="fa-solid fa-earth-asia"></i>
+
+</button>
+
+<div class="lang-dropdown"
+id="langDropdown">
+
+<button onclick="setLanguage('en')">EN</button>
+
+<button onclick="setLanguage('cn')">中文</button>
+
+<button onclick="setLanguage('bm')">BM</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="logo.png"
+class="logo">
+
+<br>
+
+<img src="possystemdownlogo.png"
+class="device-banner">
+
+<h1 id="title">
+POS Device Sales
+</h1>
+
+<p class="subtitle"
+id="subtitle">
+
+Professional POS Hardware Solutions For Modern Businesses
+
+</p>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- ABOUT -->
+
+<section class="section">
+
+<h2 id="about-title">
+Professional POS Device Solutions
+</h2>
+
+<div class="about">
+
+<p id="about-text1">
+
+We provide a wide range of modern POS devices and business hardware solutions for restaurants, cafes, minimarkets, retail shops and modern businesses.
+
+</p>
+
+<p id="about-text2">
+
+From entry-level POS systems to premium commercial-grade devices, we help businesses choose the right POS equipment based on their operational needs and business scale.
+
+</p>
+
+<p id="about-text3">
+
+Our device categories include POS cashier systems, touchscreen terminals, handheld ordering devices, mobile POS systems, receipt printers, barcode scanners, cash drawers, customer displays and digital payment devices.
+
+</p>
+
+<p id="about-text4">
+
+World Tele Communication continues to support local businesses with reliable, modern and scalable POS hardware solutions.
+
+</p>
+
+</div>
+
+<!-- DISPLAY BOX -->
+
+<div class="device-grid">
+
+<div class="device-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="device1.png">
+</div>
+
+<div class="device-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="device2.png">
+</div>
+
+<div class="device-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="device3.png">
+</div>
+
+<div class="device-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="device4.png">
+</div>
+
+<div class="device-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="device5.png">
+</div>
+
+<div class="device-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="device6.png">
+</div>
+
+<div class="device-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="device7.png">
+</div>
+
+<div class="device-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="device8.png">
+</div>
+
+<div class="device-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="device9.png">
+</div>
+
+<div class="device-box">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="device10.png">
+</div>
+
+</div>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- FOOTER -->
+
+<footer>
+
+<small>
+© 2026 World Tele Communication
+<br>
+Professional Mobile, Website & Point Of Sale Solutions
+</small>
+
+</footer>
+
+<!-- SCRIPT -->
+
+<script>
+
+function toggleLangMenu(){
+
+document.getElementById("langDropdown")
+.classList.toggle("show");
+
+}
+
+function openAIChat(){
+
+if(window.toggleChat){
+toggleChat();
+}
+
+}
+
+/* AUTO CLOSE */
+
+document.addEventListener("click", function(e){
+
+const langMenu =
+document.getElementById("langDropdown");
+
+const langButton =
+document.querySelector(".lang-toggle");
+
+const chatBox =
+document.querySelector(".ai-chat-box");
+
+const robotBtn =
+e.target.closest(".ai-btn");
+
+/* CLOSE LANGUAGE */
+
+if(
+langMenu &&
+!langMenu.contains(e.target)
+&&
+!langButton.contains(e.target)
+){
+
+langMenu.classList.remove("show");
+
+}
+
+/* CLOSE AI */
+
+if(
+chatBox &&
+chatBox.style.display === "flex"
+){
+
+const insideChat =
+chatBox.contains(e.target);
+
+if(
+!insideChat &&
+!robotBtn
+){
+
+chatBox.style.display = "none";
+
+}
+
+}
+
+});
+
+/* LANGUAGE */
+
+function setLanguage(lang){
+
+/* 中文 */
+
+if(lang === "cn"){
+
+document.getElementById("title").innerText =
+"POS 设备销售";
+
+document.getElementById("subtitle").innerText =
+"现代企业专业 POS 硬件方案";
+
+document.getElementById("about-title").innerText =
+"专业 POS 设备方案";
+
+document.getElementById("about-text1").innerText =
+"我们提供各种现代 POS 商业设备与硬件方案，适用于餐厅、咖啡店、便利店、零售店以及现代企业。";
+
+document.getElementById("about-text2").innerText =
+"从入门级 POS 系统到高级商业级设备，我们协助商家根据业务需求与规模选择最合适的 POS 设备。";
+
+document.getElementById("about-text3").innerText =
+"我们的设备包括 POS 收银系统、触控终端、手持点餐机、移动 POS 系统、收据打印机、扫码器、钱箱、顾客显示器以及电子支付设备。";
+
+document.getElementById("about-text4").innerText =
+"World Tele Communication 持续为本地商家提供稳定、现代化且可扩展的 POS 硬件方案。";
+
+}
+
+/* BM */
+
+else if(lang === "bm"){
+
+document.getElementById("title").innerText =
+"Jualan Peranti POS";
+
+document.getElementById("subtitle").innerText =
+"Penyelesaian Hardware POS Profesional Untuk Perniagaan";
+
+document.getElementById("about-title").innerText =
+"Penyelesaian Peranti POS Profesional";
+
+document.getElementById("about-text1").innerText =
+"Kami menyediakan pelbagai peranti POS moden dan penyelesaian hardware perniagaan untuk restoran, cafe, minimarket, kedai runcit dan perniagaan moden.";
+
+document.getElementById("about-text2").innerText =
+"Daripada sistem POS asas sehingga peranti komersial premium, kami membantu perniagaan memilih peralatan POS yang sesuai berdasarkan keperluan operasi dan skala perniagaan mereka.";
+
+document.getElementById("about-text3").innerText =
+"Kategori peranti kami termasuk sistem cashier POS, terminal touchscreen, handheld ordering device, mobile POS system, receipt printer, barcode scanner, cash drawer, customer display dan peranti pembayaran digital.";
+
+document.getElementById("about-text4").innerText =
+"World Tele Communication terus membantu perniagaan tempatan dengan penyelesaian hardware POS moden dan dipercayai.";
+
+}
+
+/* EN */
+
+else{
+
+location.reload();
+
+}
+
+/* CLOSE MENU */
+
+document.getElementById("langDropdown")
+.classList.remove("show");
+
+}
+
+</script>
+
+<script src="ai-chat.js"></script>
+
+<style>
+
+.ai-help-button,
+#ai-help-button,
+.ai-chat-button{
+
+opacity:0 !important;
+pointer-events:none !important;
+
+}
+
+</style>
+
+</body>
+</html>
