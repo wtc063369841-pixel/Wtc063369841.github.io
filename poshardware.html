@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>POS Hardware & Software - World Tele Communication</title>
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+margin:0;
+text-align:center;
+font-family:system-ui;
+
+/* TITANIUM WHITE + SOFT VIOLET */
+
+background:
+
+radial-gradient(
+circle at top left,
+rgba(255,255,255,0.60),
+transparent 28%
+),
+
+radial-gradient(
+circle at bottom right,
+rgba(170,150,255,0.12),
+transparent 35%
+),
+
+repeating-linear-gradient(
+90deg,
+rgba(255,255,255,0.04) 0px,
+rgba(255,255,255,0.04) 1px,
+transparent 1px,
+transparent 8px
+),
+
+repeating-linear-gradient(
+0deg,
+rgba(255,255,255,0.03) 0px,
+rgba(255,255,255,0.03) 1px,
+transparent 1px,
+transparent 8px
+),
+
+linear-gradient(
+145deg,
+#ffffff 0%,
+#f6f5ff 18%,
+#ece9ff 38%,
+#ffffff 55%,
+#f1efff 75%,
+#ffffff 100%
+);
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+overflow-x:hidden;
+position:relative;
+
+}
+
+/* LIGHT EFFECT */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+top:0;
+left:-50%;
+
+width:200%;
+height:100%;
+
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(255,255,255,0.45) 45%,
+rgba(180,160,255,0.10) 50%,
+rgba(255,255,255,0.40) 55%,
+transparent 100%
+);
+
+animation:shineMove 12s linear infinite;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+/* TOP MENU */
+
+.top-menu{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:4px;
+padding:2px 4px;
+position:sticky;
+top:0;
+z-index:9999;
+background:rgba(255,255,255,0.20);
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+box-shadow:
+0 2px 8px rgba(0,0,0,0.08);
+height:48px;
+}
+
+/* BUTTON */
+
+.top-btn{
+text-decoration:none;
+display:flex;
+align-items:center;
+justify-content:center;
+width:40px;
+height:40px;
+border-radius:12px;
+font-size:14px;
+font-weight:bold;
+transition:0.25s ease;
+border:1px solid rgba(255,255,255,0.22);
+backdrop-filter:blur(12px);
+
+box-shadow:
+0 4px 12px rgba(0,0,0,0.08),
+inset 0 1px 1px rgba(255,255,255,0.18);
+
+}
+
+.home-btn{
+background:#000000;
+color:white;
+}
+
+.phone-btn{
+background:#005f73;
+color:white;
+}
+
+.whatsapp-btn{
+background:#25D366;
+color:white;
+}
+
+.shopee-btn{
+background:#ee4d2d;
+color:white;
+}
+
+.tiktok-btn{
+background:#000000;
+color:white;
+}
+
+.facebook-btn{
+background:#1877F2;
+color:white;
+}
+
+.ai-btn{
+
+background:white;
+color:black;
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.8),
+0 0 24px rgba(255,255,255,0.45);
+
+}
+
+/* LANGUAGE */
+
+.lang-menu{
+position:relative;
+}
+
+.lang-toggle{
+all:unset;
+cursor:pointer;
+-webkit-tap-highlight-color:transparent;
+}
+
+.lang-toggle i{
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+width:40px;
+height:40px;
+
+border-radius:12px;
+
+background:rgba(255,255,255,0.30);
+
+border:1px solid rgba(255,255,255,0.22);
+
+color:#111827;
+
+font-size:13px;
+
+box-shadow:
+0 3px 10px rgba(0,0,0,0.08);
+
+}
+
+.lang-dropdown{
+
+display:none;
+flex-direction:column;
+
+position:fixed;
+
+top:58px;
+right:10px;
+
+width:90px;
+
+padding:12px;
+
+z-index:99999;
+
+border-radius:16px;
+
+background:rgba(255,255,255,0.88);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,0.25);
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.12);
+
+gap:10px;
+
+}
+
+.lang-dropdown button{
+
+border:none;
+background:transparent;
+
+font-size:14px;
+
+cursor:pointer;
+
+color:#111827;
+
+}
+
+.lang-dropdown.show{
+display:flex;
+}
+
+/* HERO */
+
+.hero{
+padding:20px;
+position:relative;
+z-index:2;
+}
+
+/* LOGO */
+
+.logo{
+width:100%;
+max-width:100%;
+height:auto;
+display:block;
+object-fit:contain;
+margin:auto;
+margin-top:-40px;
+margin-bottom:-90px;
+padding:0;
+animation:float 4s ease-in-out infinite;
+}
+
+/* BANNER */
+
+.hardware-banner{
+
+display:inline-block;
+
+max-width:430px;
+width:100%;
+
+margin-top:20px;
+margin-bottom:15px;
+
+filter:
+drop-shadow(0 0 20px rgba(180,160,255,0.28))
+drop-shadow(0 0 40px rgba(180,160,255,0.16))
+drop-shadow(0 0 70px rgba(180,160,255,0.10));
+
+}
+
+/* TITLE */
+
+h1{
+
+margin-top:20px;
+
+font-size:clamp(30px,6vw,58px);
+
+color:#1f2937;
+
+text-shadow:
+0 0 12px rgba(255,255,255,0.55),
+0 0 30px rgba(180,160,255,0.18);
+
+}
+
+.subtitle{
+
+font-size:20px;
+
+margin-bottom:30px;
+
+color:#4b5563;
+
+}
+
+/* SECTION */
+
+.section{
+padding:50px 20px;
+position:relative;
+z-index:2;
+}
+
+/* ABOUT */
+
+.about{
+
+max-width:980px;
+
+margin:auto;
+
+line-height:1.9;
+
+font-size:18px;
+
+padding:30px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,0.18);
+
+backdrop-filter:blur(6px);
+
+border:1px solid rgba(255,255,255,0.22);
+
+box-shadow:
+0 10px 35px rgba(0,0,0,0.08);
+
+}
+
+/* GRID */
+
+.hardware-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(240px,1fr));
+
+gap:30px;
+
+margin-top:50px;
+
+}
+
+/* CARD */
+
+.hardware-card{
+
+position:relative;
+
+overflow:hidden;
+
+padding:20px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,0.18);
+
+backdrop-filter:blur(6px);
+
+border:1px solid rgba(255,255,255,0.22);
+
+box-shadow:
+0 10px 35px rgba(0,0,0,0.08);
+
+transition:0.3s ease;
+
+animation:floatingCard 5s ease-in-out infinite;
+
+min-height:320px;
+
+}
+
+/* NUT */
+
+.hardware-card::before,
+.hardware-card::after,
+.hardware-card .nut-left,
+.hardware-card .nut-right{
+
+content:"";
+
+position:absolute;
+
+width:18px;
+height:18px;
+
+border-radius:50%;
+
+background:
+radial-gradient(circle at 30% 30%,
+#ffffff,
+#cfcfe8,
+#7c7c96);
+
+box-shadow:
+inset 0 2px 4px rgba(255,255,255,0.8),
+inset 0 -2px 4px rgba(0,0,0,0.4),
+0 1px 3px rgba(0,0,0,0.3);
+
+z-index:5;
+
+}
+
+.hardware-card::before{
+top:10px;
+left:10px;
+}
+
+.hardware-card::after{
+top:10px;
+right:10px;
+}
+
+.hardware-card .nut-left{
+bottom:10px;
+left:10px;
+}
+
+.hardware-card .nut-right{
+bottom:10px;
+right:10px;
+}
+
+/* IMAGE BOX */
+
+.hardware-card img{
+
+width:100%;
+height:240px;
+
+object-fit:contain;
+
+border-radius:16px;
+
+background:
+rgba(255,255,255,0.20);
+
+padding:12px;
+
+}
+
+/* TEXT */
+
+.hardware-card h3{
+color:#1f2937;
+margin-top:18px;
+}
+
+.hardware-card p{
+color:#4b5563;
+}
+
+/* HOVER */
+
+.hardware-card:hover{
+
+transform:
+translateY(-8px)
+scale(1.03);
+
+box-shadow:
+0 0 20px rgba(180,160,255,0.28),
+0 0 45px rgba(180,160,255,0.14),
+0 15px 40px rgba(0,0,0,0.10);
+
+}
+
+/* ACTIVE */
+
+.hardware-card:active{
+
+transform:scale(0.97);
+
+box-shadow:
+0 0 28px rgba(180,160,255,0.55),
+0 0 60px rgba(180,160,255,0.28),
+0 15px 40px rgba(0,0,0,0.15);
+
+}
+
+/* DIVIDER */
+
+.industrial-divider{
+
+width:90%;
+height:8px;
+
+margin:50px auto;
+
+border-radius:20px;
+
+background:
+linear-gradient(
+145deg,
+#ffffff 0%,
+#ece9ff 18%,
+#d8d4ff 38%,
+#ffffff 58%,
+#ece9ff 78%,
+#ffffff 100%
+);
+
+box-shadow:
+inset 0 2px 3px rgba(255,255,255,0.7),
+inset 0 -2px 4px rgba(0,0,0,0.20),
+0 4px 10px rgba(0,0,0,0.08);
+
+}
+
+/* FOOTER */
+
+footer{
+
+padding:30px 10px 50px;
+
+color:#111827;
+
+text-shadow:
+0 2px 8px rgba(255,255,255,0.35);
+
+position:relative;
+z-index:2;
+
+}
+
+/* ANIMATION */
+
+@keyframes shineMove{
+0%{transform:translateX(-20%);}
+100%{transform:translateX(20%);}
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0px);}
+}
+
+@keyframes floatingCard{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0px);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOP MENU -->
+
+<div class="top-menu">
+
+<a href="index.html" class="top-btn home-btn">
+<i class="fa-solid fa-house"></i>
+</a>
+
+<a href="tel:+60163456287" class="top-btn phone-btn">
+<i class="fa-solid fa-phone"></i>
+</a>
+
+<a href="https://wa.me/60163456287"
+class="top-btn whatsapp-btn">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<a href="https://my.shp.ee/6BSSa5j4"
+target="_blank"
+class="top-btn shopee-btn">
+<i class="fa-solid fa-bag-shopping"></i>
+</a>
+
+<a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/"
+target="_blank"
+class="top-btn tiktok-btn">
+<i class="fa-brands fa-tiktok"></i>
+</a>
+
+<a href="https://facebook.com/Worldtelecommunication.my"
+target="_blank"
+class="top-btn facebook-btn">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<a href="javascript:void(0)"
+class="top-btn ai-btn"
+onclick="openAIChat()">
+<i class="fa-solid fa-robot"></i>
+</a>
+
+<div class="lang-menu">
+
+<button class="lang-toggle"
+onclick="toggleLangMenu()">
+
+<i class="fa-solid fa-earth-asia"></i>
+
+</button>
+
+<div class="lang-dropdown"
+id="langDropdown">
+
+<button onclick="setLanguage('en')">EN</button>
+
+<button onclick="setLanguage('cn')">中文</button>
+
+<button onclick="setLanguage('bm')">BM</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="logo.png"
+class="logo">
+
+<br>
+
+<img src="poshardware.html"
+class="hardware-banner">
+
+<h1 id="title">
+POS Hardware & Software
+</h1>
+
+<p class="subtitle"
+id="subtitle">
+
+Complete Business System Integration Solutions
+
+</p>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- ABOUT -->
+
+<section class="section">
+
+<h2 id="about-title">
+Complete POS Ecosystem Solutions
+</h2>
+
+<div class="about">
+
+<p id="about-text1">
+
+We provide complete POS hardware and software ecosystem solutions for restaurants, retail shops, cafes, minimarkets and modern businesses.
+
+</p>
+
+<p id="about-text2">
+
+Our solutions include POS terminals, cashier systems, receipt printers, barcode scanners, kitchen display systems, ordering systems, payment integration, inventory management and business reporting software.
+
+</p>
+
+<p id="about-text3">
+
+We focus on helping businesses improve operational efficiency, transaction speed, inventory control and customer management using reliable and scalable POS technologies.
+
+</p>
+
+<p id="about-text4">
+
+World Tele Communication continues to support local businesses with modern commercial technology systems, hardware integration and professional business support solutions.
+
+</p>
+
+</div>
+
+<!-- GRID -->
+
+<div class="hardware-grid">
+
+<div class="hardware-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="terminalsystem.png">
+
+<h3 id="card1-title">
+POS Terminal System
+</h3>
+
+<p id="card1-text">
+Professional terminal systems for modern business operations.
+</p>
+
+</div>
+
+<div class="hardware-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="receiptprinter.png">
+
+<h3 id="card2-title">
+Receipt Printer Integration
+</h3>
+
+<p id="card2-text">
+Fast and reliable receipt printing solutions.
+</p>
+
+</div>
+
+<div class="hardware-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="inventorysystem.png">
+
+<h3 id="card3-title">
+Inventory Management
+</h3>
+
+<p id="card3-text">
+Smart inventory tracking and stock management systems.
+</p>
+
+</div>
+
+<div class="hardware-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="kitchendisplay.png">
+
+<h3 id="card4-title">
+Kitchen Display System
+</h3>
+
+<p id="card4-text">
+Modern kitchen order management display solutions.
+</p>
+
+</div>
+
+<div class="hardware-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="businessreport.png">
+
+<h3 id="card5-title">
+Business Reporting Software
+</h3>
+
+<p id="card5-text">
+Advanced reporting and analytics for businesses.
+</p>
+
+</div>
+
+<div class="hardware-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="digitalpayment.png">
+
+<h3 id="card6-title">
+Digital Payment Integration
+</h3>
+
+<p id="card6-text">
+Modern QR and digital payment integration systems.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- FOOTER -->
+
+<footer>
+
+<small>
+© 2026 World Tele Communication
+<br>
+Professional Mobile, Website & Point Of Sale Solutions
+</small>
+
+</footer>
+
+<!-- SCRIPT -->
+
+<script>
+
+/* LANGUAGE */
+
+function toggleLangMenu(){
+
+document.getElementById("langDropdown")
+.classList.toggle("show");
+
+}
+
+/* AI CHAT */
+
+function openAIChat(){
+
+if(window.toggleChat){
+toggleChat();
+}
+
+}
+
+/* AUTO CLOSE */
+
+document.addEventListener("click", function(e){
+
+const langMenu =
+document.getElementById("langDropdown");
+
+const langButton =
+document.querySelector(".lang-toggle");
+
+const chatBox =
+document.querySelector(".ai-chat-box");
+
+const robotBtn =
+e.target.closest(".ai-btn");
+
+if(
+langMenu &&
+!langMenu.contains(e.target)
+&&
+!langButton.contains(e.target)
+){
+
+langMenu.classList.remove("show");
+
+}
+
+if(
+chatBox &&
+!chatBox.contains(e.target) &&
+!robotBtn
+){
+
+chatBox.style.display = "none";
+
+}
+
+});
+
+/* LANGUAGE */
+
+function setLanguage(lang){
+
+/* 中文 */
+
+if(lang === "cn"){
+
+document.getElementById("title").innerText =
+"POS 硬件与软件";
+
+document.getElementById("subtitle").innerText =
+"完整商业系统整合方案";
+
+document.getElementById("about-title").innerText =
+"完整 POS 商业生态系统方案";
+
+document.getElementById("about-text1").innerText =
+"我们为餐厅、零售店、咖啡店、便利店以及现代企业提供完整 POS 硬件与软件商业生态系统方案。";
+
+document.getElementById("about-text2").innerText =
+"我们的方案包括 POS 终端、收银系统、打印机、扫码器、厨房显示系统、点餐系统、电子支付整合、库存管理以及商业报表软件。";
+
+document.getElementById("about-text3").innerText =
+"我们专注于通过稳定且可扩展的 POS 科技，协助商家提升营运效率、交易速度、库存控制以及客户管理。";
+
+document.getElementById("about-text4").innerText =
+"World Tele Communication 持续为本地企业提供现代商业科技系统、硬件整合以及专业商业支援方案。";
+
+}
+
+/* BM */
+
+else if(lang === "bm"){
+
+document.getElementById("title").innerText =
+"Hardware & Software POS";
+
+document.getElementById("subtitle").innerText =
+"Penyelesaian Integrasi Sistem Perniagaan";
+
+document.getElementById("about-title").innerText =
+"Penyelesaian Ekosistem POS Lengkap";
+
+document.getElementById("about-text1").innerText =
+"Kami menyediakan penyelesaian lengkap hardware dan software POS untuk restoran, kedai runcit, cafe dan perniagaan moden.";
+
+document.getElementById("about-text2").innerText =
+"Penyelesaian kami termasuk terminal POS, sistem cashier, receipt printer, barcode scanner, kitchen display system dan software laporan perniagaan.";
+
+document.getElementById("about-text3").innerText =
+"Kami membantu meningkatkan kecekapan operasi, transaksi dan pengurusan inventori menggunakan teknologi POS moden.";
+
+document.getElementById("about-text4").innerText =
+"World Tele Communication terus menyokong perniagaan tempatan dengan teknologi komersial moden dan sistem integrasi profesional.";
+
+}
+
+/* EN */
+
+else{
+
+location.reload();
+
+}
+
+document.getElementById("langDropdown")
+.classList.remove("show");
+
+}
+
+</script>
+
+<script src="ai-chat.js"></script>
+
+<style>
+
+.ai-help-button,
+#ai-help-button,
+.ai-chat-button{
+
+opacity:0 !important;
+pointer-events:none !important;
+
+}
+
+</style>
+
+</body>
+</html>
