@@ -1,0 +1,284 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WTC Premium Brand Intro</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+<style>
+body{
+margin:0;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:system-ui;
+text-align:center;background: radial-gradient(circle at top left, rgba(255,255,255,0.55),transparent 28%), radial-gradient(circle at bottom right, rgba(255,180,210,0.10),transparent 35%), linear-gradient( 145deg, #ffffff 0%, #f8f4f6 18%, #eceff3 35%, #ffffff 55%, #f6edf1 75%, #ffffff 100% );
+
+overflow:hidden; }
+
+body::before{ content:""; position:fixed; inset:0; background:linear-gradient( 120deg, transparent 0%, rgba(255,255,255,0.45) 45%, rgba(255,180,210,0.08) 50%, rgba(255,255,255,0.45) 55%, transparent 100% ); animation:shine 10s linear infinite; pointer-events:none; }
+
+main{ position:relative; z-index:2; width:min(92%,700px); padding:40px; border-radius:32px; background:rgba(255,255,255,0.20); backdrop-filter:blur(12px); box-shadow: 0 10px 40px rgba(0,0,0,0.10), 0 0 40px rgba(255,180,210,0.12); }
+
+.logo{ font-size:64px; font-weight:900; letter-spacing:4px; margin-bottom:8px; background:linear-gradient(90deg,#111827,#ff7eb6,#111827); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+
+.subtitle{ font-size:18px; color:#4b5563; margin-bottom:30px; }
+
+button{ font-size:20px; padding:14px 28px; border:none; border-radius:20px; background:linear-gradient(145deg,#ff9dc7,#ff7eb6); color:white; font-weight:700; box-shadow: 0 0 18px rgba(255,126,182,0.35), 0 10px 25px rgba(0,0,0,0.12); transition:0.25s ease; }
+
+button:hover{ transform:translateY(-3px) scale(1.03); }
+
+button:active{ transform:scale(0.96); }
+
+.note-box{ margin-top:30px; padding:20px; border-radius:22px; background:rgba(255,255,255,0.25); line-height:1.9; font-size:17px; }
+
+small{ color:#6b7280; }
+
+@keyframes shine{ 0%{transform:translateX(-20%);} 100%{transform:translateX(20%);} } </style>
+
+</head>
+<body><main><div class="logo">WTC</div><div class="subtitle">
+WTC Premium Cinematic Brand Intro
+</div><button onclick="playJingle()">
+▶ Launch WTC Experience
+</button><div class="note-box">
+<b>WTC Premium Brand Identity</b>
+<br>
+Luxury • Titanium • AI Technology • Future Business • Premium Digital Experience
+<br><br>
+<small>
+Designed like a real premium technology company intro.
+</small>
+</div></main><script>
+
+async function playJingle(){
+
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const ctx = new AudioContext();
+
+await ctx.resume();
+
+/* MASTER VOLUME */
+const master = ctx.createGain();
+master.gain.value = 0.22;
+master.connect(ctx.destination);
+
+const now = ctx.currentTime;
+
+/* PREMIUM CINEMATIC CHORDS */
+
+const chords = [
+[220,329.63,440],
+[261.63,392,523.25],
+[329.63,493.88,659.25],
+[392,587.33,783.99]
+];
+
+chords.forEach((chord,index)=>{
+
+const start = now + index * 1.1;
+
+chord.forEach((freq,i)=>{
+
+const osc = ctx.createOscillator();
+const gain = ctx.createGain();
+
+osc.type = i % 2 === 0 ? 'sawtooth' : 'triangle';
+osc.frequency.value = freq;
+
+osc.connect(gain);
+gain.connect(master);
+
+gain.gain.setValueAtTime(0,start);
+gain.gain.linearRampToValueAtTime(0.06,start + 0.25);
+gain.gain.exponentialRampToValueAtTime(0.001,start + 1.2);
+
+osc.start(start);
+osc.stop(start + 1.2);
+
+});
+
+});
+
+/* DIGITAL PULSE */
+
+for(let i=0;i<18;i++){
+
+const osc = ctx.createOscillator();
+const gain = ctx.createGain();
+
+osc.type = 'square';
+osc.frequency.value = 880 + (i*12);
+
+osc.connect(gain);
+gain.connect(master);
+
+const t = now + (i * 0.22);
+
+gain.gain.setValueAtTime(0,t);
+gain.gain.linearRampToValueAtTime(0.012,t+0.02);
+gain.gain.exponentialRampToValueAtTime(0.001,t+0.18);
+
+osc.start(t);
+osc.stop(t+0.18);
+
+}
+
+/* AI FEMALE VOICE */
+
+setTimeout(()=>{
+
+const synth = window.speechSynthesis;
+
+const text = new SpeechSynthesisUtterance(
+'W... T... C... Premium technology for the future. Connecting your digital world.'
+);
+
+text.lang = 'en-US';
+text.rate = 0.86;
+text.pitch = 1.08;
+text.volume = 1;
+
+const voices = synth.getVoices();
+
+const premiumVoice = voices.find(v =>
+/victoria|zira|samantha|aria|female|google uk english female/i.test(v.name)
+);
+
+if(premiumVoice){
+text.voice = premiumVoice;
+}
+
+synth.cancel();
+synth.speak(text);
+
+},1200);
+
+});
+voices = synth.getVoices();
+}
+
+synth.cancel();
+
+/* AI FEMALE INTRO */
+
+const intro = new SpeechSynthesisUtterance(
+"W... T... C... Connecting your digital future. World Tele Communication. Premium technology for the next generation."
+);
+
+intro.lang = "en-US";
+intro.rate = 0.88;
+intro.pitch = 1.12;
+intro.volume = 1;
+
+const femaleVoice = voices.find(v =>
+/victoria|zira|samantha|female|google uk english female|aria/i.test(v.name)
+);
+
+if(femaleVoice){
+intro.voice = femaleVoice;
+}
+
+/* BACKGROUND MUSIC */
+
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const ctx = new AudioContext();
+
+if(ctx.state === "suspended"){
+await ctx.resume();
+}
+
+let time = ctx.currentTime;
+
+const notes = [
+{f:220,d:0.30},
+{f:329,d:0.28},
+{f:523,d:0.40},
+{f:659,d:0.50},
+{f:880,d:0.60},
+{f:1046,d:0.70}
+];
+
+notes.forEach((n,index)=>{
+
+const osc = ctx.createOscillator();
+const gain = ctx.createGain();
+
+osc.type = index % 2 === 0 ? "triangle" : "sine";
+osc.frequency.value = n.f;
+
+osc.connect(gain);
+gain.connect(ctx.destination);
+
+gain.gain.setValueAtTime(0,time);
+gain.gain.linearRampToValueAtTime(0.04,time+0.05);
+gain.gain.exponentialRampToValueAtTime(0.001,time+n.d);
+
+osc.start(time);
+osc.stop(time+n.d);
+
+time += n.d;
+
+});
+
+/* PLAY VOICE */
+
+setTimeout(()=>{
+synth.speak(intro);
+},400);
+
+}catch(error){
+alert("Your browser blocked audio autoplay. Please tap the button again.");
+console.log(error);
+}
+
+}
+
+/* BACKGROUND SYNTH */
+
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const ctx = new AudioContext();
+
+let time = ctx.currentTime;
+
+const notes = [
+{f:220,d:0.25},
+{f:329,d:0.25},
+{f:523,d:0.35},
+{f:659,d:0.45},
+{f:880,d:0.55},
+{f:1046,d:0.65}
+];
+
+notes.forEach((n,index)=>{
+
+const osc = ctx.createOscillator();
+const gain = ctx.createGain();
+
+osc.type = index % 2 === 0 ? "sine" : "triangle";
+osc.frequency.value = n.f;
+
+osc.connect(gain);
+gain.connect(ctx.destination);
+
+gain.gain.setValueAtTime(0,time);
+gain.gain.linearRampToValueAtTime(0.05,time+0.03);
+gain.gain.exponentialRampToValueAtTime(0.001,time+n.d);
+
+osc.start(time);
+osc.stop(time+n.d);
+
+time += n.d;
+
+});
+
+setTimeout(()=>{
+synth.speak(intro);
+},300);
+
+});
+
+}
+
+</script></body>
+</html>
