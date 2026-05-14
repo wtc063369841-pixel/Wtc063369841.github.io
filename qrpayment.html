@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>QR Payment Technology - World Tele Communication</title>
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+margin:0;
+text-align:center;
+font-family:system-ui;
+
+/* TITANIUM BLACK + DIGITAL GREEN */
+
+background:
+
+radial-gradient(
+circle at top left,
+rgba(0,255,180,0.10),
+transparent 28%
+),
+
+radial-gradient(
+circle at bottom right,
+rgba(0,255,120,0.08),
+transparent 35%
+),
+
+repeating-linear-gradient(
+90deg,
+rgba(255,255,255,0.03) 0px,
+rgba(255,255,255,0.03) 1px,
+transparent 1px,
+transparent 8px
+),
+
+repeating-linear-gradient(
+0deg,
+rgba(255,255,255,0.02) 0px,
+rgba(255,255,255,0.02) 1px,
+transparent 1px,
+transparent 8px
+),
+
+linear-gradient(
+145deg,
+#040404 0%,
+#0b1311 18%,
+#111f1b 35%,
+#050505 52%,
+#13211d 72%,
+#050505 100%
+);
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+overflow-x:hidden;
+position:relative;
+
+}
+
+/* LIGHT EFFECT */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+top:0;
+left:-50%;
+
+width:200%;
+height:100%;
+
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(255,255,255,0.08) 45%,
+rgba(0,255,180,0.12) 50%,
+rgba(255,255,255,0.06) 55%,
+transparent 100%
+);
+
+animation:shineMove 12s linear infinite;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+/* TOP MENU */
+
+.top-menu{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:4px;
+padding:2px 4px;
+position:sticky;
+top:0;
+z-index:9999;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+box-shadow:
+0 2px 8px rgba(0,0,0,0.25);
+height:48px;
+}
+
+/* BUTTON */
+
+.top-btn{
+text-decoration:none;
+display:flex;
+align-items:center;
+justify-content:center;
+width:40px;
+height:40px;
+border-radius:12px;
+font-size:14px;
+font-weight:bold;
+transition:0.25s ease;
+border:1px solid rgba(255,255,255,0.10);
+backdrop-filter:blur(12px);
+
+box-shadow:
+0 4px 12px rgba(0,0,0,0.20),
+inset 0 1px 1px rgba(255,255,255,0.08);
+
+}
+
+.home-btn{
+background:#000000;
+color:white;
+}
+
+.phone-btn{
+background:#005f73;
+color:white;
+}
+
+.whatsapp-btn{
+background:#25D366;
+color:white;
+}
+
+.shopee-btn{
+background:#ee4d2d;
+color:white;
+}
+
+.tiktok-btn{
+background:#000000;
+color:white;
+}
+
+.facebook-btn{
+background:#1877F2;
+color:white;
+}
+
+.ai-btn{
+
+background:white;
+color:black;
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.6),
+0 0 24px rgba(255,255,255,0.20);
+
+}
+
+/* LANGUAGE */
+
+.lang-menu{
+position:relative;
+}
+
+.lang-toggle{
+all:unset;
+cursor:pointer;
+-webkit-tap-highlight-color:transparent;
+}
+
+.lang-toggle i{
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+width:40px;
+height:40px;
+
+border-radius:12px;
+
+background:rgba(255,255,255,0.08);
+
+border:1px solid rgba(255,255,255,0.12);
+
+color:#d1fae5;
+
+font-size:13px;
+
+box-shadow:
+0 3px 10px rgba(0,0,0,0.20);
+
+}
+
+.lang-dropdown{
+
+display:none;
+flex-direction:column;
+
+position:fixed;
+
+top:58px;
+right:10px;
+
+width:90px;
+
+padding:12px;
+
+z-index:99999;
+
+border-radius:16px;
+
+background:rgba(10,10,10,0.92);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,0.08);
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.35);
+
+gap:10px;
+
+}
+
+.lang-dropdown button{
+
+border:none;
+background:transparent;
+
+font-size:14px;
+
+cursor:pointer;
+
+color:#d1fae5;
+
+}
+
+.lang-dropdown.show{
+display:flex;
+}
+
+/* HERO */
+
+.hero{
+padding:20px;
+position:relative;
+z-index:2;
+}
+
+/* LOGO */
+
+.logo{
+width:100%;
+max-width:100%;
+height:auto;
+display:block;
+object-fit:contain;
+margin:auto;
+margin-top:-40px;
+margin-bottom:-90px;
+padding:0;
+animation:float 4s ease-in-out infinite;
+}
+
+/* QR BANNER */
+
+.qr-banner{
+
+display:inline-block;
+
+max-width:430px;
+width:100%;
+
+margin-top:20px;
+margin-bottom:15px;
+
+filter:
+drop-shadow(0 0 20px rgba(0,255,180,0.35))
+drop-shadow(0 0 45px rgba(0,255,180,0.20))
+drop-shadow(0 0 70px rgba(0,255,180,0.12));
+
+}
+
+/* TITLE */
+
+h1{
+
+margin-top:20px;
+
+font-size:clamp(30px,6vw,58px);
+
+color:#ecfdf5;
+
+text-shadow:
+0 0 12px rgba(0,255,180,0.25),
+0 0 30px rgba(0,255,180,0.12);
+
+}
+
+.subtitle{
+
+font-size:20px;
+
+margin-bottom:30px;
+
+color:#a7f3d0;
+
+}
+
+/* SECTION */
+
+.section{
+padding:50px 20px;
+position:relative;
+z-index:2;
+}
+
+/* ABOUT */
+
+.about{
+
+max-width:980px;
+
+margin:auto;
+
+line-height:1.9;
+
+font-size:18px;
+
+padding:30px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,0.05);
+
+backdrop-filter:blur(6px);
+
+border:1px solid rgba(255,255,255,0.08);
+
+box-shadow:
+0 10px 35px rgba(0,0,0,0.20);
+
+color:#d1fae5;
+
+}
+
+/* DISPLAY GRID */
+
+.qr-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(240px,1fr));
+
+gap:30px;
+
+margin-top:50px;
+
+}
+
+/* DISPLAY CARD */
+
+.qr-card{
+
+position:relative;
+
+overflow:hidden;
+
+padding:20px;
+
+border-radius:24px;
+
+background:rgba(255,255,255,0.05);
+
+backdrop-filter:blur(6px);
+
+border:1px solid rgba(255,255,255,0.08);
+
+box-shadow:
+0 10px 35px rgba(0,0,0,0.20);
+
+transition:0.3s ease;
+
+animation:floatingCard 5s ease-in-out infinite;
+
+min-height:260px;
+
+}
+
+/* NUT */
+
+.qr-card::before,
+.qr-card::after,
+.qr-card .nut-left,
+.qr-card .nut-right{
+
+content:"";
+
+position:absolute;
+
+width:18px;
+height:18px;
+
+border-radius:50%;
+
+background:
+radial-gradient(circle at 30% 30%,
+#ffffff,
+#5eead4,
+#065f46);
+
+box-shadow:
+inset 0 2px 4px rgba(255,255,255,0.8),
+inset 0 -2px 4px rgba(0,0,0,0.4),
+0 1px 3px rgba(0,0,0,0.3);
+
+z-index:5;
+
+}
+
+.qr-card::before{
+top:10px;
+left:10px;
+}
+
+.qr-card::after{
+top:10px;
+right:10px;
+}
+
+.qr-card .nut-left{
+bottom:10px;
+left:10px;
+}
+
+.qr-card .nut-right{
+bottom:10px;
+right:10px;
+}
+
+/* IMAGE */
+
+.qr-card img{
+
+width:100%;
+height:220px;
+
+object-fit:cover;
+
+border-radius:16px;
+
+background:
+rgba(255,255,255,0.04);
+
+padding:10px;
+
+}
+
+/* HOVER */
+
+.qr-card:hover{
+
+transform:
+translateY(-8px)
+scale(1.03);
+
+box-shadow:
+0 0 22px rgba(0,255,180,0.35),
+0 0 45px rgba(0,255,180,0.15),
+0 15px 40px rgba(0,0,0,0.25);
+
+}
+
+/* ACTIVE */
+
+.qr-card:active{
+
+transform:scale(0.97);
+
+box-shadow:
+0 0 30px rgba(0,255,180,0.60),
+0 0 65px rgba(0,255,180,0.28),
+0 15px 40px rgba(0,0,0,0.20);
+
+}
+
+/* DIVIDER */
+
+.industrial-divider{
+
+width:90%;
+height:8px;
+
+margin:50px auto;
+
+border-radius:20px;
+
+background:
+linear-gradient(
+145deg,
+#0f172a 0%,
+#1f2937 18%,
+#065f46 38%,
+#1f2937 58%,
+#111827 78%,
+#0f172a 100%
+);
+
+box-shadow:
+inset 0 2px 3px rgba(255,255,255,0.12),
+inset 0 -2px 4px rgba(0,0,0,0.45),
+0 4px 10px rgba(0,0,0,0.25);
+
+}
+
+/* FOOTER */
+
+footer{
+
+padding:30px 10px 50px;
+
+color:#d1fae5;
+
+text-shadow:
+0 2px 8px rgba(0,255,180,0.18);
+
+position:relative;
+z-index:2;
+
+}
+
+/* ANIMATION */
+
+@keyframes shineMove{
+0%{transform:translateX(-20%);}
+100%{transform:translateX(20%);}
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0px);}
+}
+
+@keyframes floatingCard{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0px);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOP MENU -->
+
+<div class="top-menu">
+
+<a href="index.html" class="top-btn home-btn">
+<i class="fa-solid fa-house"></i>
+</a>
+
+<a href="tel:+60163456287" class="top-btn phone-btn">
+<i class="fa-solid fa-phone"></i>
+</a>
+
+<a href="https://wa.me/60163456287"
+class="top-btn whatsapp-btn">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<a href="https://my.shp.ee/6BSSa5j4"
+target="_blank"
+class="top-btn shopee-btn">
+<i class="fa-solid fa-bag-shopping"></i>
+</a>
+
+<a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/"
+target="_blank"
+class="top-btn tiktok-btn">
+<i class="fa-brands fa-tiktok"></i>
+</a>
+
+<a href="https://facebook.com/Worldtelecommunication.my"
+target="_blank"
+class="top-btn facebook-btn">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<a href="javascript:void(0)"
+class="top-btn ai-btn"
+onclick="openAIChat()">
+<i class="fa-solid fa-robot"></i>
+</a>
+
+<div class="lang-menu">
+
+<button class="lang-toggle"
+onclick="toggleLangMenu()">
+
+<i class="fa-solid fa-earth-asia"></i>
+
+</button>
+
+<div class="lang-dropdown"
+id="langDropdown">
+
+<button onclick="setLanguage('en')">EN</button>
+
+<button onclick="setLanguage('cn')">中文</button>
+
+<button onclick="setLanguage('bm')">BM</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="logo.png"
+class="logo">
+
+<br>
+
+<img src="qrpay.png"
+class="qr-banner">
+
+<h1 id="title">
+QR Payment Technology
+</h1>
+
+<p class="subtitle"
+id="subtitle">
+
+Future Digital Transaction Ecosystem
+
+</p>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- ABOUT -->
+
+<section class="section">
+
+<h2 id="about-title">
+Future Of Smart Payment Technology
+</h2>
+
+<div class="about">
+
+<p id="about-text1">
+
+QR Payment technology is becoming one of the most widely used cashless transaction methods in modern businesses and digital consumer environments.
+
+</p>
+
+<p id="about-text2">
+
+Modern QR ecosystems help improve transaction convenience, reduce physical cash handling and support faster customer experiences in restaurants, retail shops and digital commerce environments.
+
+</p>
+
+<p id="about-text3">
+
+Digital payment trends continue evolving together with smart business technologies, mobile ecosystems and future commercial systems.
+
+</p>
+
+<p id="about-text4">
+
+Modern QR transaction environments represent the future direction of smarter, faster and more connected commercial experiences for businesses and consumers.
+
+</p>
+
+</div>
+
+<!-- DISPLAY BOX -->
+
+<div class="qr-grid">
+
+<div class="qr-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="qr1.png">
+
+</div>
+
+<div class="qr-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="qr2.png">
+
+</div>
+
+<div class="qr-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="qr3.png">
+
+</div>
+
+<div class="qr-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="qr4.png">
+
+</div>
+
+<div class="qr-card">
+
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+
+<img src="qr5.png">
+
+</div>
+
+</div>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- FOOTER -->
+
+<footer>
+
+<small>
+© 2026 World Tele Communication
+<br>
+Professional Mobile, Website & Point Of Sale Solutions
+</small>
+
+</footer>
+
+<!-- SCRIPT -->
+
+<script>
+
+function toggleLangMenu(){
+
+document.getElementById("langDropdown")
+.classList.toggle("show");
+
+}
+
+function openAIChat(){
+
+if(window.toggleChat){
+toggleChat();
+}
+
+}
+
+/* AUTO CLOSE */
+
+document.addEventListener("click", function(e){
+
+const langMenu =
+document.getElementById("langDropdown");
+
+const langButton =
+document.querySelector(".lang-toggle");
+
+const chatBox =
+document.querySelector(".ai-chat-box");
+
+const robotBtn =
+e.target.closest(".ai-btn");
+
+if(
+langMenu &&
+!langMenu.contains(e.target)
+&&
+!langButton.contains(e.target)
+){
+
+langMenu.classList.remove("show");
+
+}
+
+if(
+chatBox &&
+!chatBox.contains(e.target) &&
+!robotBtn
+){
+
+chatBox.style.display = "none";
+
+}
+
+});
+
+/* LANGUAGE */
+
+function setLanguage(lang){
+
+/* 中文 */
+
+if(lang === "cn"){
+
+document.getElementById("title").innerText =
+"QR 数码支付科技";
+
+document.getElementById("subtitle").innerText =
+"未来数码交易生态系统";
+
+document.getElementById("about-title").innerText =
+"未来智能支付科技";
+
+document.getElementById("about-text1").innerText =
+"QR Payment 科技已经成为现代商业与数码消费者环境中最广泛使用的无现金交易方式之一。";
+
+document.getElementById("about-text2").innerText =
+"现代 QR 支付生态系统能够提升交易便利性、减少现金接触，并且让餐厅、零售店与数码商业环境拥有更快速的客户体验。";
+
+document.getElementById("about-text3").innerText =
+"随着智能商业科技、移动生态系统以及未来商业模式的发展，数码支付趋势也持续成长。";
+
+document.getElementById("about-text4").innerText =
+"现代 QR 数码交易环境代表着未来更智能、更快速以及更互联化的商业体验方向。";
+
+}
+
+/* BM */
+
+else if(lang === "bm"){
+
+document.getElementById("title").innerText =
+"Teknologi QR Payment";
+
+document.getElementById("subtitle").innerText =
+"Ekosistem Transaksi Digital Masa Depan";
+
+document.getElementById("about-title").innerText =
+"Teknologi Pembayaran Pintar Masa Depan";
+
+document.getElementById("about-text1").innerText =
+"Teknologi QR Payment kini menjadi salah satu kaedah transaksi tanpa tunai yang paling banyak digunakan dalam perniagaan moden dan persekitaran digital.";
+
+document.getElementById("about-text2").innerText =
+"Ekosistem QR moden membantu meningkatkan kemudahan transaksi, mengurangkan penggunaan wang tunai dan mempercepatkan pengalaman pelanggan.";
+
+document.getElementById("about-text3").innerText =
+"Trend pembayaran digital terus berkembang bersama teknologi perniagaan pintar, ekosistem mobile dan sistem komersial masa depan.";
+
+document.getElementById("about-text4").innerText =
+"Persekitaran transaksi QR moden mewakili arah masa depan perniagaan yang lebih pintar, pantas dan saling berhubung.";
+
+}
+
+/* EN */
+
+else{
+
+location.reload();
+
+}
+
+document.getElementById("langDropdown")
+.classList.remove("show");
+
+}
+
+</script>
+
+<script src="ai-chat.js"></script>
+
+<style>
+
+.ai-help-button,
+#ai-help-button,
+.ai-chat-button{
+
+opacity:0 !important;
+pointer-events:none !important;
+
+}
+
+</style>
+
+</body>
+</html>
