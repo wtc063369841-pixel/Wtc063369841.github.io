@@ -47,6 +47,27 @@ transition:0.25s ease;
 flex-shrink:0;
 }
 
+/* DESKTOP TOP ICON SPACING */
+@media (min-width: 768px) {
+  .top-menu {
+    gap: 9px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .top-btn,
+  .lang-toggle i,
+  .hamburger {
+    width: 50px;
+  }
+
+  .top-btn,
+  .lang-toggle i,
+  .hamburger {
+    min-width: 50px;
+  }
+}
+
 /* TOP BUTTON COLORS */
 
 .phone-btn {
@@ -997,12 +1018,13 @@ BM
 </div>
 
 <ul class="nav-links" id="navLinks">
-<li><a href="#">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#partners">Partners</a></li>
-<li><a href="#contact">Contact</a></li>
-<li><a href="tel:+60163456287">Call</a></li>
+<li><a href="#" id="nav-home">Home</a></li>
+<li><a href="#about" id="nav-about">About</a></li>
+<li><a href="#services" id="nav-services">Services</a></li>
+<li><a href="#solutions" id="nav-solutions">Solutions</a></li>
+<li><a href="#partners" id="nav-partners">Partners</a></li>
+<li><a href="#contact" id="nav-contact">Contact</a></li>
+<li><a href="tel:+60163456287" id="nav-call">Call</a></li>
 </ul>
 
 <section class="hero">
@@ -1069,6 +1091,10 @@ In 2023, World Tele Communication proudly expanded into Website Services, Websit
 Until today, we have helped many small businesses develop professional websites for their growing businesses.
 </p>
 
+<p id="about-pos-text">
+We are also proud to offer our own Sonic POS solution, designed to support modern businesses with practical and reliable point-of-sale operations.
+</p>
+
 <p id="shop-text">
 We also offer our products online through Shopee and TikTok Shop.
 </p>
@@ -1103,6 +1129,26 @@ We also offer our products online through Shopee and TikTok Shop.
 <span class="nut-right"></span>
 <img src="websitesolutions.jpg" alt="Website Solutions">
 <p id="service3">Website Solutions</p>
+</a>
+
+</div>
+
+</section>
+
+<div class="industrial-divider"></div>
+
+<!-- SOLUTIONS -->
+<section id="solutions" class="section">
+
+<h3 id="solutions-title">Our Solutions</h3>
+
+<div class="services-grid">
+
+<a href="javascript:void(0)" class="service-card" aria-label="Sonic POS">
+<span class="nut-left"></span>
+<span class="nut-right"></span>
+<img src="sonic-pos.png" alt="Sonic POS">
+<p id="solution1">Sonic POS</p>
 </a>
 
 </div>
@@ -1368,6 +1414,17 @@ document.getElementById("location-title").innerText = "我们的位置";
 
 document.getElementById("contact-title").innerText = "联系我们";
 
+document.getElementById("nav-home").innerText = "首页";
+document.getElementById("nav-about").innerText = "关于";
+document.getElementById("nav-services").innerText = "服务";
+document.getElementById("nav-solutions").innerText = "解决方案";
+document.getElementById("nav-partners").innerText = "合作伙伴";
+document.getElementById("nav-contact").innerText = "联系";
+document.getElementById("nav-call").innerText = "致电";
+
+document.getElementById("solutions-title").innerText = "我们的解决方案";
+document.getElementById("solution1").innerText = "Sonic POS";
+
 document.getElementById("subtitle").innerText =
 "手机方案 | POS系统 | 数码服务"
 
@@ -1407,6 +1464,9 @@ document.getElementById("about-text5").innerHTML =
 document.getElementById("about-text6").innerHTML =
 "2023 年，World Tele Communication 很荣幸正式拓展 Website Services、Website Design 与 Digital Solutions 服务。<br><br>直到今天，我们已经协助许多中小企业打造专业网站，帮助他们发展与提升业务。";
 
+document.getElementById("about-pos-text").innerText =
+"我们也很自豪拥有自己的 Sonic POS 解决方案，为现代企业提供实用、可靠的销售点运营支持。";
+
 document.getElementById("shop-text").innerText =
 "您也可以通过 Shopee 和 TikTok Shop 在线购买我们的产品。";
 
@@ -1443,6 +1503,17 @@ document.getElementById("location-title").innerText =
 
 document.getElementById("contact-title").innerText =
 "Hubungi Kami";
+
+document.getElementById("nav-home").innerText = "Utama";
+document.getElementById("nav-about").innerText = "Tentang";
+document.getElementById("nav-services").innerText = "Perkhidmatan";
+document.getElementById("nav-solutions").innerText = "Penyelesaian";
+document.getElementById("nav-partners").innerText = "Rakan";
+document.getElementById("nav-contact").innerText = "Hubungi";
+document.getElementById("nav-call").innerText = "Panggil";
+
+document.getElementById("solutions-title").innerText = "Penyelesaian Kami";
+document.getElementById("solution1").innerText = "Sonic POS";
 
 document.getElementById("subtitle").innerText =
 "Penyelesaian Mobile | Sistem POS | Servis Digital"
@@ -1483,6 +1554,9 @@ document.getElementById("about-text5").innerHTML =
 document.getElementById("about-text6").innerHTML =
 "Pada tahun 2023, World Tele Communication dengan bangganya memperluaskan perkhidmatan ke bidang Website Services, Website Design & Digital Solutions.<br><br>Sehingga hari ini, kami telah membantu banyak perniagaan kecil membangunkan laman web profesional untuk perkembangan perniagaan mereka.";
 
+document.getElementById("about-pos-text").innerText =
+"Kami juga berbangga menawarkan penyelesaian Sonic POS milik kami sendiri, direka untuk menyokong operasi point-of-sale perniagaan moden dengan praktikal dan boleh dipercayai.";
+
 document.getElementById("shop-text").innerText =
 "Kami juga menawarkan produk kami secara online melalui Shopee dan TikTok Shop.";
 
@@ -1519,6 +1593,17 @@ document.getElementById("location-title").innerText =
 
 document.getElementById("contact-title").innerText =
 "Contact Us";
+
+document.getElementById("nav-home").innerText = "Home";
+document.getElementById("nav-about").innerText = "About";
+document.getElementById("nav-services").innerText = "Services";
+document.getElementById("nav-solutions").innerText = "Solutions";
+document.getElementById("nav-partners").innerText = "Partners";
+document.getElementById("nav-contact").innerText = "Contact";
+document.getElementById("nav-call").innerText = "Call";
+
+document.getElementById("solutions-title").innerText = "Our Solutions";
+document.getElementById("solution1").innerText = "Sonic POS";
 
 document.getElementById("subtitle").innerText =
 "Mobile Solutions | POS System | Digital Services"
@@ -1558,6 +1643,9 @@ document.getElementById("about-text5").innerHTML =
 
 document.getElementById("about-text6").innerHTML =
 "In 2023, World Tele Communication proudly expanded into Website Services, Website Design & Digital Solutions.<br><br>Until today, we have helped many small businesses develop professional websites for their growing businesses.";
+
+document.getElementById("about-pos-text").innerText =
+"We are also proud to offer our own Sonic POS solution, designed to support modern businesses with practical and reliable point-of-sale operations.";
 
 document.getElementById("shop-text").innerText =
 "We also offer our products online through Shopee and TikTok Shop.";
