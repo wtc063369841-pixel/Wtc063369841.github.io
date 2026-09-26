@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sonic POS | World Tele Communication</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --sonic:#6f2cff;
+  --sonic2:#b14cff;
+  --ink:#172033;
+  --muted:#526173;
+  --panel:rgba(255,255,255,.78);
+  --line:rgba(87,106,133,.16);
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:
+    radial-gradient(circle at 8% 0%,rgba(180,110,255,.20),transparent 30%),
+    radial-gradient(circle at 100% 15%,rgba(100,180,255,.18),transparent 28%),
+    linear-gradient(145deg,#f8fbff 0%,#edf3fa 48%,#fff 100%);
+  overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:-1;
+  background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.38) 50%,transparent 100%);
+}
+.top-menu{
+  display:flex; align-items:center; justify-content:center; gap:7px;
+  padding:6px 10px; position:sticky; top:0; z-index:10000;
+  background:rgba(255,255,255,.72); backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line); box-shadow:0 4px 20px rgba(20,35,60,.10);
+}
+.top-btn,.hamburger{
+  width:58px; min-width:58px; height:46px; border-radius:14px;
+  display:flex; align-items:center; justify-content:center;
+  text-decoration:none; border:1px solid rgba(255,255,255,.65);
+  box-shadow:0 5px 14px rgba(0,0,0,.10); transition:.2s;
+}
+.top-btn:hover,.hamburger:hover{transform:translateY(-2px)}
+.home-btn{background:#fff;color:#173d89}.phone-btn{background:#005f73;color:#fff}
+.whatsapp-btn{background:#25D366;color:#fff}.shopee-btn{background:#ee4d2d;color:#fff}
+.tiktok-btn{background:#000;color:#fff}.facebook-btn{background:#1877F2;color:#fff}
+.ai-btn{background:#fff;color:#111}.lang-toggle{all:unset;cursor:pointer}
+.lang-toggle i{width:58px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#fff;color:#23457c;box-shadow:0 5px 14px rgba(0,0,0,.10)}
+.lang-dropdown{display:none;position:fixed;right:12px;top:62px;gap:8px;flex-direction:column;padding:10px;border-radius:14px;background:rgba(255,255,255,.95);box-shadow:0 10px 30px rgba(0,0,0,.15)}
+.lang-dropdown.show{display:flex}.lang-dropdown button{border:0;background:transparent;cursor:pointer}
+.hamburger{background:#fff;color:#172033;font-size:24px;cursor:pointer}
+.nav-links{
+  display:none; flex-direction:column; position:fixed; top:70px; left:18px;
+  width:180px; padding:16px; margin:0; list-style:none; z-index:99999;
+  border-radius:16px; background:rgba(255,255,255,.94); backdrop-filter:blur(20px);
+  box-shadow:0 12px 34px rgba(0,0,0,.20); border:1px solid var(--line);
+}
+.nav-links.show{display:flex}.nav-links li{margin:4px 0}
+.nav-links a{display:block;padding:11px 12px;border-radius:10px;text-decoration:none;color:#23457c}
+.nav-links a:hover{background:#edf2ff}
+.hero{
+  max-width:1200px;margin:0 auto;padding:48px 20px 34px;text-align:center;
+}
+.hero-logo{width:min(460px,82vw);max-height:280px;object-fit:contain;filter:drop-shadow(0 14px 25px rgba(91,35,190,.18))}
+.hero h1{font-size:clamp(38px,6vw,70px);margin:8px 0 6px;letter-spacing:.02em}
+.hero .lead{max-width:880px;margin:0 auto;color:var(--muted);font-size:clamp(17px,2vw,21px);line-height:1.7}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:22px auto 0}
+.badge{padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.82);border:1px solid var(--line);box-shadow:0 5px 15px rgba(0,0,0,.06);font-weight:650}
+.section{max-width:1200px;margin:auto;padding:28px 20px}
+.section-title{text-align:center;font-size:clamp(28px,4vw,44px);margin:0 0 10px}
+.section-sub{text-align:center;color:var(--muted);max-width:850px;margin:0 auto 28px;line-height:1.7}
+.feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.feature-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:24px;
+  box-shadow:0 12px 35px rgba(24,42,70,.09);text-align:left
+}
+.feature-card i{font-size:26px;color:var(--sonic);margin-bottom:10px}
+.feature-card h3{margin:4px 0 8px}.feature-card p{color:var(--muted);line-height:1.65}
+.screenshot-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
+.shot{
+  background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:22px;overflow:hidden;
+  box-shadow:0 14px 38px rgba(24,42,70,.11)
+}
+.shot img{display:block;width:100%;height:auto;background:#f6f8fb}
+.shot-body{padding:18px 20px}.shot-body h3{margin:0 0 6px}.shot-body p{margin:0;color:var(--muted);line-height:1.6}
+.packages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.package{
+  background:linear-gradient(160deg,rgba(255,255,255,.95),rgba(245,239,255,.92));
+  border:1px solid rgba(111,44,255,.15);border-radius:20px;padding:24px;text-align:center;
+  box-shadow:0 10px 28px rgba(55,28,100,.09)
+}
+.package h3{margin:0 0 8px}.package p{color:var(--muted);line-height:1.55}
+.package .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#eee5ff;color:#5c27c6;font-size:13px;font-weight:700}
+.support{
+  max-width:900px;margin:10px auto;padding:28px;text-align:center;border-radius:24px;
+  background:linear-gradient(135deg,#f1eaff,#eaf5ff);border:1px solid var(--line);
+  box-shadow:0 12px 30px rgba(45,53,90,.08)
+}
+.support h3{font-size:30px;margin:0 0 8px}.support p{color:var(--muted);line-height:1.7}
+.cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:18px}
+.cta a{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;text-decoration:none;font-weight:750}
+.primary{background:#6f2cff;color:#fff}.secondary{background:#fff;color:#23457c;border:1px solid var(--line)}
+.back-link{display:inline-flex;margin:0 auto 12px;padding:9px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);text-decoration:none;color:#23457c}
+.divider{height:7px;width:90%;margin:18px auto 10px;border-radius:99px;background:linear-gradient(90deg,#858d96,#eef2f5,#8d949b,#f7f9fb,#818991);box-shadow:0 3px 8px rgba(0,0,0,.08)}
+footer{padding:34px 20px 45px;text-align:center;color:#526173}
+@media(max-width:900px){
+  .feature-grid,.screenshot-grid{grid-template-columns:1fr}
+  .packages{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:767px){
+  .top-menu{gap:4px;padding:4px 5px;overflow-x:auto;justify-content:flex-start}
+  .top-btn,.hamburger,.lang-toggle i{width:40px;min-width:40px;height:40px;border-radius:12px}
+  .hero{padding-top:30px}.feature-grid,.screenshot-grid{grid-template-columns:1fr}
+  .packages{grid-template-columns:1fr}
+  .nav-links{width:150px}
+}
+</style>
+</head>
+<body>
+
+<div class="top-menu">
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Open menu">&#9776;</div>
+  <a href="index.html" class="top-btn home-btn" aria-label="Home"><i class="fa-solid fa-house"></i></a>
+  <a href="tel:+60163456287" class="top-btn phone-btn" aria-label="Call"><i class="fa-solid fa-phone"></i></a>
+  <a href="https://wa.me/60163456287" class="top-btn whatsapp-btn" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+  <a href="https://my.shp.ee/6BSSa5j4" class="top-btn shopee-btn" target="_blank" aria-label="Shop"><i class="fa-solid fa-bag-shopping"></i></a>
+  <a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/" class="top-btn tiktok-btn" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+  <a href="https://facebook.com/wtcsonic" class="top-btn facebook-btn" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+  <a href="javascript:void(0)" class="top-btn ai-btn" onclick="openAIChat()" aria-label="AI"><i class="fa-solid fa-robot"></i></a>
+  <div class="lang-menu">
+    <button class="lang-toggle" onclick="toggleLangMenu()" aria-label="Language"><i class="fa-solid fa-earth-asia"></i></button>
+    <div class="lang-dropdown" id="langDropdown">
+      <button onclick="setLanguage('en')">EN</button>
+      <button onclick="setLanguage('cn')">中文</button>
+      <button onclick="setLanguage('bm')">BM</button>
+    </div>
+  </div>
+</div>
+
+<ul class="nav-links" id="navLinks">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="#about">About Sonic POS</a></li>
+  <li><a href="#features">Features</a></li>
+  <li><a href="#screens">System Screens</a></li>
+  <li><a href="#packages">Packages</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li><a href="index.html#solutions">Back to Solutions</a></li>
+</ul>
+
+<section class="hero" id="about">
+  <a class="back-link" href="index.html#solutions"><i class="fa-solid fa-arrow-left"></i>&nbsp; Back to Solutions</a>
+  <img src="sonic-pos.png" class="hero-logo" alt="Sonic POS logo">
+  <h1>Sonic POS</h1>
+  <p class="lead">A practical point-of-sale and business management solution designed for retail businesses that want sales, stock, staff operations and reporting brought together in one system.</p>
+  <div class="badges">
+    <span class="badge">Retail POS</span><span class="badge">Inventory</span><span class="badge">Finance Reports</span><span class="badge">Business Management</span><span class="badge">24/7 Online Service</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section" id="features">
+  <h2 class="section-title">One POS System, More Control</h2>
+  <p class="section-sub">Sonic POS is built to help businesses handle everyday selling and back-office work with clearer records and practical management tools.</p>
+  <div class="feature-grid">
+    <article class="feature-card"><i class="fa-solid fa-cash-register"></i><h3>Fast Sales & Checkout</h3><p>Manage products, quantities, open items and checkout from a clear sales screen designed for day-to-day retail operations.</p></article>
+    <article class="feature-card"><i class="fa-solid fa-boxes-stacked"></i><h3>Inventory & Stock Management</h3><p>Track stock in, stock out, adjustments, suppliers, low-stock situations and movement history so your team can keep a closer eye on inventory.</p></article>
+    <article class="feature-card"><i class="fa-solid fa-chart-line"></i><h3>Sales & Analytics</h3><p>Review sales performance, orders, items sold, revenue, average sales and top-selling items through structured dashboards and reports.</p></article>
+    <article class="feature-card"><i class="fa-solid fa-file-invoice-dollar"></i><h3>Finance & Business Reports</h3><p>Generate detailed sales, product, tax, service-charge and transaction reports, with export options such as PDF and Excel where available in the system.</p></article>
+    <article class="feature-card"><i class="fa-solid fa-users-gear"></i><h3>Staff & Access Management</h3><p>Support day-to-day operations with staff, membership, access and system-management functions from the POS environment.</p></article>
+    <article class="feature-card"><i class="fa-solid fa-money-bill-transfer"></i><h3>Cash Drawer & Shift Records</h3><p>Keep cash movement and drawer history organised with staff, POS, shift and action records for easier operational checking.</p></article>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section" id="screens">
+  <h2 class="section-title">See Sonic POS in Action</h2>
+  <p class="section-sub">The screenshots below show the actual system areas and reporting views supplied for this Sonic POS presentation.</p>
+  <div class="screenshot-grid">
+    <article class="shot"><img src="sonic-pos-feature-1.jpg" alt="Sonic POS sales and checkout screen"><div class="shot-body"><h3>Sales & Checkout</h3><p>Product selection, quantities, cart control and checkout are brought together on the main selling screen.</p></div></article>
+    <article class="shot"><img src="sonic-pos-feature-2.jpg" alt="Sonic POS management dashboard"><div class="shot-body"><h3>POS Management</h3><p>Access inventory, membership, staff, cash movement, reports, settings and Back Office functions from the management area.</p></div></article>
+    <article class="shot"><img src="sonic-pos-feature-3.jpg" alt="Sonic POS analytics dashboard"><div class="shot-body"><h3>Analytics Dashboard</h3><p>Quickly view orders, items, revenue, average order values and cash movement at a glance.</p></div></article>
+    <article class="shot"><img src="sonic-pos-feature-4.jpg" alt="Sonic POS transaction sales report"><div class="shot-body"><h3>Transaction Reports</h3><p>Review receipts, products, quantities, payments, cashier information, dates, status and reprint actions.</p></div></article>
+    <article class="shot"><img src="sonic-pos-feature-5.jpg" alt="Sonic POS sales summary report"><div class="shot-body"><h3>Sales Summary</h3><p>Compare total sales, gross sales, net sales, orders, items, discounts, refunds and other sales figures.</p></div></article>
+    <article class="shot"><img src="sonic-pos-feature-6.jpg" alt="Sonic POS product sales report"><div class="shot-body"><h3>Product Sales Report</h3><p>Understand product quantities, gross sales, refunds, discounts, selling prices and net sales.</p></div></article>
+    <article class="shot"><img src="sonic-pos-feature-7.jpg" alt="Sonic POS tax and service charge finance report"><div class="shot-body"><h3>Finance — Tax & Service Charge</h3><p>Review tax, refunds, service charges and detailed transaction information with export options.</p></div></article>
+    <article class="shot"><img src="sonic-pos-feature-8.jpg" alt="Sonic POS product finance report"><div class="shot-body"><h3>Finance — Product Report</h3><p>See selling value, cost value, profit, margin, adjustable pricing and refund information.</p></div></article>
+    <article class="shot"><img src="sonic-pos-feature-9.jpg" alt="Sonic POS stock management"><div class="shot-body"><h3>Stock Management</h3><p>Track stock movements, quantities, suppliers, cost and selling prices, with stock-in, stock-out and adjustment workflows.</p></div></article>
+    <article class="shot"><img src="sonic-pos-feature-10.jpg" alt="Sonic POS cash drawer history"><div class="shot-body"><h3>Cash Drawer</h3><p>Manage drawer operations and review historical staff, POS, shift and action records.</p></div></article>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="support">
+    <h3>Support When You Need It</h3>
+    <p>Sonic POS is supported with <strong>24-hour online service</strong>, giving businesses a way to get assistance and continue working with greater confidence.</p>
+    <div class="cta">
+      <a class="primary" href="tel:+60163456287"><i class="fa-solid fa-phone"></i> Call WTC</a>
+      <a class="secondary" href="https://wa.me/60163456287" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section" id="packages">
+  <h2 class="section-title">Sonic POS Packages</h2>
+  <p class="section-sub">Choose the package that matches your business needs. Package details can be finalised and expanded as your Sonic POS offering grows.</p>
+  <div class="packages">
+    <article class="package"><span class="tag">LITE</span><h3>Lite</h3><p>For businesses that need the essential POS tools for everyday sales and basic management.</p></article>
+    <article class="package"><span class="tag">PREMIUM</span><h3>Premium</h3><p>For growing businesses that need broader operational and reporting capabilities.</p></article>
+    <article class="package"><span class="tag">ELITE</span><h3>Elite</h3><p>For businesses looking for a more complete set of management, reporting and control tools.</p></article>
+    <article class="package"><span class="tag">ENTERPRISE</span><h3>Enterprise</h3><p>For larger or more structured operations that need a scalable POS and management solution.</p></article>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="support">
+    <h3>Ready to Explore Sonic POS?</h3>
+    <p>Speak with World Tele Communication to learn more about Sonic POS, available packages and how the system can fit your business operation.</p>
+    <div class="cta">
+      <a class="primary" href="mailto:WTCSonic@Gmail.com"><i class="fa-solid fa-envelope"></i> WTCSonic@Gmail.com</a>
+      <a class="secondary" href="index.html#solutions"><i class="fa-solid fa-arrow-left"></i> Back to Solutions</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <small>© 2026 World Tele Communication<br>Professional Mobile, Website & Point of Sale Solutions</small>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('show')}
+function toggleLangMenu(){document.getElementById('langDropdown').classList.toggle('show')}
+function openAIChat(){if(window.toggleChat){toggleChat()}}
+document.addEventListener('click',function(e){
+  const n=document.getElementById('navLinks'), h=document.querySelector('.hamburger');
+  const l=document.getElementById('langDropdown'), b=document.querySelector('.lang-toggle');
+  if(n && !n.contains(e.target) && !h.contains(e.target)) n.classList.remove('show');
+  if(l && !l.contains(e.target) && !b.contains(e.target)) l.classList.remove('show');
+});
+function setLanguage(lang){
+  if(lang==='cn'){
+    document.querySelector('.lead').textContent='Sonic POS 是为零售企业设计的一体化销售与业务管理系统，帮助企业把销售、库存、员工操作和报表集中管理。';
+    document.querySelector('#features + .divider + .section .section-title').textContent='一个 POS 系统，更清晰的管理';
+  }else if(lang==='bm'){
+    document.querySelector('.lead').textContent='Sonic POS ialah penyelesaian POS dan pengurusan perniagaan untuk perniagaan runcit, membantu mengurus jualan, stok, operasi kakitangan dan laporan dalam satu sistem.';
+    document.querySelector('#features + .divider + .section .section-title').textContent='Satu Sistem POS, Lebih Banyak Kawalan';
+  }else{
+    document.querySelector('.lead').textContent='A practical point-of-sale and business management solution designed for retail businesses that want sales, stock, staff operations and reporting brought together in one system.';
+    document.querySelector('#features + .divider + .section .section-title').textContent='One POS System, More Control';
+  }
+  document.getElementById('langDropdown').classList.remove('show');
+}
+</script>
+</body>
+</html>
