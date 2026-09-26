@@ -48,8 +48,38 @@ body::before{
 .tiktok-btn{background:#000;color:#fff}.facebook-btn{background:#1877F2;color:#fff}
 .ai-btn{background:#fff;color:#111}.lang-toggle{all:unset;cursor:pointer}
 .lang-toggle i{width:58px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#fff;color:#23457c;box-shadow:0 5px 14px rgba(0,0,0,.10)}
-.lang-dropdown{display:none;position:fixed;right:12px;top:62px;gap:8px;flex-direction:column;padding:10px;border-radius:14px;background:rgba(255,255,255,.95);box-shadow:0 10px 30px rgba(0,0,0,.15)}
-.lang-dropdown.show{display:flex}.lang-dropdown button{border:0;background:transparent;cursor:pointer}
+.lang-dropdown{
+  display:none;
+  position:fixed;
+  right:12px;
+  top:62px;
+  gap:4px;
+  flex-direction:column;
+  padding:10px;
+  min-width:96px;
+  z-index:20000;
+  border-radius:14px;
+  background:rgba(255,255,255,.98);
+  border:1px solid rgba(35,69,124,.12);
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+.lang-dropdown.show{display:flex !important}
+.lang-dropdown button{
+  border:0 !important;
+  background:transparent !important;
+  color:#23457c !important;
+  cursor:pointer;
+  display:block;
+  width:100%;
+  min-height:34px;
+  padding:8px 10px !important;
+  margin:0 !important;
+  font-size:14px !important;
+  font-weight:600;
+  line-height:1.2;
+  text-align:center;
+  box-shadow:none !important;
+}
 .hero{
   max-width:1200px;margin:0 auto;padding:48px 20px 34px;text-align:center;
 }

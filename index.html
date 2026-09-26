@@ -310,14 +310,19 @@ gap: 10px;
 .lang-dropdown button {
 border: none;
 background: transparent;
-color: #2f6f88;
+color: #2f6f88 !important;
 font-size: 13px;
-padding: 4px 0;
+font-weight: 600;
+padding: 8px 4px;
+min-height: 34px;
+line-height: 1.2;
 cursor: pointer;
+display: block;
+width: 100%;
 }
 
 .lang-dropdown.show {
-display: flex;
+display: flex !important;
 }
 
 /* HERO */
@@ -1006,7 +1011,7 @@ En
 </button>
 
 <button onclick="setLanguage('cn')">
-中文
+中文
 </button>
 
 <button onclick="setLanguage('bm')">
