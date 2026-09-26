@@ -685,76 +685,6 @@ transform:translateX(20%);
 
 </style>
 
-<style>
-/* WTC SHARED HAMBURGER SIDEBAR - MATCH INDEX */
-.hamburger{
-  font-size:24px;
-  cursor:pointer;
-  user-select:none;
-  width:40px;
-  height:40px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:16px;
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,0.25);
-  box-shadow:0 8px 25px rgba(0,0,0,0.18), inset 0 1px 1px rgba(255,255,255,0.35);
-  transition:0.3s ease;
-  flex-shrink:0;
-}
-.nav-links{
-  display:none;
-  flex-direction:column;
-  position:fixed;
-  top:95px;
-  left:18px;
-  width:120px;
-  padding:20px;
-  border-radius:16px;
-  background:rgba(255,255,255,0.88);
-  backdrop-filter:blur(22px);
-  -webkit-backdrop-filter:blur(22px);
-  border:1px solid rgba(255,255,255,0.25);
-  box-shadow:0 10px 30px rgba(0,0,0,0.22), inset 0 1px 1px rgba(255,255,255,0.25);
-  list-style:none;
-  z-index:99999;
-  margin:0;
-}
-.nav-links li{ margin:10px 0; }
-.nav-links a{
-  text-decoration:none;
-  color:#2f6f88;
-  font-size:15px;
-}
-.nav-links.show{ display:flex; }
-@media (hover:hover){
-  .hamburger:hover{
-    transform:scale(1.08);
-    background:rgba(255,255,255,0.22);
-    box-shadow:0 12px 30px rgba(0,0,0,0.25), 0 0 18px rgba(255,255,255,0.35);
-  }
-}
-.hamburger:active{
-  transform:scale(0.92);
-  box-shadow:0 0 20px rgba(0,255,255,0.6), 0 0 40px rgba(0,255,255,0.35);
-}
-/* Desktop / tablet: exactly the same sidebar width as Index */
-@media (min-width:768px){
-  .nav-links{ width:180px; }
-  .top-menu{
-    gap:10px;
-    padding-left:12px;
-    padding-right:12px;
-  }
-  .top-menu .hamburger{
-    width:58px;
-    min-width:58px;
-  }
-}
-</style>
 </head>
 
 <body>
@@ -763,7 +693,9 @@ transform:translateX(20%);
 
 <div class="top-menu">
 
-<div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+<a href="index.html" class="top-btn home-btn">
+<i class="fa-solid fa-house"></i>
+</a>
 
 <a href="tel:+60163456287" class="top-btn phone-btn">
 <i class="fa-solid fa-phone"></i>
@@ -808,16 +740,6 @@ transform:translateX(20%);
 </div>
 
 </div>
-<ul class="nav-links" id="navLinks">
-<li><a href="index.html">Home</a></li>
-<li><a href="index.html#about">About</a></li>
-<li><a href="index.html#services">Services</a></li>
-<li><a href="index.html#solutions">Solutions</a></li>
-<li><a href="index.html#partners">Partners</a></li>
-<li><a href="index.html#contact">Contact</a></li>
-<li><a href="tel:+60163456287">Call</a></li>
-</ul>
-
 
 <section class=" hero-section">
 
@@ -1095,6 +1017,21 @@ document.getElementById("langDropdown")
 .ai-chat-button{
 opacity:0 !important;
 pointer-events:none !important;
+}
+
+/* DESKTOP / TABLET TOP BUTTON WIDTH — MATCH INDEX */
+@media (min-width: 768px) {
+  .top-menu {
+    gap: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .top-btn,
+  .lang-toggle i {
+    width: 58px;
+    min-width: 58px;
+  }
 }
 </style>
 
