@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Sonic POS | World Tele Communication</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
 <style>
 :root{
   --sonic:#6f2cff;
@@ -154,137 +155,374 @@ footer{padding:34px 20px 45px;text-align:center;color:#526173}
 </style>
 </head>
 <body>
-
 <div class="top-menu">
-  <a href="index.html" class="top-btn home-btn" aria-label="Home"><i class="fa-solid fa-house"></i></a>
-  <a href="tel:+60163456287" class="top-btn phone-btn" aria-label="Call"><i class="fa-solid fa-phone"></i></a>
-  <a href="https://wa.me/60163456287" class="top-btn whatsapp-btn" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-  <a href="https://my.shp.ee/6BSSa5j4" class="top-btn shopee-btn" target="_blank" aria-label="Shop"><i class="fa-solid fa-bag-shopping"></i></a>
-  <a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/" class="top-btn tiktok-btn" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-  <a href="https://facebook.com/wtcsonic" class="top-btn facebook-btn" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-  <a href="javascript:void(0)" class="top-btn ai-btn" onclick="openAIChat()" aria-label="AI"><i class="fa-solid fa-robot"></i></a>
-  <div class="lang-menu">
-    <button class="lang-toggle" onclick="toggleLangMenu()" aria-label="Language"><i class="fa-solid fa-earth-asia"></i></button>
-    <div class="lang-dropdown" id="langDropdown">
-      <button onclick="setLanguage('en')">EN</button>
-      <button onclick="setLanguage('cn')">中文</button>
-      <button onclick="setLanguage('bm')">BM</button>
-    </div>
-  </div>
+<a aria-label="Home" class="top-btn home-btn" href="index.html"><i class="fa-solid fa-house"></i></a>
+<a aria-label="Call" class="top-btn phone-btn" href="tel:+60163456287"><i class="fa-solid fa-phone"></i></a>
+<a aria-label="WhatsApp" class="top-btn whatsapp-btn" href="https://wa.me/60163456287" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+<a aria-label="Shop" class="top-btn shopee-btn" href="https://my.shp.ee/6BSSa5j4" target="_blank"><i class="fa-solid fa-bag-shopping"></i></a>
+<a aria-label="TikTok" class="top-btn tiktok-btn" href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+<a aria-label="Facebook" class="top-btn facebook-btn" href="https://facebook.com/wtcsonic" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+<a aria-label="AI" class="top-btn ai-btn" href="javascript:void(0)" onclick="openAIChat()"><i class="fa-solid fa-robot"></i></a>
+<div class="lang-menu">
+<button aria-label="Language" class="lang-toggle" onclick="toggleLangMenu()"><i class="fa-solid fa-earth-asia"></i></button>
+<div class="lang-dropdown" id="langDropdown">
+<button onclick="setLanguage('en')">EN</button>
+<button onclick="setLanguage('cn')">中文</button>
+<button onclick="setLanguage('bm')">BM</button>
 </div>
-
-
+</div>
+</div>
 <section class="hero" id="about">
-  <img src="sonic-pos.png" class="hero-logo" alt="Sonic POS logo">
-  <h1>Sonic POS</h1>
-  <p class="lead">A practical point-of-sale and business management solution designed for retail businesses that want sales, stock, staff operations and reporting brought together in one system.</p>
-  <div class="solution-line">Retail POS • Inventory • Finance Reports — in one solution</div>
-  <div class="login-actions" aria-label="Sonic POS login options">
-    <button type="button" class="login-btn login-admin" onclick="showLoginNote('Admin Login')"><i class="fa-solid fa-user-shield"></i> Admin Login</button>
-    <button type="button" class="login-btn login-backoffice" onclick="showLoginNote('Sonic Back Office Login')"><i class="fa-solid fa-building-columns"></i> Sonic Back Office Login</button>
-  </div>
-  <div class="login-note" id="loginNote" role="status"></div>
+<img alt="Sonic POS logo" class="hero-logo" src="sonic-pos.png"/>
+<h1>Sonic POS</h1>
+<p class="lead">A practical point-of-sale and business management solution designed for retail businesses that want sales, stock, staff operations and reporting brought together in one system.</p>
+<div class="solution-line">Retail POS • Inventory • Finance Reports — in one solution</div>
+<div aria-label="Sonic POS login options" class="login-actions">
+<a aria-label="Open Sonic Admin Login" class="login-btn login-admin" href="http://localhost:5173/sonic-admin"><i class="fa-solid fa-user-shield"></i> Admin Login</a>
+<button class="login-btn login-backoffice" onclick="showLoginNote('Sonic Back Office Login')" type="button"><i class="fa-solid fa-building-columns"></i> Sonic Back Office Login</button>
+</div>
+<div class="login-note" id="loginNote" role="status"></div>
 </section>
-
 <div class="divider"></div>
-
 <section class="section" id="features">
-  <h2 class="section-title">One POS System, More Control</h2>
-  <p class="section-sub">Sonic POS is built to help businesses handle everyday selling and back-office work with clearer records and practical management tools.</p>
-  <div class="feature-grid">
-    <article class="feature-card"><i class="fa-solid fa-cash-register"></i><h3>Fast Sales & Checkout</h3><p>Manage products, quantities, open items and checkout from a clear sales screen designed for day-to-day retail operations.</p></article>
-    <article class="feature-card"><i class="fa-solid fa-boxes-stacked"></i><h3>Inventory & Stock Management</h3><p>Track stock in, stock out, adjustments, suppliers, low-stock situations and movement history so your team can keep a closer eye on inventory.</p></article>
-    <article class="feature-card"><i class="fa-solid fa-chart-line"></i><h3>Sales & Analytics</h3><p>Review sales performance, orders, items sold, revenue, average sales and top-selling items through structured dashboards and reports.</p></article>
-    <article class="feature-card"><i class="fa-solid fa-file-invoice-dollar"></i><h3>Finance & Business Reports</h3><p>Generate detailed sales, product, tax, service-charge and transaction reports, with export options such as PDF and Excel where available in the system.</p></article>
-    <article class="feature-card"><i class="fa-solid fa-users-gear"></i><h3>Staff & Access Management</h3><p>Support day-to-day operations with staff, membership, access and system-management functions from the POS environment.</p></article>
-    <article class="feature-card"><i class="fa-solid fa-money-bill-transfer"></i><h3>Cash Drawer & Shift Records</h3><p>Keep cash movement and drawer history organised with staff, POS, shift and action records for easier operational checking.</p></article>
-  </div>
+<h2 class="section-title">One POS System, More Control</h2>
+<p class="section-sub">Sonic POS is built to help businesses handle everyday selling and back-office work with clearer records and practical management tools.</p>
+<div class="feature-grid">
+<article class="feature-card"><i class="fa-solid fa-cash-register"></i><h3>Fast Sales &amp; Checkout</h3><p>Manage products, quantities, open items and checkout from a clear sales screen designed for day-to-day retail operations.</p></article>
+<article class="feature-card"><i class="fa-solid fa-boxes-stacked"></i><h3>Inventory &amp; Stock Management</h3><p>Track stock in, stock out, adjustments, suppliers, low-stock situations and movement history so your team can keep a closer eye on inventory.</p></article>
+<article class="feature-card"><i class="fa-solid fa-chart-line"></i><h3>Sales &amp; Analytics</h3><p>Review sales performance, orders, items sold, revenue, average sales and top-selling items through structured dashboards and reports.</p></article>
+<article class="feature-card"><i class="fa-solid fa-file-invoice-dollar"></i><h3>Finance &amp; Business Reports</h3><p>Generate detailed sales, product, tax, service-charge and transaction reports, with export options such as PDF and Excel where available in the system.</p></article>
+<article class="feature-card"><i class="fa-solid fa-users-gear"></i><h3>Staff &amp; Access Management</h3><p>Support day-to-day operations with staff, membership, access and system-management functions from the POS environment.</p></article>
+<article class="feature-card"><i class="fa-solid fa-money-bill-transfer"></i><h3>Cash Drawer &amp; Shift Records</h3><p>Keep cash movement and drawer history organised with staff, POS, shift and action records for easier operational checking.</p></article>
+</div>
 </section>
-
 <div class="divider"></div>
-
 <section class="section" id="screens">
-  <h2 class="section-title">See Sonic POS in Action</h2>
-  <p class="section-sub">The screenshots below show the actual system areas and reporting views supplied for this Sonic POS presentation.</p>
-  <div class="screenshot-grid">
-    <article class="shot"><img src="sonic-pos-feature-1.jpg" alt="Sonic POS sales and checkout screen"><div class="shot-body"><h3>Sales & Checkout</h3><p>Product selection, quantities, cart control and checkout are brought together on the main selling screen.</p></div></article>
-    <article class="shot"><img src="sonic-pos-feature-2.jpg" alt="Sonic POS management dashboard"><div class="shot-body"><h3>POS Management</h3><p>Access inventory, membership, staff, cash movement, reports, settings and Back Office functions from the management area.</p></div></article>
-    <article class="shot"><img src="sonic-pos-feature-3.jpg" alt="Sonic POS analytics dashboard"><div class="shot-body"><h3>Analytics Dashboard</h3><p>Quickly view orders, items, revenue, average order values and cash movement at a glance.</p></div></article>
-    <article class="shot"><img src="sonic-pos-feature-4.jpg" alt="Sonic POS transaction sales report"><div class="shot-body"><h3>Transaction Reports</h3><p>Review receipts, products, quantities, payments, cashier information, dates, status and reprint actions.</p></div></article>
-    <article class="shot"><img src="sonic-pos-feature-5.jpg" alt="Sonic POS sales summary report"><div class="shot-body"><h3>Sales Summary</h3><p>Compare total sales, gross sales, net sales, orders, items, discounts, refunds and other sales figures.</p></div></article>
-    <article class="shot"><img src="sonic-pos-feature-6.jpg" alt="Sonic POS product sales report"><div class="shot-body"><h3>Product Sales Report</h3><p>Understand product quantities, gross sales, refunds, discounts, selling prices and net sales.</p></div></article>
-    <article class="shot"><img src="sonic-pos-feature-7.jpg" alt="Sonic POS tax and service charge finance report"><div class="shot-body"><h3>Finance — Tax & Service Charge</h3><p>Review tax, refunds, service charges and detailed transaction information with export options.</p></div></article>
-    <article class="shot"><img src="sonic-pos-feature-8.jpg" alt="Sonic POS product finance report"><div class="shot-body"><h3>Finance — Product Report</h3><p>See selling value, cost value, profit, margin, adjustable pricing and refund information.</p></div></article>
-    <article class="shot"><img src="sonic-pos-feature-9.jpg" alt="Sonic POS stock management"><div class="shot-body"><h3>Stock Management</h3><p>Track stock movements, quantities, suppliers, cost and selling prices, with stock-in, stock-out and adjustment workflows.</p></div></article>
-    <article class="shot"><img src="sonic-pos-feature-10.jpg" alt="Sonic POS cash drawer history"><div class="shot-body"><h3>Cash Drawer</h3><p>Manage drawer operations and review historical staff, POS, shift and action records.</p></div></article>
-  </div>
+<h2 class="section-title">See Sonic POS in Action</h2>
+<p class="section-sub">The screenshots below show the actual system areas and reporting views supplied for this Sonic POS presentation.</p>
+<div class="screenshot-grid">
+<article class="shot"><img alt="Sonic POS sales and checkout screen" src="sonic-pos-feature-1.jpg"/><div class="shot-body"><h3>Sales &amp; Checkout</h3><p>Product selection, quantities, cart control and checkout are brought together on the main selling screen.</p></div></article>
+<article class="shot"><img alt="Sonic POS management dashboard" src="sonic-pos-feature-2.jpg"/><div class="shot-body"><h3>POS Management</h3><p>Access inventory, membership, staff, cash movement, reports, settings and Back Office functions from the management area.</p></div></article>
+<article class="shot"><img alt="Sonic POS analytics dashboard" src="sonic-pos-feature-3.jpg"/><div class="shot-body"><h3>Analytics Dashboard</h3><p>Quickly view orders, items, revenue, average order values and cash movement at a glance.</p></div></article>
+<article class="shot"><img alt="Sonic POS transaction sales report" src="sonic-pos-feature-4.jpg"/><div class="shot-body"><h3>Transaction Reports</h3><p>Review receipts, products, quantities, payments, cashier information, dates, status and reprint actions.</p></div></article>
+<article class="shot"><img alt="Sonic POS sales summary report" src="sonic-pos-feature-5.jpg"/><div class="shot-body"><h3>Sales Summary</h3><p>Compare total sales, gross sales, net sales, orders, items, discounts, refunds and other sales figures.</p></div></article>
+<article class="shot"><img alt="Sonic POS product sales report" src="sonic-pos-feature-6.jpg"/><div class="shot-body"><h3>Product Sales Report</h3><p>Understand product quantities, gross sales, refunds, discounts, selling prices and net sales.</p></div></article>
+<article class="shot"><img alt="Sonic POS tax and service charge finance report" src="sonic-pos-feature-7.jpg"/><div class="shot-body"><h3>Finance — Tax &amp; Service Charge</h3><p>Review tax, refunds, service charges and detailed transaction information with export options.</p></div></article>
+<article class="shot"><img alt="Sonic POS product finance report" src="sonic-pos-feature-8.jpg"/><div class="shot-body"><h3>Finance — Product Report</h3><p>See selling value, cost value, profit, margin, adjustable pricing and refund information.</p></div></article>
+<article class="shot"><img alt="Sonic POS stock management" src="sonic-pos-feature-9.jpg"/><div class="shot-body"><h3>Stock Management</h3><p>Track stock movements, quantities, suppliers, cost and selling prices, with stock-in, stock-out and adjustment workflows.</p></div></article>
+<article class="shot"><img alt="Sonic POS cash drawer history" src="sonic-pos-feature-10.jpg"/><div class="shot-body"><h3>Cash Drawer</h3><p>Manage drawer operations and review historical staff, POS, shift and action records.</p></div></article>
+</div>
 </section>
-
 <div class="divider"></div>
-
 <section class="section">
-  <div class="support">
-    <h3>Support When You Need It</h3>
-    <p>Sonic POS is supported with <strong>24-hour online service</strong>, giving businesses a way to get assistance and continue working with greater confidence.</p>
-    <div class="cta">
-      <a class="primary" href="tel:+60163456287"><i class="fa-solid fa-phone"></i> Call WTC</a>
-      <a class="secondary" href="https://wa.me/60163456287" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-    </div>
-  </div>
+<div class="support">
+<h3>Support When You Need It</h3>
+<p>Sonic POS is supported with <strong>24-hour online service</strong>, giving businesses a way to get assistance and continue working with greater confidence.</p>
+<div class="cta">
+<a class="primary" href="tel:+60163456287"><i class="fa-solid fa-phone"></i> Call WTC</a>
+<a class="secondary" href="https://wa.me/60163456287" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+</div>
+</div>
 </section>
-
 <div class="divider"></div>
-
 <section class="section" id="packages">
-  <h2 class="section-title">Sonic POS Packages</h2>
-  <p class="section-sub">Choose the package that matches your business needs. Package details can be finalised and expanded as your Sonic POS offering grows.</p>
-  <div class="packages">
-    <article class="package"><span class="tag">LITE</span><h3>Lite</h3><p>For businesses that need the essential POS tools for everyday sales and basic management.</p></article>
-    <article class="package"><span class="tag">PREMIUM</span><h3>Premium</h3><p>For growing businesses that need broader operational and reporting capabilities.</p></article>
-    <article class="package"><span class="tag">ELITE</span><h3>Elite</h3><p>For businesses looking for a more complete set of management, reporting and control tools.</p></article>
-    <article class="package"><span class="tag">ENTERPRISE</span><h3>Enterprise</h3><p>For larger or more structured operations that need a scalable POS and management solution.</p></article>
-  </div>
+<h2 class="section-title">Sonic POS Packages</h2>
+<p class="section-sub">Choose the package that matches your business needs. Package details can be finalised and expanded as your Sonic POS offering grows.</p>
+<div class="packages">
+<article class="package"><span class="tag">LITE</span><h3>Lite</h3><p>For businesses that need the essential POS tools for everyday sales and basic management.</p></article>
+<article class="package"><span class="tag">PREMIUM</span><h3>Premium</h3><p>For growing businesses that need broader operational and reporting capabilities.</p></article>
+<article class="package"><span class="tag">ELITE</span><h3>Elite</h3><p>For businesses looking for a more complete set of management, reporting and control tools.</p></article>
+<article class="package"><span class="tag">ENTERPRISE</span><h3>Enterprise</h3><p>For larger or more structured operations that need a scalable POS and management solution.</p></article>
+</div>
 </section>
-
 <section class="section" id="contact">
-  <div class="support">
-    <h3>Ready to Explore Sonic POS?</h3>
-    <p>Speak with World Tele Communication to learn more about Sonic POS, available packages and how the system can fit your business operation.</p>
-    <div class="cta">
-      <a class="primary" href="mailto:WTCSonic@Gmail.com"><i class="fa-solid fa-envelope"></i> WTCSonic@Gmail.com</a>
-    </div>
-  </div>
+<div class="support">
+<h3>Ready to Explore Sonic POS?</h3>
+<p>Speak with World Tele Communication to learn more about Sonic POS, available packages and how the system can fit your business operation.</p>
+<div class="cta">
+<a class="primary" href="mailto:WTCSonic@Gmail.com"><i class="fa-solid fa-envelope"></i> WTCSonic@Gmail.com</a>
+</div>
+</div>
 </section>
-
 <footer>
-  <small>© 2026 World Tele Communication<br>Professional Mobile, Website & Point of Sale Solutions</small>
+<small>© 2026 World Tele Communication<br/>Professional Mobile, Website &amp; Point of Sale Solutions</small>
 </footer>
-
 <script>
+const sonicPosTranslations = {
+  en: {
+    lead: "A practical point-of-sale and business management solution designed for retail businesses that want sales, stock, staff operations and reporting brought together in one system.",
+    solutionLine: "Retail POS • Inventory • Finance Reports — in one solution",
+    adminLogin: "Admin Login",
+    adminAria: "Open Sonic Admin Login",
+    backOfficeLogin: "Sonic Back Office Login",
+    loginOptionsAria: "Sonic POS login options",
+    featureTitle: "One POS System, More Control",
+    featureSub: "Sonic POS is built to help businesses handle everyday selling and back-office work with clearer records and practical management tools.",
+    features: [
+      ["Fast Sales & Checkout", "Manage products, quantities, open items and checkout from a clear sales screen designed for day-to-day retail operations."],
+      ["Inventory & Stock Management", "Track stock in, stock out, adjustments, suppliers, low-stock situations and movement history so your team can keep a closer eye on inventory."],
+      ["Sales & Analytics", "Review sales performance, orders, items sold, revenue, average sales and top-selling items through structured dashboards and reports."],
+      ["Finance & Business Reports", "Generate detailed sales, product, tax, service-charge and transaction reports, with export options such as PDF and Excel where available in the system."],
+      ["Staff & Access Management", "Support day-to-day operations with staff, membership, access and system-management functions from the POS environment."],
+      ["Cash Drawer & Shift Records", "Keep cash movement and drawer history organised with staff, POS, shift and action records for easier operational checking."]
+    ],
+    screensTitle: "See Sonic POS in Action",
+    screensSub: "The screenshots below show the actual system areas and reporting views supplied for this Sonic POS presentation.",
+    screens: [
+      ["Sales & Checkout", "Product selection, quantities, cart control and checkout are brought together on the main selling screen."],
+      ["POS Management", "Access inventory, membership, staff, cash movement, reports, settings and Back Office functions from the management area."],
+      ["Analytics Dashboard", "Quickly view orders, items, revenue, average order values and cash movement at a glance."],
+      ["Transaction Reports", "Review receipts, products, quantities, payments, cashier information, dates, status and reprint actions."],
+      ["Sales Summary", "Compare total sales, gross sales, net sales, orders, items, discounts, refunds and other sales figures."],
+      ["Product Sales Report", "Understand product quantities, gross sales, refunds, discounts, selling prices and net sales."],
+      ["Finance — Tax & Service Charge", "Review tax, refunds, service charges and detailed transaction information with export options."],
+      ["Finance — Product Report", "See selling value, cost value, profit, margin, adjustable pricing and refund information."],
+      ["Stock Management", "Track stock movements, quantities, suppliers, cost and selling prices, with stock-in, stock-out and adjustment workflows."],
+      ["Cash Drawer", "Manage drawer operations and review historical staff, POS, shift and action records."]
+    ],
+    supportTitle: "Support When You Need It",
+    supportText: "Sonic POS is supported with 24-hour online service, giving businesses a way to get assistance and continue working with greater confidence.",
+    callWtc: "Call WTC",
+    whatsapp: "WhatsApp",
+    packagesTitle: "Sonic POS Packages",
+    packagesSub: "Choose the package that matches your business needs. Package details can be finalised and expanded as your Sonic POS offering grows.",
+    packages: [
+      ["Lite", "For businesses that need the essential POS tools for everyday sales and basic management."],
+      ["Premium", "For growing businesses that need broader operational and reporting capabilities."],
+      ["Elite", "For businesses looking for a more complete set of management, reporting and control tools."],
+      ["Enterprise", "For larger or more structured operations that need a scalable POS and management solution."]
+    ],
+    contactTitle: "Ready to Explore Sonic POS?",
+    contactText: "Speak with World Tele Communication to learn more about Sonic POS, available packages and how the system can fit your business operation.",
+    footer: "© 2026 World Tele Communication|Professional Mobile, Website & Point of Sale Solutions",
+    alt: [
+      "Sonic POS logo",
+      "Sonic POS sales and checkout screen",
+      "Sonic POS management dashboard",
+      "Sonic POS analytics dashboard",
+      "Sonic POS transaction sales report",
+      "Sonic POS sales summary report",
+      "Sonic POS product sales report",
+      "Sonic POS tax and service charge finance report",
+      "Sonic POS product finance report",
+      "Sonic POS stock management",
+      "Sonic POS cash drawer history"
+    ]
+  },
+  cn: {
+    lead: "Sonic POS 是专为零售企业设计的实用销售点与业务管理系统，让销售、库存、员工操作和报表集中在一个系统中管理。",
+    solutionLine: "零售 POS • 库存管理 • 财务报表 — 一站式方案",
+    adminLogin: "管理员登录",
+    adminAria: "打开 Sonic 管理员登录",
+    backOfficeLogin: "Sonic 后台系统登录",
+    loginOptionsAria: "Sonic POS 登录选项",
+    featureTitle: "一个 POS 系统，更全面的管理",
+    featureSub: "Sonic POS 帮助企业处理日常销售和后台工作，让记录更清晰，并提供实用的管理工具。",
+    features: [
+      ["快速销售与结账", "在清晰的销售界面中管理产品、数量、临时商品和结账流程，适合日常零售业务操作。"],
+      ["库存与存货管理", "管理入库、出库、库存调整、供应商、低库存情况和库存变动记录，让团队更清楚地掌握库存状况。"],
+      ["销售与数据分析", "通过结构化的仪表板和报表查看销售表现、订单、销售数量、营业额、平均销售额和热销商品。"],
+      ["财务与业务报表", "生成详细的销售、产品、税务、服务费和交易报表；系统提供的报表可按实际功能导出为 PDF、Excel 等格式。"],
+      ["员工与权限管理", "通过 POS 管理环境处理员工、会员、权限和系统管理等日常运营功能。"],
+      ["现金抽屉与班次记录", "整理现金流动和钱柜历史，并记录员工、POS、班次和操作资料，方便日常核对。"]
+    ],
+    screensTitle: "查看 Sonic POS 实际操作",
+    screensSub: "以下截图展示本 Sonic POS 页面所提供的实际系统功能区域和报表画面。",
+    screens: [
+      ["销售与结账", "产品选择、数量、购物车管理和结账功能集中在主要销售界面中。"],
+      ["POS 管理", "在管理区域中使用库存、会员、员工、现金流动、报表、设置和后台管理等功能。"],
+      ["数据分析仪表板", "快速查看订单、商品数量、营业额、平均订单金额和现金流动。"],
+      ["交易报表", "查看收据、产品、数量、付款方式、收银员资料、日期、状态和重新打印操作。"],
+      ["销售汇总", "查看总销售额、毛销售额、净销售额、订单、商品数量、折扣、退款及其他销售数据。"],
+      ["产品销售报表", "了解产品销售数量、毛销售额、退款、折扣、销售价格和净销售额。"],
+      ["财务 — 税务与服务费", "查看税务、退款、服务费和详细交易资料，并使用系统提供的导出功能。"],
+      ["财务 — 产品报表", "查看销售价值、成本价值、利润、利润率、可调整价格和退款资料。"],
+      ["库存管理", "管理库存变动、数量、供应商、成本价和销售价，并处理入库、出库和库存调整。"],
+      ["现金抽屉", "管理钱柜操作，并查看员工、POS、班次和操作记录的历史资料。"]
+    ],
+    supportTitle: "需要帮助时，随时获得支持",
+    supportText: "Sonic POS 提供 24 小时在线服务，让企业能够获得协助，并更安心地持续处理日常业务。",
+    callWtc: "联系 WTC",
+    whatsapp: "WhatsApp",
+    packagesTitle: "Sonic POS 配套",
+    packagesSub: "根据您的业务需求选择合适的配套。随着 Sonic POS 服务的发展，配套内容可以进一步确定和扩充。",
+    packages: [
+      ["Lite", "适合需要基本 POS 工具来处理日常销售和基础管理的企业。"],
+      ["Premium", "适合正在成长，并需要更完整运营及报表功能的企业。"],
+      ["Elite", "适合需要更全面管理、报表和控制功能的企业。"],
+      ["Enterprise", "适合规模较大或运营结构较完整，并需要可扩展 POS 与管理系统的企业。"]
+    ],
+    contactTitle: "准备好了解 Sonic POS 了吗？",
+    contactText: "联系 World Tele Communication，进一步了解 Sonic POS、现有配套，以及系统如何配合您的业务运作。",
+    footer: "© 2026 World Tele Communication|专业移动、网站与销售点解决方案",
+    alt: [
+      "Sonic POS 标志",
+      "Sonic POS 销售与结账画面",
+      "Sonic POS 管理仪表板",
+      "Sonic POS 数据分析仪表板",
+      "Sonic POS 交易销售报表",
+      "Sonic POS 销售汇总报表",
+      "Sonic POS 产品销售报表",
+      "Sonic POS 税务与服务费财务报表",
+      "Sonic POS 产品财务报表",
+      "Sonic POS 库存管理",
+      "Sonic POS 现金抽屉历史记录"
+    ]
+  },
+  bm: {
+    lead: "Sonic POS ialah sistem jualan dan pengurusan perniagaan yang praktikal untuk perniagaan runcit, yang menggabungkan jualan, stok, operasi kakitangan dan laporan dalam satu sistem.",
+    solutionLine: "POS Runcit • Pengurusan Stok • Laporan Kewangan — dalam satu penyelesaian",
+    adminLogin: "Log Masuk Pentadbir",
+    adminAria: "Buka Log Masuk Pentadbir Sonic",
+    backOfficeLogin: "Log Masuk Sistem Belakang Sonic",
+    loginOptionsAria: "Pilihan log masuk Sonic POS",
+    featureTitle: "Satu Sistem POS, Kawalan Lebih Lengkap",
+    featureSub: "Sonic POS membantu perniagaan mengurus jualan harian dan kerja pejabat belakang dengan rekod yang lebih jelas serta alat pengurusan yang praktikal.",
+    features: [
+      ["Jualan & Pembayaran Pantas", "Urus produk, kuantiti, item terbuka dan pembayaran melalui skrin jualan yang jelas untuk operasi perniagaan runcit harian."],
+      ["Pengurusan Inventori & Stok", "Jejaki stok masuk, stok keluar, pelarasan, pembekal, keadaan stok rendah dan sejarah pergerakan supaya pasukan dapat memantau inventori dengan lebih baik."],
+      ["Jualan & Analitik", "Semak prestasi jualan, pesanan, item terjual, hasil jualan, purata jualan dan item terlaris melalui papan pemuka serta laporan yang tersusun."],
+      ["Laporan Kewangan & Perniagaan", "Jana laporan jualan, produk, cukai, caj perkhidmatan dan transaksi yang terperinci, dengan pilihan eksport seperti PDF dan Excel jika disediakan oleh sistem."],
+      ["Pengurusan Kakitangan & Akses", "Sokong operasi harian dengan fungsi kakitangan, keahlian, akses dan pengurusan sistem dalam persekitaran POS."],
+      ["Laci Tunai & Rekod Syif", "Susun pergerakan tunai dan sejarah laci tunai dengan rekod kakitangan, POS, syif dan tindakan untuk semakan operasi yang lebih mudah."]
+    ],
+    screensTitle: "Lihat Sonic POS Dalam Operasi",
+    screensSub: "Tangkapan skrin di bawah menunjukkan bahagian sistem dan paparan laporan sebenar yang disediakan untuk penerangan Sonic POS ini.",
+    screens: [
+      ["Jualan & Pembayaran", "Pemilihan produk, kuantiti, kawalan troli dan pembayaran digabungkan dalam skrin jualan utama."],
+      ["Pengurusan POS", "Akses inventori, keahlian, kakitangan, pergerakan tunai, laporan, tetapan dan fungsi pejabat belakang dari bahagian pengurusan."],
+      ["Papan Pemuka Analitik", "Lihat pesanan, item, hasil jualan, nilai purata pesanan dan pergerakan tunai dengan pantas."],
+      ["Laporan Transaksi", "Semak resit, produk, kuantiti, pembayaran, maklumat juruwang, tarikh, status dan tindakan cetak semula."],
+      ["Ringkasan Jualan", "Bandingkan jumlah jualan, jualan kasar, jualan bersih, pesanan, item, diskaun, bayaran balik dan angka jualan lain."],
+      ["Laporan Jualan Produk", "Lihat kuantiti produk, jualan kasar, bayaran balik, diskaun, harga jualan dan jualan bersih."],
+      ["Kewangan — Cukai & Caj Perkhidmatan", "Semak cukai, bayaran balik, caj perkhidmatan dan maklumat transaksi terperinci dengan pilihan eksport."],
+      ["Kewangan — Laporan Produk", "Lihat nilai jualan, nilai kos, keuntungan, margin, harga boleh ubah dan maklumat bayaran balik."],
+      ["Pengurusan Stok", "Jejaki pergerakan stok, kuantiti, pembekal, kos dan harga jualan, dengan aliran kerja stok masuk, stok keluar dan pelarasan."],
+      ["Laci Tunai", "Urus operasi laci tunai dan semak sejarah kakitangan, POS, syif serta rekod tindakan."]
+    ],
+    supportTitle: "Sokongan Apabila Anda Memerlukannya",
+    supportText: "Sonic POS menyediakan perkhidmatan dalam talian 24 jam, supaya perniagaan boleh mendapatkan bantuan dan meneruskan operasi dengan lebih yakin.",
+    callWtc: "Hubungi WTC",
+    whatsapp: "WhatsApp",
+    packagesTitle: "Pakej Sonic POS",
+    packagesSub: "Pilih pakej yang sesuai dengan keperluan perniagaan anda. Butiran pakej boleh dimuktamadkan dan diperluaskan mengikut perkembangan tawaran Sonic POS.",
+    packages: [
+      ["Lite", "Untuk perniagaan yang memerlukan alat POS asas bagi jualan harian dan pengurusan asas."],
+      ["Premium", "Untuk perniagaan yang berkembang dan memerlukan keupayaan operasi serta pelaporan yang lebih luas."],
+      ["Elite", "Untuk perniagaan yang memerlukan set fungsi pengurusan, pelaporan dan kawalan yang lebih lengkap."],
+      ["Enterprise", "Untuk operasi yang lebih besar atau lebih tersusun dan memerlukan penyelesaian POS serta pengurusan yang boleh dikembangkan."]
+    ],
+    contactTitle: "Bersedia Untuk Mengenali Sonic POS?",
+    contactText: "Hubungi World Tele Communication untuk mengetahui lebih lanjut tentang Sonic POS, pakej yang tersedia dan cara sistem ini boleh disesuaikan dengan operasi perniagaan anda.",
+    footer: "© 2026 World Tele Communication|Profesional Mudah Alih, Laman Web & Penyelesaian Titik Jualan",
+    alt: [
+      "Logo Sonic POS",
+      "Skrin jualan dan pembayaran Sonic POS",
+      "Papan pemuka pengurusan Sonic POS",
+      "Papan pemuka analitik Sonic POS",
+      "Laporan transaksi jualan Sonic POS",
+      "Laporan ringkasan jualan Sonic POS",
+      "Laporan jualan produk Sonic POS",
+      "Laporan kewangan cukai dan caj perkhidmatan Sonic POS",
+      "Laporan kewangan produk Sonic POS",
+      "Pengurusan stok Sonic POS",
+      "Sejarah laci tunai Sonic POS"
+    ]
+  }
+};
+
 function toggleLangMenu(){document.getElementById('langDropdown').classList.toggle('show')}
 function openAIChat(){if(window.toggleChat){toggleChat()}}
 document.addEventListener('click',function(e){
   const l=document.getElementById('langDropdown'), b=document.querySelector('.lang-toggle');
   if(l && !l.contains(e.target) && !b.contains(e.target)) l.classList.remove('show');
 });
-function showLoginNote(name){
-  const note=document.getElementById('loginNote');
-  note.textContent=name + ' is ready as a clickable action. The actual login destination has not been supplied yet, so no login URL has been invented.';
-  note.classList.add('show');
-}
+
 function setLanguage(lang){
-  if(lang==='cn'){
-    document.querySelector('.lead').textContent='Sonic POS 是为零售企业设计的一体化销售与业务管理系统，帮助企业把销售、库存、员工操作和报表集中管理。';
-    document.querySelector('#features + .divider + .section .section-title').textContent='一个 POS 系统，更清晰的管理';
-  }else if(lang==='bm'){
-    document.querySelector('.lead').textContent='Sonic POS ialah penyelesaian POS dan pengurusan perniagaan untuk perniagaan runcit, membantu mengurus jualan, stok, operasi kakitangan dan laporan dalam satu sistem.';
-    document.querySelector('#features + .divider + .section .section-title').textContent='Satu Sistem POS, Lebih Banyak Kawalan';
-  }else{
-    document.querySelector('.lead').textContent='A practical point-of-sale and business management solution designed for retail businesses that want sales, stock, staff operations and reporting brought together in one system.';
-    document.querySelector('#features + .divider + .section .section-title').textContent='One POS System, More Control';
+  const t = sonicPosTranslations[lang] || sonicPosTranslations.en;
+  document.documentElement.lang = lang === 'cn' ? 'zh-CN' : lang === 'bm' ? 'ms' : 'en';
+
+  document.querySelector('.lead').textContent = t.lead;
+  document.querySelector('.solution-line').textContent = t.solutionLine;
+
+  const admin = document.querySelector('.login-admin');
+  if(admin){
+    admin.innerHTML = '<i class="fa-solid fa-user-shield"></i> ' + t.adminLogin;
+    admin.setAttribute('aria-label', t.adminAria);
   }
+  const backoffice = document.querySelector('.login-backoffice');
+  if(backoffice){
+    backoffice.innerHTML = '<i class="fa-solid fa-building-columns"></i> ' + t.backOfficeLogin;
+    backoffice.setAttribute('onclick', "showLoginNote('" + t.backOfficeLogin.replace(/'/g, "\\'") + "')");
+  }
+  const loginActions = document.querySelector('.login-actions');
+  if(loginActions) loginActions.setAttribute('aria-label', t.loginOptionsAria);
+
+  document.querySelector('#features .section-title').textContent = t.featureTitle;
+  document.querySelector('#features .section-sub').textContent = t.featureSub;
+  document.querySelectorAll('#features .feature-card').forEach((card,i)=>{
+    if(t.features[i]){
+      card.querySelector('h3').textContent = t.features[i][0];
+      card.querySelector('p').textContent = t.features[i][1];
+    }
+  });
+
+  document.querySelector('#screens .section-title').textContent = t.screensTitle;
+  document.querySelector('#screens .section-sub').textContent = t.screensSub;
+  document.querySelectorAll('#screens .shot').forEach((shot,i)=>{
+    if(t.screens[i]){
+      shot.querySelector('h3').textContent = t.screens[i][0];
+      shot.querySelector('p').textContent = t.screens[i][1];
+    }
+  });
+
+  document.querySelector('#screens').querySelectorAll('img').forEach((img,i)=>{
+    if(t.alt[i]) img.alt = t.alt[i];
+  });
+
+  const support = document.querySelectorAll('.support');
+  if(support[0]){
+    support[0].querySelector('h3').textContent = t.supportTitle;
+    support[0].querySelector('p').textContent = t.supportText;
+    const cta = support[0].querySelectorAll('.cta a');
+    if(cta[0]) cta[0].innerHTML = '<i class="fa-solid fa-phone"></i> ' + t.callWtc;
+    if(cta[1]) cta[1].innerHTML = '<i class="fa-brands fa-whatsapp"></i> ' + t.whatsapp;
+  }
+
+  document.querySelector('#packages .section-title').textContent = t.packagesTitle;
+  document.querySelector('#packages .section-sub').textContent = t.packagesSub;
+  document.querySelectorAll('#packages .package').forEach((card,i)=>{
+    if(t.packages[i]){
+      card.querySelector('h3').textContent = t.packages[i][0];
+      card.querySelector('p').textContent = t.packages[i][1];
+    }
+  });
+
+  const contact = document.querySelector('#contact');
+  if(contact){
+    contact.querySelector('h3').textContent = t.contactTitle;
+    contact.querySelector('p').textContent = t.contactText;
+  }
+
+  const footer = document.querySelector('footer small');
+  if(footer){
+    const parts=t.footer.split('|');
+    footer.innerHTML = parts[0] + '<br>' + parts[1];
+  }
+
+  document.title = lang === 'cn' ? 'Sonic POS | World Tele Communication' :
+                   lang === 'bm' ? 'Sonic POS | World Tele Communication' :
+                   'Sonic POS | World Tele Communication';
+
   document.getElementById('langDropdown').classList.remove('show');
+  try { localStorage.setItem('sonicPosLanguage', lang); } catch(e) {}
 }
+
+window.addEventListener('DOMContentLoaded', ()=>{
+  let saved='en';
+  try { saved=localStorage.getItem('sonicPosLanguage') || 'en'; } catch(e) {}
+  setLanguage(saved);
+});
 </script>
 </body>
 </html>
