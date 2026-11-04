@@ -98,9 +98,11 @@ body::before{
 }
 .login-actions{
   display:flex;
-  flex-wrap:wrap;
+  flex-direction:column;
+  align-items:center;
   justify-content:center;
   gap:14px;
+  width:min(100%,560px);
   margin:18px auto 0;
 }
 .login-btn{
@@ -108,7 +110,10 @@ body::before{
   align-items:center;
   justify-content:center;
   gap:9px;
-  min-width:210px;
+  width:100%;
+  max-width:560px;
+  min-width:0;
+  box-sizing:border-box;
   padding:13px 22px;
   border:1px solid var(--line);
   border-radius:999px;
@@ -209,7 +214,7 @@ footer{padding:34px 20px 45px;text-align:center;color:#526173}
 <div class="solution-line">Retail POS • Inventory • Finance Reports — in one solution</div>
 <div aria-label="Sonic POS login options" class="login-actions">
 <a aria-label="Open Sonic Admin Login" class="login-btn login-admin" href="https://admin.wtcsonic.com/"><i class="fa-solid fa-user-shield"></i> Admin Login</a>
-<button class="login-btn login-backoffice" onclick="showLoginNote('Sonic Back Office Login')" type="button"><i class="fa-solid fa-building-columns"></i> Sonic Back Office Login</button>
+<a aria-label="Open Sonic Back Office Login" class="login-btn login-backoffice" href="https://posbackoffice.wtcsonic.com/"><i class="fa-solid fa-building-columns"></i> Sonic Back Office Login</a>
 </div>
 <div class="login-note" id="loginNote" role="status"></div>
 </section>
@@ -483,7 +488,7 @@ function setLanguage(lang){
   const backoffice = document.querySelector('.login-backoffice');
   if(backoffice){
     backoffice.innerHTML = '<i class="fa-solid fa-building-columns"></i> ' + t.backOfficeLogin;
-    backoffice.setAttribute('onclick', "showLoginNote('" + t.backOfficeLogin.replace(/'/g, "\\'") + "')");
+    backoffice.setAttribute('aria-label', t.backOfficeLogin);
   }
   const loginActions = document.querySelector('.login-actions');
   if(loginActions) loginActions.setAttribute('aria-label', t.loginOptionsAria);
