@@ -125,6 +125,7 @@ body::before{
   transition:.2s;
 }
 .login-btn:hover{transform:translateY(-2px)}
+.login-online{background:#0b806b;color:#fff}
 .login-admin{background:#6f2cff;color:#fff}
 .login-backoffice{background:#fff;color:#23457c}
 .login-note{
@@ -213,6 +214,7 @@ footer{padding:34px 20px 45px;text-align:center;color:#526173}
 <p class="lead">A practical point-of-sale and business management solution designed for retail businesses that want sales, stock, staff operations and reporting brought together in one system.</p>
 <div class="solution-line">Retail POS • Inventory • Finance Reports — in one solution</div>
 <div aria-label="Sonic POS login options" class="login-actions">
+<a aria-label="Open Sonic POS Online" class="login-btn login-online" href="https://sonicposonline.wtcsonic.com/"><i class="fa-solid fa-globe"></i> Sonic POS Online</a>
 <a aria-label="Open Sonic Admin Login" class="login-btn login-admin" href="https://admin.wtcsonic.com/"><i class="fa-solid fa-user-shield"></i> Admin Login</a>
 <a aria-label="Open Sonic Back Office Login" class="login-btn login-backoffice" href="https://posbackoffice.wtcsonic.com/"><i class="fa-solid fa-building-columns"></i> Sonic Back Office Login</a>
 </div>
@@ -287,6 +289,8 @@ const sonicPosTranslations = {
   en: {
     lead: "A practical point-of-sale and business management solution designed for retail businesses that want sales, stock, staff operations and reporting brought together in one system.",
     solutionLine: "Retail POS • Inventory • Finance Reports — in one solution",
+    onlinePosLogin: "Sonic POS Online",
+    onlinePosAria: "Open Sonic POS Online",
     adminLogin: "Admin Login",
     adminAria: "Open Sonic Admin Login",
     backOfficeLogin: "Sonic Back Office Login",
@@ -347,6 +351,8 @@ const sonicPosTranslations = {
   cn: {
     lead: "Sonic POS 是专为零售企业设计的实用销售点与业务管理系统，让销售、库存、员工操作和报表集中在一个系统中管理。",
     solutionLine: "零售 POS • 库存管理 • 财务报表 — 一站式方案",
+    onlinePosLogin: "Sonic POS 在线版",
+    onlinePosAria: "打开 Sonic POS 在线版",
     adminLogin: "管理员登录",
     adminAria: "打开 Sonic 管理员登录",
     backOfficeLogin: "Sonic 后台系统登录",
@@ -407,6 +413,8 @@ const sonicPosTranslations = {
   bm: {
     lead: "Sonic POS ialah sistem jualan dan pengurusan perniagaan yang praktikal untuk perniagaan runcit, yang menggabungkan jualan, stok, operasi kakitangan dan laporan dalam satu sistem.",
     solutionLine: "POS Runcit • Pengurusan Stok • Laporan Kewangan — dalam satu penyelesaian",
+    onlinePosLogin: "Sonic POS Dalam Talian",
+    onlinePosAria: "Buka Sonic POS Dalam Talian",
     adminLogin: "Log Masuk Pentadbir",
     adminAria: "Buka Log Masuk Pentadbir Sonic",
     backOfficeLogin: "Log Masuk Sistem Belakang Sonic",
@@ -480,6 +488,11 @@ function setLanguage(lang){
   document.querySelector('.lead').textContent = t.lead;
   document.querySelector('.solution-line').textContent = t.solutionLine;
 
+  const onlinePos = document.querySelector('.login-online');
+  if(onlinePos){
+    onlinePos.innerHTML = '<i class="fa-solid fa-globe"></i> ' + t.onlinePosLogin;
+    onlinePos.setAttribute('aria-label', t.onlinePosAria);
+  }
   const admin = document.querySelector('.login-admin');
   if(admin){
     admin.innerHTML = '<i class="fa-solid fa-user-shield"></i> ' + t.adminLogin;
