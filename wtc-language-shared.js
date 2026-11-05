@@ -1,11 +1,15 @@
-/* WTC Sonic — reliable shared language selector for all pages.
-   Page-specific setLanguage(lang) functions remain the source of translations. */
+/* WTC Sonic — shared three-language selector.
+   Mobile fix: move the open dropdown to <body> so horizontal-scroll navigation
+   cannot clip it. Page-specific setLanguage(lang) functions remain the
+   translation source for each page. */
 (() => {
   "use strict";
 
   const STORAGE_KEY = "wtc-language";
   const LANGUAGES = new Set(["en", "bm", "cn"]);
   const LABELS = { en: "EN", bm: "BM", cn: "中文" };
+  const menuForToggle = new WeakMap();
+  const menuState = new WeakMap();
 
   function readLanguage() {
     try {
@@ -23,14 +27,75 @@
     return "en";
   }
 
+  function rememberMenus() {
+    document.querySelectorAll(".lang-toggle").forEach(toggle => {
+      const scope = toggle.closest(".lang-menu, .lang-menu-intro");
+      const menu = scope && scope.querySelector(".lang-dropdown");
+      if (menu) menuForToggle.set(toggle, menu);
+    });
+  }
+
+  function restoreMenuToOriginalParent(menu) {
+    const state = menuState.get(menu);
+    if (!state) return;
+    if (state.placeholder && state.placeholder.parentNode) {
+      state.placeholder.parentNode.insertBefore(menu, state.placeholder);
+      state.placeholder.remove();
+    } else if (state.parent && menu.parentNode !== state.parent) {
+      state.parent.appendChild(menu);
+    }
+    if (state.originalStyle === null) menu.removeAttribute("style");
+    else menu.setAttribute("style", state.originalStyle);
+    menuState.delete(menu);
+  }
+
   function closeLanguageMenus(except) {
     document.querySelectorAll(".lang-dropdown").forEach(menu => {
-      if (menu !== except) menu.classList.remove("show");
+      if (menu !== except) {
+        menu.classList.remove("show");
+        restoreMenuToOriginalParent(menu);
+      }
     });
     document.querySelectorAll(".lang-toggle").forEach(button => {
-      const ownMenu = button.closest(".lang-menu, .lang-menu-intro")?.querySelector(".lang-dropdown");
-      button.setAttribute("aria-expanded", String(!!ownMenu && ownMenu === except));
+      const menu = menuForToggle.get(button);
+      button.setAttribute("aria-expanded", String(!!menu && menu === except));
     });
+  }
+
+  function openMobileMenu(toggle, menu) {
+    const rect = toggle.getBoundingClientRect();
+    const placeholder = document.createComment("WTC language menu position");
+    const parent = menu.parentNode;
+    parent.insertBefore(placeholder, menu);
+    menuState.set(menu, {
+      parent,
+      placeholder,
+      originalStyle: menu.hasAttribute("style") ? menu.getAttribute("style") : null
+    });
+
+    // A fixed-position menu attached to body escapes .top-menu's
+    // overflow-x:auto clipping on real mobile layouts.
+    document.body.appendChild(menu);
+    const menuWidth = Math.min(160, Math.max(132, window.innerWidth - 16));
+    const right = Math.max(8, window.innerWidth - rect.right);
+    const left = Math.max(8, Math.min(window.innerWidth - menuWidth - 8, rect.right - menuWidth));
+    menu.style.setProperty("position", "fixed", "important");
+    menu.style.setProperty("top", Math.min(window.innerHeight - 150, rect.bottom + 6) + "px", "important");
+    menu.style.setProperty("left", left + "px", "important");
+    menu.style.setProperty("right", "auto", "important");
+    menu.style.setProperty("width", menuWidth + "px", "important");
+    menu.style.setProperty("min-width", "132px", "important");
+    menu.style.setProperty("z-index", "2147483647", "important");
+    menu.style.setProperty("display", "flex", "important");
+    menu.style.setProperty("visibility", "visible", "important");
+    menu.style.setProperty("opacity", "1", "important");
+    menu.style.setProperty("pointer-events", "auto", "important");
+    menu.style.setProperty("flex-direction", "column", "important");
+    menu.style.setProperty("background", "#fff", "important");
+    menu.style.setProperty("border", "1px solid #e5e7eb", "important");
+    menu.style.setProperty("border-radius", "10px", "important");
+    menu.style.setProperty("box-shadow", "0 12px 28px rgba(0,0,0,.16)", "important");
+    menu.style.setProperty("padding", "8px", "important");
   }
 
   function saveLanguage(lang) {
@@ -57,16 +122,10 @@
 
   function applyLanguage(lang, isRestore = false) {
     if (!LANGUAGES.has(lang)) return;
-
-    // Save first: several legacy pages intentionally reload to restore their
-    // original English HTML. The selected language must survive that reload.
     saveLanguage(lang);
 
     let translated = false;
     try {
-      // English is already the source HTML on a fresh page load. Skipping the
-      // legacy English branch avoids reload loops on pages that use reload()
-      // to restore their original English copy.
       if (isRestore && lang === "en") {
         translated = true;
       } else if (typeof window.setLanguage === "function") {
@@ -79,9 +138,11 @@
       console.error("[WTC language] Page translation failed:", error);
     }
 
-    // Update the selector even if a page-specific translation has a defect.
     document.querySelectorAll(".lang-toggle").forEach(button => {
-      button.textContent = LABELS[lang];
+      // Preserve nested icon markup if a page uses it.
+      const icon = button.querySelector("i");
+      if (icon) icon.textContent = LABELS[lang];
+      else button.textContent = LABELS[lang];
       button.setAttribute("aria-label",
         lang === "cn" ? "选择语言" :
         lang === "bm" ? "Pilih bahasa" : "Select language");
@@ -92,58 +153,66 @@
     document.documentElement.dataset.wtcLanguage = lang;
     syncInternalLinks(lang);
     closeLanguageMenus(null);
-
     if (!translated) console.warn("[WTC language] Selector changed, but page translation function was unavailable.");
   }
 
-  // Capture phase is deliberate: it bypasses legacy page click handlers that
-  // were closing or swallowing the language menu before it could be used.
+  rememberMenus();
+
+  // Capture phase handles both mouse clicks and mobile touch-generated clicks.
   document.addEventListener("click", event => {
-    const toggle = event.target.closest && event.target.closest(".lang-toggle");
+    const target = event.target;
+    const toggle = target && target.closest ? target.closest(".lang-toggle") : null;
     if (toggle) {
       event.preventDefault();
-      event.stopPropagation();
+      event.stopImmediatePropagation();
       const scope = toggle.closest(".lang-menu, .lang-menu-intro");
-      const menu = scope && scope.querySelector(".lang-dropdown");
+      const menu = menuForToggle.get(toggle) || (scope && scope.querySelector(".lang-dropdown"));
       if (!menu) {
-        console.error("[WTC language] Dropdown markup is missing.");
+        console.error("[WTC language] Dropdown markup is missing for this selector.");
         return;
       }
+      menuForToggle.set(toggle, menu);
       const shouldOpen = !menu.classList.contains("show");
-      closeLanguageMenus(shouldOpen ? menu : null);
+      closeLanguageMenus(null);
       if (shouldOpen) {
         menu.classList.add("show");
+        if (window.matchMedia && window.matchMedia("(max-width: 760px)").matches) {
+          openMobileMenu(toggle, menu);
+        }
         toggle.setAttribute("aria-expanded", "true");
       }
       return;
     }
 
-    const choice = event.target.closest && event.target.closest("[data-wtc-lang]");
+    const choice = target && target.closest ? target.closest("[data-wtc-lang]") : null;
     if (choice) {
       event.preventDefault();
-      event.stopPropagation();
+      event.stopImmediatePropagation();
       applyLanguage(choice.getAttribute("data-wtc-lang"));
       return;
     }
 
-    if (!event.target.closest || !event.target.closest(".lang-menu, .lang-menu-intro")) {
+    if (!target || !target.closest || !target.closest(".lang-menu, .lang-menu-intro")) {
       closeLanguageMenus(null);
     }
   }, true);
 
-  // Keyboard support for the selector and its choices.
   document.addEventListener("keydown", event => {
     if (event.key === "Escape") closeLanguageMenus(null);
   });
+
+  // Close on scroll/resize to avoid a detached menu after the header moves.
+  window.addEventListener("scroll", () => closeLanguageMenus(null), true);
+  window.addEventListener("resize", () => closeLanguageMenus(null));
 
   const runtimeStyle = document.createElement("style");
   runtimeStyle.id = "wtc-language-runtime-style";
   runtimeStyle.textContent = `
     .lang-menu, .lang-menu-intro { position:relative !important; z-index:2147483000 !important; }
-    .lang-toggle { cursor:pointer !important; pointer-events:auto !important; }
+    .lang-toggle { cursor:pointer !important; pointer-events:auto !important; touch-action:manipulation !important; -webkit-tap-highlight-color:transparent !important; }
     .lang-dropdown { position:absolute !important; top:calc(100% + 8px) !important; right:0 !important; min-width:132px !important; width:max-content !important; padding:8px !important; background:#fff !important; border:1px solid #e5e7eb !important; border-radius:10px !important; box-shadow:0 12px 28px rgba(0,0,0,.14) !important; }
     .lang-dropdown.show { display:flex !important; visibility:visible !important; opacity:1 !important; pointer-events:auto !important; z-index:2147483000 !important; }
-    .lang-dropdown button { display:block !important; width:100% !important; cursor:pointer !important; pointer-events:auto !important; }
+    .lang-dropdown button { display:block !important; width:100% !important; min-height:38px !important; cursor:pointer !important; pointer-events:auto !important; touch-action:manipulation !important; }
   `;
   (document.head || document.documentElement).appendChild(runtimeStyle);
 
@@ -154,22 +223,13 @@
       event.stopPropagation();
     }
     const button = event && event.currentTarget;
-    if (button) {
-      const scope = button.closest(".lang-menu, .lang-menu-intro");
-      const menu = scope && scope.querySelector(".lang-dropdown");
-      if (menu) {
-        const open = !menu.classList.contains("show");
-        closeLanguageMenus(open ? menu : null);
-        if (open) menu.classList.add("show");
-      }
-    }
+    if (button) button.click();
     return false;
   };
 
   function restore() {
-    const lang = readLanguage();
-    // Only call the page translator; applyLanguage also updates persistent state.
-    applyLanguage(lang, true);
+    rememberMenus();
+    applyLanguage(readLanguage(), true);
   }
 
   if (document.readyState === "loading") {
