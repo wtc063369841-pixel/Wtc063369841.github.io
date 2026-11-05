@@ -194,66 +194,26 @@ body {
   margin: 0;
   text-align: center;
   font-family: system-ui;
+  color: #172033;
   background:
-  radial-gradient(
-circle at top left,
-rgba(255,255,255,0.65),
-transparent 30%
-),
-
-radial-gradient(
-circle at bottom right,
-rgba(255,255,255,0.25),
-transparent 35%
-),
-
-repeating-linear-gradient(
-115deg,
-rgba(255,255,255,0.05) 0px,
-rgba(255,255,255,0.05) 1px,
-transparent 1px,
-transparent 8px
-),
-
-linear-gradient(
-145deg,
-#ffffff 0%,
-#f8fbfd 20%,
-#eef4f8 40%,
-#f7fafc 60%,
-#edf3f7 80%,
-#ffffff 100%
-);
+    radial-gradient(circle at 8% 0%, rgba(180,110,255,.20), transparent 30%),
+    radial-gradient(circle at 100% 15%, rgba(100,180,255,.18), transparent 28%),
+    linear-gradient(145deg, #f8fbff 0%, #edf3fa 48%, #fff 100%);
   position: relative;
   background-attachment: fixed;
   background-size: cover;
-  overflow-x:hidden;
-  width:100%;
-  max-width:100vw;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 body::before {
   content: "";
   position: fixed;
-  top: 0;
-  left: -50%;
-  width: 200%;
-  height: 100%;
-  background:
-  linear-gradient(
-  120deg,
-transparent 0%,
-  rgba(255,255,255,0.06) 45%,
-  rgba(255,255,255,0.12) 50%,
-  rgba(255,255,255,0.06) 55%,
-transparent 100%
-);
-
-animation: shineMove 12s linear infinite;
-
-pointer-events: none;
-z-index: 0;
-
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.38) 50%, transparent 100%);
 }
 
 /* NAV */
