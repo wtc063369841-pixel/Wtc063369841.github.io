@@ -572,7 +572,7 @@ lower.includes("shopee")
 reply = `
 🛒 Visit our Shopee Store:<br><br>
 
-https://my.shp.ee/6BSSa5j4
+https://my.shp.ee/4qjMeoGL
 `;
 
 }
