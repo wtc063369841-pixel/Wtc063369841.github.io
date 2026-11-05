@@ -588,7 +588,7 @@ lower.includes("tiktok")
 reply = `
 🎵 Visit our TikTok Shop:<br><br>
 
-https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/
+https://vt.tiktok.com/ZSpYM88Gh/?page=TikTokShop
 `;
 
 }
