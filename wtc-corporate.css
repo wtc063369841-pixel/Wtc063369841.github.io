@@ -1,0 +1,317 @@
+/* WTC SONIC — Corporate visual system
+   Shared across the supplied HTML pages. Champagne, warm taupe and ivory. */
+:root{
+  --wtc-ink:#51483d;
+  --wtc-text:#62584c;
+  --wtc-muted:#817668;
+  --wtc-paper:#f7f4ee;
+  --wtc-surface:#fffdf9;
+  --wtc-surface-soft:#eee8de;
+  --wtc-line:#ded4c5;
+  --wtc-gold:#b99a63;
+  --wtc-gold-deep:#927447;
+  --wtc-shadow:0 14px 38px rgba(78,65,47,.10);
+}
+html{scroll-behavior:smooth}
+body{
+  color:var(--wtc-text)!important;
+  background:linear-gradient(145deg,#f8f6f1 0%,#eee9df 52%,#fbfaf7 100%)!important;
+  background-attachment:fixed!important;
+  font-family:Inter,"Segoe UI",Arial,sans-serif!important;
+}
+body::before{display:none!important}
+h1,h2,h3,h4,h5,h6{color:var(--wtc-ink)!important;text-shadow:none!important;letter-spacing:-.025em}
+p,small,li{color:inherit}
+a{transition:color .2s ease,background .2s ease,border-color .2s ease,transform .2s ease}
+.top-menu{
+  background:rgba(250,248,243,.94)!important;
+  border-bottom:1px solid var(--wtc-line)!important;
+  box-shadow:0 5px 22px rgba(68,55,38,.07)!important;
+  backdrop-filter:blur(18px)!important;
+  -webkit-backdrop-filter:blur(18px)!important;
+}
+.top-btn,.lang-toggle i{
+  background:#eee8dd!important;color:#665640!important;
+  border:1px solid #ded2bf!important;box-shadow:0 4px 12px rgba(68,55,38,.08)!important;
+}
+.top-btn:hover,.lang-toggle:hover i{background:#e2d5bf!important;color:#4e4232!important;transform:translateY(-2px)}
+.phone-btn,.whatsapp-btn,.shopee-btn,.tiktok-btn,.facebook-btn,.ai-btn,.home-btn{background:#eee8dd!important;color:#665640!important}
+.lang-dropdown{background:rgba(255,253,249,.98)!important;border:1px solid var(--wtc-line)!important;box-shadow:var(--wtc-shadow)!important}
+.lang-dropdown button{color:var(--wtc-ink)!important}
+.hero{padding-top:42px!important}
+.hero h1,.hero h2{color:var(--wtc-ink)!important}
+.subtitle,.lead,.section-sub{color:var(--wtc-muted)!important}
+img.logo{display:none!important}
+.card,.service-card,.partner,.feature-card,.shot,.package,.support,article{
+  background:rgba(255,253,249,.94)!important;
+  border:1px solid var(--wtc-line)!important;
+  box-shadow:var(--wtc-shadow)!important;
+  backdrop-filter:none!important;
+  animation:none!important;
+}
+.card::before,.card::after,.card .nut-left,.card .nut-right,
+.service-card::before,.service-card::after{display:none!important}
+.card:hover,.service-card:hover,.partner:hover{transform:translateY(-4px)!important;box-shadow:0 18px 42px rgba(78,65,47,.14)!important}
+.card h3,.card p,.service-card p,.partner p,.feature-card h3,.shot h3,.package h3{color:var(--wtc-ink)!important}
+.card img,.service-card img{filter:none!important}
+.industrial-divider,.divider{
+  height:1px!important;width:min(92%,1100px)!important;
+  background:var(--wtc-line)!important;box-shadow:none!important;border-radius:0!important;
+}
+.industrial-divider::before,.industrial-divider::after{display:none!important}
+button,.map-btn,.login-btn,.cta a,.primary,.secondary{
+  border-radius:12px!important;box-shadow:0 6px 16px rgba(78,65,47,.09)!important;
+}
+button,.primary,.login-admin{background:var(--wtc-gold)!important;color:#fff!important;border:1px solid var(--wtc-gold)!important}
+button:hover,.primary:hover,.login-admin:hover{background:var(--wtc-gold-deep)!important;border-color:var(--wtc-gold-deep)!important}
+input,textarea,select{
+  background:#fffdf9!important;color:var(--wtc-ink)!important;border:1px solid var(--wtc-line)!important;border-radius:10px!important;
+}
+footer{color:var(--wtc-muted)!important}
+footer small{color:var(--wtc-muted)!important}
+iframe{border-radius:16px}
+img{max-width:100%}
+
+/* Shared sidebar */
+.wtc-menu-trigger{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:42px;margin:0 7px;padding:0;
+  border-radius:12px;border:1px solid var(--wtc-line);
+  background:#eee8dd;color:var(--wtc-ink);font-size:22px;cursor:pointer;
+}
+.wtc-sidebar-backdrop{
+  position:fixed;inset:0;background:rgba(49,42,34,.28);
+  z-index:100000;opacity:0;visibility:hidden;transition:.25s ease;
+}
+.wtc-sidebar{
+  position:fixed;z-index:100001;top:0;left:0;bottom:0;
+  width:min(340px,88vw);padding:22px 18px 28px;
+  background:#f8f5ef;border-right:1px solid var(--wtc-line);
+  box-shadow:18px 0 50px rgba(48,39,29,.18);
+  transform:translateX(-105%);transition:transform .28s ease;
+  overflow-y:auto;text-align:left;
+}
+body.wtc-sidebar-open .wtc-sidebar{transform:translateX(0)}
+body.wtc-sidebar-open .wtc-sidebar-backdrop{opacity:1;visibility:visible}
+.wtc-sidebar-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:5px 2px 18px;border-bottom:1px solid var(--wtc-line)}
+.wtc-brand-copy{min-width:0}
+.wtc-brand-copy strong{display:block;color:var(--wtc-ink);font-size:15px;letter-spacing:.14em}
+.wtc-brand-copy span{display:block;color:var(--wtc-muted);font-size:10px;letter-spacing:.12em;margin-top:5px}
+.wtc-sidebar-logo{display:block;width:112px;height:96px;object-fit:contain;flex:0 0 auto}
+.wtc-sidebar-close{width:34px;height:34px;padding:0;border-radius:50%!important;background:#e9e1d4!important;color:var(--wtc-ink)!important;box-shadow:none!important}
+.wtc-sidebar-nav{display:grid;gap:5px;padding:18px 0}
+.wtc-sidebar-nav a{
+  display:block;padding:11px 13px;border-radius:10px;text-decoration:none;
+  color:var(--wtc-text);font-size:14px;font-weight:600;
+}
+.wtc-sidebar-nav a:hover{background:#ece4d7;color:var(--wtc-gold-deep)}
+.wtc-sidebar-label{margin:10px 2px 9px;color:var(--wtc-muted);font-size:10px;font-weight:800;letter-spacing:.16em}
+.wtc-music-card{padding:15px;border-radius:15px;background:#eee8dd;border:1px solid #ded2bf}
+.wtc-music-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.wtc-music-title{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--wtc-ink)}
+.wtc-track-name{font-size:13px;color:var(--wtc-muted);margin:9px 0 12px}
+.wtc-music-button{
+  display:flex!important;align-items:center;justify-content:center;gap:9px;
+  width:100%;min-height:44px;padding:10px 12px!important;
+  border-radius:11px!important;background:var(--wtc-gold)!important;color:white!important;
+  font-size:13px!important;font-weight:750!important;cursor:pointer;
+}
+.wtc-music-button:hover{background:var(--wtc-gold-deep)!important}
+.wtc-music-hint{font-size:11px;color:var(--wtc-muted);line-height:1.5;margin:9px 0 0}
+@media(max-width:600px){
+ .top-menu{justify-content:center!important;gap:4px!important}
+ .wtc-menu-trigger{width:38px;height:38px;margin:0 2px}
+ .hero{padding-top:28px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+}
+
+
+/* === WTC SONIC refinement: brand sits OUTSIDE the hamburger drawer === */
+.top-menu{
+  justify-content:flex-start!important;
+  background:#ffffff!important;
+  border-bottom:1px solid #e5e7eb!important;
+  box-shadow:0 3px 14px rgba(31,41,55,.06)!important;
+  padding:4px 10px!important;
+  gap:8px!important;
+}
+.wtc-top-brand{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  flex:0 0 auto!important;
+  width:88px!important;
+  height:58px!important;
+  margin:0 4px 0 0!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  text-decoration:none!important;
+}
+.wtc-top-brand img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  filter:none!important;
+}
+.wtc-menu-trigger,
+.hamburger.wtc-menu-trigger{
+  flex:0 0 44px!important;
+  width:44px!important;
+  min-width:44px!important;
+  height:42px!important;
+  margin:0 4px 0 0!important;
+  border:1px solid #e1e4e8!important;
+  border-radius:11px!important;
+  background:#f1f2f4!important;
+  color:#626b75!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+.wtc-menu-trigger:hover,
+.hamburger.wtc-menu-trigger:hover{
+  background:#e7e9ec!important;
+  color:#4b5563!important;
+  transform:translateY(-1px)!important;
+  box-shadow:none!important;
+}
+.wtc-menu-trigger:active,
+.hamburger.wtc-menu-trigger:active{
+  background:#e1e4e8!important;
+  box-shadow:none!important;
+  transform:scale(.98)!important;
+}
+
+/* Drawer itself: clean white with restrained light-grey navigation surfaces */
+.wtc-sidebar{
+  background:#ffffff!important;
+  border-right:1px solid #e5e7eb!important;
+  box-shadow:14px 0 42px rgba(31,41,55,.12)!important;
+}
+.wtc-sidebar-head{
+  border-bottom:1px solid #e5e7eb!important;
+}
+.wtc-brand-copy strong{color:#59616b!important}
+.wtc-brand-copy span{color:#9299a2!important}
+.wtc-sidebar-close{
+  background:#f1f2f4!important;
+  border:1px solid #e3e6e9!important;
+  color:#626b75!important;
+}
+.wtc-sidebar-nav a{
+  color:#626b75!important;
+  background:transparent!important;
+}
+.wtc-sidebar-nav a:hover,
+.wtc-sidebar-nav a:focus-visible{
+  background:#f1f2f4!important;
+  color:#4f5964!important;
+}
+.wtc-sidebar-label{color:#9299a2!important}
+.wtc-music-card{
+  background:#f3f4f6!important;
+  border:1px solid #e5e7eb!important;
+}
+.wtc-music-title{color:#59616b!important}
+.wtc-track-name,.wtc-music-hint{color:#7b8490!important}
+.wtc-music-button{
+  background:#d8dce1!important;
+  border:1px solid #cbd1d8!important;
+  color:#4f5964!important;
+  box-shadow:none!important;
+}
+.wtc-music-button:hover{
+  background:#cbd1d8!important;
+  color:#3f4852!important;
+}
+.wtc-sidebar-backdrop{background:rgba(31,41,55,.24)!important}
+
+/* Intro page has no social toolbar; keep the same brand/menu relationship. */
+body > .wtc-top-brand{
+  position:fixed!important;
+  top:8px!important;
+  left:10px!important;
+  z-index:100003!important;
+}
+@media(max-width:600px){
+  .top-menu{gap:5px!important;padding:4px 6px!important}
+  .wtc-top-brand{width:72px!important;height:48px!important;margin-right:1px!important}
+  .wtc-menu-trigger,.hamburger.wtc-menu-trigger{
+    flex-basis:38px!important;width:38px!important;min-width:38px!important;height:38px!important;
+  }
+}
+
+@media(max-width:420px){
+  .top-menu{overflow-x:auto!important;overflow-y:hidden!important;flex-wrap:nowrap!important;scrollbar-width:none!important}
+  .top-menu::-webkit-scrollbar{display:none!important}
+  .wtc-top-brand{width:56px!important;height:42px!important;flex-basis:56px!important}
+  .wtc-menu-trigger,.hamburger.wtc-menu-trigger{
+    flex-basis:34px!important;width:34px!important;min-width:34px!important;height:34px!important;
+    font-size:19px!important;
+  }
+  .top-btn,.lang-toggle i{
+    width:34px!important;min-width:34px!important;height:34px!important;flex:0 0 34px!important;
+    padding:4px!important;font-size:13px!important;
+  }
+}
+
+
+/* === User-requested visual adjustments: white pages, grey top bar, wider logo === */
+body{
+  background:#ffffff!important;
+  background-image:none!important;
+  background-attachment:initial!important;
+}
+
+/* The horizontal navigation strip only; existing buttons retain their styling. */
+.top-menu{
+  background:#e5e7eb!important;
+  border-bottom:1px solid #d1d5db!important;
+  box-shadow:0 3px 14px rgba(31,41,55,.06)!important;
+}
+
+/* Widen the existing logo horizontally while keeping its displayed height fixed.
+   The original logo image and its colors are not edited. */
+.wtc-top-brand{
+  width:132px!important;
+  height:58px!important;
+}
+.wtc-top-brand img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:fill!important;
+}
+
+@media(max-width:600px){
+  .wtc-top-brand{
+    width:108px!important;
+    height:48px!important;
+  }
+  .wtc-top-brand img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:fill!important;
+  }
+}
+
+@media(max-width:420px){
+  .wtc-top-brand{
+    width:94px!important;
+    height:42px!important;
+    flex-basis:94px!important;
+  }
+  .wtc-top-brand img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:fill!important;
+  }
+}

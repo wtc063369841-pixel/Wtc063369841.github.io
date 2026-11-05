@@ -484,63 +484,87 @@ z-index:2;
 
 </style>
 
+<link rel="stylesheet" href="wtc-corporate.css">
+<link rel="stylesheet" href="wtc-modern-overrides.css">
 </head>
 
 <body>
 
 <div class="top-menu">
 
-<a href="index.html" class="top-btn home-btn">
-<i class="fa-solid fa-house"></i>
+<a class="wtc-top-brand" href="index.html" aria-label="WTC Sonic home">
+  <img src="wtc-logo-corporate.png" alt="WTC Sonic">
 </a>
 
-<a href="tel:+60163456287" class="top-btn phone-btn">
-<i class="fa-solid fa-phone"></i>
-</a>
 
-<a href="https://wa.me/60163456287" class="top-btn whatsapp-btn">
-<i class="fa-brands fa-whatsapp"></i>
-</a>
+<button class="wtc-menu-trigger" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
 
-<a href="https://my.shp.ee/6BSSa5j4" target="_blank" class="top-btn shopee-btn">
-<i class="fa-solid fa-bag-shopping"></i>
-</a>
 
-<a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/" target="_blank" class="top-btn tiktok-btn">
-<i class="fa-brands fa-tiktok"></i>
-</a>
+<a href="index.html" class="top-btn home-btn">Home</a>
 
-<a href="https://facebook.com/wtcsonic" target="_blank" class="top-btn facebook-btn">
-<i class="fa-brands fa-facebook-f"></i>
-</a>
+<a href="tel:+60163456287" class="top-btn phone-btn">Contact Us</a>
 
-<a href="javascript:void(0)" class="top-btn ai-btn" onclick="openAIChat()">
-<i class="fa-solid fa-robot"></i>
-</a>
+<a href="https://wa.me/60163456287" class="top-btn whatsapp-btn">WhatsApp</a>
+
+<a href="https://my.shp.ee/6BSSa5j4" target="_blank" class="top-btn shopee-btn">Shopee</a>
+
+<a href="https://vt.tiktok.com/ZS9FF6wFBgqS9-IwFY0/" target="_blank" class="top-btn tiktok-btn">TikTok</a>
+
+<a href="https://facebook.com/wtcsonic" target="_blank" class="top-btn facebook-btn">Facebook</a>
+
+<a href="javascript:void(0)" class="top-btn ai-btn" onclick="openAIChat()">AI Assistant</a>
 
 <div class="lang-menu">
 
-<button class="lang-toggle" onclick="toggleLangMenu()">
-<i class="fa-solid fa-earth-asia"></i>
-</button>
+<button type="button" class="lang-toggle">ENG</button>
 
 <div class="lang-dropdown" id="langDropdown">
 
-<button onclick="setLanguage('en')">EN</button>
-<button onclick="setLanguage('cn')">中文</button>
-<button onclick="setLanguage('bm')">BM</button>
+<button  type="button" data-wtc-lang="en">EN</button>
+<button  type="button" data-wtc-lang="cn">中文</button>
+<button  type="button" data-wtc-lang="bm">BM</button>
 
 </div>
 </div>
 </div>
+
+<div class="wtc-sidebar-backdrop" aria-hidden="true"></div>
+<aside class="wtc-sidebar" aria-label="WTC main navigation">
+  <div class="wtc-sidebar-head">
+    <div class="wtc-brand-copy">
+      <strong>WORLD TELE<br>COMMUNICATION</strong>
+      <span>CONNECTING YOUR BUSINESS</span>
+    </div>
+<button class="wtc-sidebar-close" type="button" aria-label="Close menu">×</button>
+  </div>
+  <nav class="wtc-sidebar-nav" aria-label="Website pages">
+    <a href="index.html">Home</a>
+    <a href="mobilephone.html">Mobile Phone</a>
+    <a href="pointofsale.html">Point of Sale</a>
+    <a href="websitesolutions.html">Website Solutions</a>
+    <a href="sonicpos.html">Sonic POS</a>
+    <a href="salesplay.html">SalesPlay</a>
+    <a href="sunmi.html">SUNMI</a>
+    <a href="pospay.html">PosPay</a>
+    <a href="qrpayment.html">QR Payment</a>
+    <a href="comingsoon.html">More</a>
+  </nav>
+  <div class="wtc-sidebar-label">WTC SONIC MUSIC</div>
+  <section class="wtc-music-card" aria-label="Three-track music player">
+    <div class="wtc-music-top"><span class="wtc-music-title">THEME MUSIC</span><span aria-hidden="true">♪</span></div>
+    <div class="wtc-track-name" id="wtcTrackName">Choose a track to begin</div>
+    <button class="wtc-music-button" id="wtcMusicButton" type="button">
+      <span id="wtcMusicIcon" aria-hidden="true">▶</span> Play / Next Track
+    </button>
+    <p class="wtc-music-hint">Each click plays the next language: English → 中文 → Bahasa Melayu.</p>
+  </section>
+  <audio id="wtcBackgroundMusic" preload="none"></audio>
+</aside>
+
 
 <section class="hero">
 
-<img 
-src="logo.png"
-class="logo"
-style="cursor:pointer;"
-alt="World Tele Communication Logo">
+
 
 <img src="repair.png" class="repair-banner">
 
@@ -868,5 +892,8 @@ pointer-events:none !important;
 }
 </style>
 
+<script src="wtc-corporate.js"></script>
+
+<script src="wtc-language-shared.js"></script>
 </body>
 </html>
